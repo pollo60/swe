@@ -114,24 +114,24 @@
     const mindMapData = {
       label: 'S-01 Kundenverwaltung – Aufgabestellung und Personenverantwortung',
       role: 'general',
-      meta: 'Sortiert nach Aufgabenstellung und den Anforderungen pro Person (1–4)',
+      meta: 'Sortiert nach Aufgabenstellung und den Anforderungen pro Person (1–4); Format: Mindmap (HTML/JS); Tool: Browser/VS Code; Vorlesung: VL1 – Einführung & Projektrahmen',
       children: [
         {
           label: 'Aufgabestellung Gesamt',
           role: 'general',
-          meta: 'Kernanforderungen S-01: Registrierung, Sicherheit, Premium, Zahlungsdaten, Schnittstellen',
+          meta: 'Kernanforderungen S-01: Registrierung, Sicherheit, Premium, Zahlungsdaten, Schnittstellen; Format: Übersichtstext; Tool: Mindmap-Node; Vorlesung: VL2 – Anforderungen & Scope',
           children: [
-            { label: 'Registrierung/Login mit Passwort-Policy und Sperre nach 3 Fehlversuchen/1h (S-09)', role: 'general', meta: 'Prof-Vorgabe: Passwortregeln, Doppeleingabe, Sperrlogik implementieren und an Login-Segment koppeln.' },
-            { label: 'Digitale Tickets only: E-Mail/Download/QR, keine Papierlieferung (S-04)', role: 'general', meta: 'Nur digitale Bereitstellung modellieren; keine Postwege; Übergabepunkt an Ticketbereitstellung definieren.' },
-            { label: 'Zahlungsarten verwalten inkl. Premium-Rechnung; Validierung IBAN/BIC/Luhn/Token', role: 'general', meta: 'Alle Payment-Flows validieren; Fehlerpfade vorsehen; Premium-Rechnung erst nach Status-Check erlauben.' },
-            { label: 'Reservierungsdauer 2h Standard / 4h Premium; Warenkorb-Timeout 24h/36h', role: 'general', meta: 'Parameter an S-02/S-06 weiterreichen; Premium-Flag als Steuergröße in beiden Segmenten nutzen.' },
-            { label: 'Bewertungen nur nach Kauf & Terminende; Kaufnachweis nötig (S-05)', role: 'general', meta: 'Berechtigungsprüfung zentral in S-01 hinterlegen; Terminprüfung und Kaufbeleg an Bewertungssystem liefern.' }
+            { label: 'Registrierung/Login mit Passwort-Policy und Sperre nach 3 Fehlversuchen/1h (S-09)', role: 'general', meta: 'Prof-Vorgabe: Passwortregeln, Doppeleingabe, Sperrlogik implementieren und an Login-Segment koppeln; Format: Policy-Checkliste + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme.' },
+            { label: 'Digitale Tickets only: E-Mail/Download/QR, keine Papierlieferung (S-04)', role: 'general', meta: 'Nur digitale Bereitstellung modellieren; keine Postwege; Übergabepunkt an Ticketbereitstellung definieren; Format: Architektur-/Kontextnotiz (Text); Tool: Markdown; Vorlesung: VL4 – Geschäftsprozesse & Segmente.' },
+            { label: 'Zahlungsarten verwalten inkl. Premium-Rechnung; Validierung IBAN/BIC/Luhn/Token', role: 'general', meta: 'Alle Payment-Flows validieren; Fehlerpfade vorsehen; Premium-Rechnung erst nach Status-Check erlauben; Format: Anforderungstext + Aktivitätsdiagramm Payment; Tool: Markdown + draw.io; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'Reservierungsdauer 2h Standard / 4h Premium; Warenkorb-Timeout 24h/36h', role: 'general', meta: 'Parameter an S-02/S-06 weiterreichen; Premium-Flag als Steuergröße in beiden Segmenten nutzen; Format: Parametertabelle; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'Bewertungen nur nach Kauf & Terminende; Kaufnachweis nötig (S-05)', role: 'general', meta: 'Berechtigungsprüfung zentral in S-01 hinterlegen; Terminprüfung und Kaufbeleg an Bewertungssystem liefern; Format: Berechtigungsregel + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme.' }
           ]
         },
         {
           label: 'Person 1 – Use Cases & Stories',
           role: 'p1',
-          meta: 'Erarbeitet Nutzerziele, Stories und Use-Case-Sicht',
+          meta: 'Erarbeitet Nutzerziele, Stories und Use-Case-Sicht; Format: Backlog (User Stories) + Use-Case-Spezifikationen (Text); Tool: Markdown/Confluence; Vorlesung: VL3 – Agiles Vorgehen & User Stories',
           children: [
             {
               label: 'Registrierung anlegen',
