@@ -135,8 +135,9 @@
         ]},
         { label: 'Objekte und Attribute', role: 'p2', meta: 'Klassendiagramm, Datenstruktur, Ableitungen; Format: UML-Klassendiagramm; Tool: Visual Paradigm', children: [
           { label: 'Kunde (zentral)', role: 'p2', meta: 'Basis-Entity mit Ableitungen Standard/Premium; Format: UML-Klassendiagramm (Vererbung); Tool: Visual Paradigm', children: [
-            { label: 'Attribute: Name, Kontaktdaten, Status, Registrierungsdatum', role: 'p2', meta: 'Datentypen (String, Email, Date), Constraints (NOT NULL, UNIQUE)' },
-            { label: 'Ableitung: Standardkunde, Premium-Kunde (Upgrade-Datum)', role: 'p2', meta: 'Generalisierung/Spezialisierung' }
+            { label: 'Attribute: Kundennummer, Benutzername, E-Mail, Name, Registrierungsdatum, Status', role: 'p2', meta: 'Datentypen (String, Email, Date), Constraints (NOT NULL, UNIQUE für Benutzername/E-Mail)' },
+            { label: 'Ableitung: Standardkunde, Premium-Kunde (Upgrade-Datum)', role: 'p2', meta: 'Generalisierung/Spezialisierung; Premium-Flag, Upgrade-Datum (Date)' },
+            { label: 'Login-Daten: Passwort-Hash, Fehlversuche, Gesperrt-bis', role: 'p2', meta: 'Sperrlogik: Fehlversuche (int), Gesperrt-bis (DateTime); Schnittstelle zu S-09' }
           ]},
           { label: 'Adresse', role: 'p2', meta: 'Trennung Liefer-/Rechnungsadresse; Format: UML-Klassendiagramm (Aggregation); Tool: Visual Paradigm', children: [
             { label: 'Attribute: Straße, PLZ, Ort, Land, Typ (Liefer-/Rechnungsadresse)', role: 'p2', meta: 'Assoziationsvielfalt (Kunde 1 zu N Adressen)' }
@@ -147,6 +148,12 @@
           ]},
           { label: 'Reservierungsparameter', role: 'p2', meta: 'Abgeleitet aus Kundenstatus; Format: UML-Klassendiagramm; Tool: Visual Paradigm', children: [
             { label: 'Attribute: Dauer (2h/4h), Warenkorb-Timeout (24h/36h)', role: 'p2', meta: 'Verwendung in Schnittstellen zu S-02/S-06' }
+          ]},
+          { label: 'Kaufhistorie', role: 'p2', meta: 'Nachweis für Bewertungsberechtigung; Aggregation Kunde → Käufe; Format: UML-Klassendiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Attribute: Kaufdatum, Artikel, Termin, Status (abgeschlossen/laufend)', role: 'p2', meta: 'Assoziationsvielfalt (Kunde 1 zu N Käufe); Verwendung für Bewertungs-Guard' }
+          ]},
+          { label: 'Bewertung', role: 'p2', meta: 'Kundenbewertung für gekaufte Artikel; Aggregation Kunde → Bewertungen; Format: UML-Klassendiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Attribute: Artikel-ID, Bewertung (1-5 Sterne), Kommentar, Datum', role: 'p2', meta: 'Constraints: nur für gekaufte Artikel, nur nach Terminende, Shop ausgeschlossen' }
           ]}
         ]},
         { label: 'Schnittstellen zu anderen Segmenten und externen Systemen', role: 'p4', meta: 'Übersicht Schnittstellenaufrufe; Format: Sequenzdiagramme; Tool: Visual Paradigm', children: [
