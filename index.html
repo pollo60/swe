@@ -65,8 +65,23 @@
     .timeline-kw03 .timeline-week-header { background: linear-gradient(135deg, rgba(34, 197, 94, 0.38), rgba(34, 197, 94, 0.19)); border-left: 3px solid #166534; }
     .timeline-kw04 .timeline-week-header { background: linear-gradient(135deg, rgba(34, 197, 94, 0.44), rgba(34, 197, 94, 0.22)); border-left: 3px solid #14532d; }
     
+    /* Wiki Styles */
+    .wiki-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+    .wiki-item { background: linear-gradient(135deg, rgba(79, 70, 229, 0.03), rgba(5, 150, 105, 0.03)); border: 2px solid var(--border); border-radius: 12px; padding: 16px; transition: transform 0.2s, box-shadow 0.2s; }
+    .wiki-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: var(--p1); }
+    .wiki-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--border); }
+    .wiki-number { background: linear-gradient(135deg, var(--p1), var(--p2)); color: white; font-weight: 700; font-size: 14px; padding: 6px 12px; border-radius: 8px; min-width: 50px; text-align: center; }
+    .wiki-title { font-weight: 700; font-size: 16px; color: var(--text); margin: 0; flex: 1; }
+    .wiki-content { font-size: 13px; line-height: 1.6; color: var(--text); }
+    .wiki-section { margin-bottom: 12px; }
+    .wiki-section-title { font-weight: 600; color: var(--p1); margin: 0 0 6px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .wiki-list { margin: 4px 0; padding-left: 18px; }
+    .wiki-list li { margin: 4px 0; }
+    .wiki-vocab { background: rgba(79, 70, 229, 0.06); padding: 3px 8px; border-radius: 6px; font-weight: 500; color: var(--p1); }
+    
     @media (max-width: 1200px) {
       .branches-container { grid-template-columns: 1fr; }
+      .wiki-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -92,6 +107,14 @@
         <h2>Timeline bis 25.01.2026</h2>
         <div class="timeline-horizontal" id="timeline"></div>
       </div>
+
+      <!-- Wiki: VL 1-11 Zusammenfassungen -->
+      <div class="card">
+        <h2>📚 Wiki: Software Engineering Grundlagen (VL 1-11)</h2>
+        <p class="lead" style="margin-bottom: 24px;">Kompakte Übersicht zu Themen, Vokabeln und Arbeitsweisen aus den Vorlesungen</p>
+        
+        <div class="wiki-grid" id="wiki"></div>
+      </div>
     </div>
   </div>
   <script>
@@ -105,6 +128,157 @@
       { role: 'p2', label: 'Objekte & Attribute' },
       { role: 'p3', label: 'Dynamik & Regeln' },
       { role: 'p4', label: 'Schnittstellen & Segmente' }
+    ];
+
+    const wikiData = [
+      {
+        vl: 'VL 1',
+        title: 'Einführung Software Engineering',
+        topics: ['Definition Software Engineering', 'Software-Krise', 'Qualitätskriterien', 'Entwicklungsprozesse'],
+        vocab: [
+          { term: 'Software Engineering', def: 'Ingenieurmäßige Entwicklung und Wartung von Software mit systematischen, disziplinierten und quantifizierbaren Ansätzen' },
+          { term: 'Software-Krise', def: 'Probleme in den 1960er Jahren: Projekte zu teuer, zu spät, fehlerhaft, nicht wartbar' },
+          { term: 'Qualitätskriterien', def: 'Funktionalität, Zuverlässigkeit, Benutzbarkeit, Effizienz, Wartbarkeit, Portabilität (ISO 9126)' }
+        ],
+        methods: 'Überblick über Phasenmodelle (Wasserfall, V-Modell) und agile Ansätze; Einführung in Requirements Engineering'
+      },
+      {
+        vl: 'VL 2',
+        title: 'Requirements Engineering',
+        topics: ['Anforderungserhebung', 'Funktionale/Nichtfunktionale Anforderungen', 'Use Cases', 'User Stories'],
+        vocab: [
+          { term: 'Requirements Engineering', def: 'Systematischer Prozess zur Ermittlung, Analyse, Spezifikation und Validierung von Anforderungen' },
+          { term: 'Funktionale Anforderung', def: 'Beschreibt WAS das System tun soll (z.B. "Benutzer kann sich einloggen")' },
+          { term: 'Nichtfunktionale Anforderung', def: 'Beschreibt WIE gut das System funktioniert (Performance, Sicherheit, Usability)' },
+          { term: 'Use Case', def: 'Beschreibung einer Interaktion zwischen Akteur und System zur Erreichung eines Ziels' },
+          { term: 'User Story', def: 'Agiles Format: "Als [Rolle] möchte ich [Funktion], um [Nutzen]"' }
+        ],
+        methods: 'Interviews, Workshops, Beobachtung; Use-Case-Diagramme (UML); User-Story-Mapping; Priorisierung mit MoSCoW'
+      },
+      {
+        vl: 'VL 3',
+        title: 'UML-Grundlagen & Use-Case-Diagramme',
+        topics: ['UML-Überblick', 'Use-Case-Diagramme', 'Akteure', 'Beziehungen (include, extend, generalization)'],
+        vocab: [
+          { term: 'UML', def: 'Unified Modeling Language - standardisierte Notation zur Visualisierung von Softwaresystemen' },
+          { term: 'Akteur', def: 'Rolle außerhalb des Systems, die mit dem System interagiert (Mensch, anderes System)' },
+          { term: 'include', def: 'Use Case A beinhaltet immer Use Case B (Pflicht-Beziehung)' },
+          { term: 'extend', def: 'Use Case B erweitert optional Use Case A (bedingte Erweiterung)' },
+          { term: 'Generalization', def: 'Vererbung zwischen Akteuren oder Use Cases (Spezialisierung)' }
+        ],
+        methods: 'Use-Case-Diagramm zeichnen in Visual Paradigm: Akteure platzieren, Use Cases als Ellipsen, Assoziationen mit Linien, <<include>>/<<extend>> Stereotypen'
+      },
+      {
+        vl: 'VL 4',
+        title: 'Aktivitätsdiagramme',
+        topics: ['Ablaufmodellierung', 'Kontrollfluss', 'Actions, Decisions, Forks', 'Swimlanes'],
+        vocab: [
+          { term: 'Aktivitätsdiagramm', def: 'UML-Diagramm zur Modellierung von Abläufen/Workflows (ähnlich Flussdiagramm)' },
+          { term: 'Action', def: 'Einzelner Schritt im Ablauf (abgerundetes Rechteck)' },
+          { term: 'Decision Node', def: 'Verzweigung im Ablauf (Raute), mit Guards [Bedingung] an ausgehenden Kanten' },
+          { term: 'Fork/Join', def: 'Parallelisierung (Fork: ein → mehrere) und Synchronisation (Join: mehrere → ein), dargestellt als dicke Balken' },
+          { term: 'Swimlane', def: 'Vertikale/horizontale Unterteilung des Diagramms zur Zuordnung von Verantwortlichkeiten' }
+        ],
+        methods: 'Start-Node → Actions → Decision-Nodes mit Guards → Fork für parallele Pfade → Join zur Synchronisation → End-Node. In Visual Paradigm: Activity Diagram erstellen, Elemente aus Palette ziehen'
+      },
+      {
+        vl: 'VL 5',
+        title: 'Klassendiagramme',
+        topics: ['Objektorientierte Modellierung', 'Klassen, Attribute, Methoden', 'Assoziationen', 'Vererbung, Aggregation, Komposition'],
+        vocab: [
+          { term: 'Klassendiagramm', def: 'UML-Diagramm zur Darstellung von Klassen, Attributen, Methoden und deren Beziehungen' },
+          { term: 'Klasse', def: 'Bauplan für Objekte mit Attributen (Daten) und Methoden (Verhalten)' },
+          { term: 'Assoziation', def: 'Beziehung zwischen Klassen (Linie), mit Multiplizität (1, 0..1, 0..*, 1..*) und Rollennamen' },
+          { term: 'Vererbung/Generalization', def: 'Klasse A erbt von Klasse B (hohler Pfeil von A zu B)' },
+          { term: 'Aggregation', def: 'Teil-Ganzes-Beziehung (hohle Raute), Teil kann unabhängig existieren' },
+          { term: 'Komposition', def: 'Starke Teil-Ganzes-Beziehung (gefüllte Raute), Teil existiert nicht ohne Ganzes' }
+        ],
+        methods: 'In Visual Paradigm Class Diagram: Klassen erstellen (3 Abschnitte: Name, Attribute, Methoden), Visibility (-/+/#), Assoziationen zeichnen, Multiplizität setzen, Vererbung/Aggregation mit entsprechenden Tools'
+      },
+      {
+        vl: 'VL 6',
+        title: 'Sequenzdiagramme',
+        topics: ['Interaktionsmodellierung', 'Lifelines', 'Messages', 'Aktivierungsbalken', 'Alt/Opt/Loop Fragments'],
+        vocab: [
+          { term: 'Sequenzdiagramm', def: 'UML-Diagramm zur Darstellung zeitlicher Abläufe von Nachrichten zwischen Objekten' },
+          { term: 'Lifeline', def: 'Vertikale gestrichelte Linie, repräsentiert ein Objekt/Akteur über Zeit' },
+          { term: 'Message', def: 'Nachricht zwischen Lifelines (Pfeil), synchron (gefüllt) oder asynchron (offen)' },
+          { term: 'Aktivierungsbalken', def: 'Rechteck auf Lifeline zeigt aktive Ausführungszeit' },
+          { term: 'Combined Fragment', def: 'Rahmen für bedingte/alternative Abläufe: alt (Alternative), opt (Optional), loop (Schleife)' }
+        ],
+        methods: 'In Visual Paradigm Sequence Diagram: Lifelines hinzufügen, Messages zeichnen (Pfeil von Sender zu Empfänger), return-Messages gestrichelt, alt-Fragment für bedingte Logik [Guard], loop für Wiederholungen'
+      },
+      {
+        vl: 'VL 7',
+        title: 'Zustandsdiagramme',
+        topics: ['Zustandsbasierte Modellierung', 'Zustände, Übergänge', 'Events, Guards, Actions'],
+        vocab: [
+          { term: 'Zustandsdiagramm', def: 'UML-Diagramm zur Modellierung des Lebenszyklus eines Objekts (Zustände und Übergänge)' },
+          { term: 'Zustand', def: 'Situation eines Objekts, in der es auf Events wartet (abgerundetes Rechteck)' },
+          { term: 'Übergang', def: 'Pfeil zwischen Zuständen, ausgelöst durch Event, optional mit Guard [Bedingung] und Action' },
+          { term: 'Event', def: 'Auslöser für Zustandsübergang (z.B. buttonClicked, timeout)' },
+          { term: 'Guard', def: 'Bedingung [x > 0], die erfüllt sein muss, damit Übergang stattfindet' },
+          { term: 'Entry/Exit Action', def: 'Aktionen, die beim Betreten (entry/) oder Verlassen (exit/) eines Zustands ausgeführt werden' }
+        ],
+        methods: 'In Visual Paradigm State Machine Diagram: Start-Zustand (gefüllter Kreis) → Zustände → Übergänge mit Event[Guard]/Action → End-Zustand (gefüllter Kreis mit Ring)'
+      },
+      {
+        vl: 'VL 8',
+        title: 'Software-Architektur',
+        topics: ['Architekturstile', 'Schichtenarchitektur', 'MVC-Pattern', 'Microservices', 'Komponenten und Schnittstellen'],
+        vocab: [
+          { term: 'Software-Architektur', def: 'Grundlegende Struktur eines Systems: Komponenten, Beziehungen, Prinzipien' },
+          { term: 'Schichtenarchitektur', def: 'Aufteilung in Layers (z.B. Präsentation, Business-Logik, Datenzugriff), jede Schicht nutzt nur darunterliegende' },
+          { term: 'MVC', def: 'Model-View-Controller: Trennung von Daten (Model), Anzeige (View) und Steuerung (Controller)' },
+          { term: 'Microservices', def: 'Architekturstil: kleine, unabhängige Services statt monolithischer Anwendung' },
+          { term: 'Komponentendiagramm', def: 'UML-Diagramm zur Darstellung von Software-Komponenten und deren Abhängigkeiten' }
+        ],
+        methods: 'Architekturentscheidungen dokumentieren: Welche Layer? Welche Komponenten? Schnittstellendefinition mit provided/required Interfaces. Komponentendiagramm in Visual Paradigm: Komponenten als Rechtecke mit <<component>>, Abhängigkeiten mit gestrichelten Pfeilen'
+      },
+      {
+        vl: 'VL 9',
+        title: 'Design Patterns',
+        topics: ['Entwurfsmuster', 'Creational Patterns', 'Structural Patterns', 'Behavioral Patterns'],
+        vocab: [
+          { term: 'Design Pattern', def: 'Bewährte Lösungsschablone für wiederkehrende Entwurfsprobleme' },
+          { term: 'Singleton', def: 'Creational Pattern: Stellt sicher, dass eine Klasse nur eine Instanz hat (z.B. Konfigurationsobjekt)' },
+          { term: 'Factory', def: 'Creational Pattern: Objekt-Erzeugung über Factory-Methode statt direktem new' },
+          { term: 'Observer', def: 'Behavioral Pattern: Objekte (Observer) werden automatisch über Änderungen am Subject benachrichtigt' },
+          { term: 'Strategy', def: 'Behavioral Pattern: Algorithmus zur Laufzeit austauschbar (z.B. verschiedene Sortierverfahren)' },
+          { term: 'Decorator', def: 'Structural Pattern: Dynamisches Hinzufügen von Funktionalität zu Objekten' }
+        ],
+        methods: 'Pattern im Klassendiagramm darstellen: z.B. Singleton mit private Constructor + static getInstance(). Observer mit Subject-Observer-Beziehung. Factory mit Factory-Klasse und Produkthierarchie'
+      },
+      {
+        vl: 'VL 10',
+        title: 'Testen & Qualitätssicherung',
+        topics: ['Testarten', 'Unit-Tests', 'Integrationstests', 'Testgetriebene Entwicklung (TDD)', 'Code Reviews'],
+        vocab: [
+          { term: 'Unit-Test', def: 'Test einzelner Code-Einheiten (Methoden, Klassen) isoliert von anderen Komponenten' },
+          { term: 'Integrationstest', def: 'Test des Zusammenspiels mehrerer Komponenten' },
+          { term: 'Systemtest', def: 'Test des Gesamtsystems gegen Anforderungen (funktional + nichtfunktional)' },
+          { term: 'TDD', def: 'Test-Driven Development: Erst Test schreiben (rot), dann Code implementieren (grün), dann refaktorieren' },
+          { term: 'Code Coverage', def: 'Maß für Testabdeckung: Welcher Anteil des Codes wird durch Tests ausgeführt?' },
+          { term: 'Mock', def: 'Ersatzobjekt für Abhängigkeiten im Test (simuliert Verhalten)' }
+        ],
+        methods: 'Unit-Tests mit JUnit (Java) oder pytest (Python): @Test-Annotation, assert-Statements. TDD-Zyklus: Red (Test fehlschlägt) → Green (Test erfolgreich) → Refactor (Code verbessern). Code Reviews: Vier-Augen-Prinzip, Checklisten'
+      },
+      {
+        vl: 'VL 11',
+        title: 'Agile Methoden & Scrum',
+        topics: ['Agiles Manifest', 'Scrum-Framework', 'Sprints', 'Rollen (Product Owner, Scrum Master, Team)', 'Artefakte (Product Backlog, Sprint Backlog)'],
+        vocab: [
+          { term: 'Agiles Manifest', def: '4 Werte: Individuen > Prozesse, funktionierende Software > Dokumentation, Zusammenarbeit > Verträge, Reagieren auf Veränderung > Plan' },
+          { term: 'Scrum', def: 'Agiles Framework mit festen Rollen, Events (Sprint, Daily, Review, Retro) und Artefakten' },
+          { term: 'Sprint', def: 'Timeboxed Iteration (1-4 Wochen), am Ende steht potenziell auslieferbare Software' },
+          { term: 'Product Owner', def: 'Verantwortlich für Product Backlog, priorisiert Features nach Business Value' },
+          { term: 'Scrum Master', def: 'Coach des Teams, beseitigt Impediments, schützt vor Störungen' },
+          { term: 'Product Backlog', def: 'Priorisierte Liste aller Anforderungen (User Stories, Bugs, Tasks)' },
+          { term: 'Sprint Backlog', def: 'Teilmenge des Product Backlogs für aktuellen Sprint' },
+          { term: 'Daily Standup', def: 'Tägliches 15-min Meeting: Was habe ich gemacht? Was mache ich heute? Was blockiert mich?' }
+        ],
+        methods: 'Scrum-Prozess: Sprint Planning (Backlog Items auswählen) → Daily Standups → Sprint Review (Demo) → Sprint Retrospective (Verbesserungen). User Stories schätzen mit Planning Poker (Story Points). Kanban-Board: To Do → In Progress → Done'
+      }
     ];
 
     const mindMapData = {
@@ -523,10 +697,67 @@
       });
     }
 
+    function renderWiki() {
+      const container = document.getElementById('wiki');
+      wikiData.forEach(vl => {
+        const item = document.createElement('div');
+        item.className = 'wiki-item';
+        
+        const header = document.createElement('div');
+        header.className = 'wiki-header';
+        header.innerHTML = `
+          <div class="wiki-number">${vl.vl}</div>
+          <h3 class="wiki-title">${vl.title}</h3>
+        `;
+        
+        const content = document.createElement('div');
+        content.className = 'wiki-content';
+        
+        // Topics
+        const topicsSection = document.createElement('div');
+        topicsSection.className = 'wiki-section';
+        topicsSection.innerHTML = `
+          <div class="wiki-section-title">Themen</div>
+          <ul class="wiki-list">
+            ${vl.topics.map(t => `<li>${t}</li>`).join('')}
+          </ul>
+        `;
+        
+        // Vokabeln
+        const vocabSection = document.createElement('div');
+        vocabSection.className = 'wiki-section';
+        vocabSection.innerHTML = `
+          <div class="wiki-section-title">Zentrale Begriffe</div>
+          ${vl.vocab.map(v => `
+            <div style="margin-bottom: 8px;">
+              <span class="wiki-vocab">${v.term}</span>: ${v.def}
+            </div>
+          `).join('')}
+        `;
+        
+        // Arbeitsweisen
+        const methodsSection = document.createElement('div');
+        methodsSection.className = 'wiki-section';
+        methodsSection.innerHTML = `
+          <div class="wiki-section-title">Arbeitsweisen</div>
+          <p style="margin: 0;">${vl.methods}</p>
+        `;
+        
+        content.appendChild(topicsSection);
+        content.appendChild(vocabSection);
+        content.appendChild(methodsSection);
+        
+        item.appendChild(header);
+        item.appendChild(content);
+        container.appendChild(item);
+      });
+    }
+
     collectTasks(mindMapData);
     renderLegend();
     renderBranches();
     renderTimeline();
+    renderWiki();
   </script>
 </body>
 </html>
