@@ -1,1 +1,345 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S-01 Kundenverwaltung – Mindmap</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --general: #1f2937;
+      --p1: #4f46e5;
+      --p2: #059669;
+      --p3: #f59e0b;
+      --p4: #e11d48;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #f2f5ff 0%, #f7f9fc 35%, #eef2ff 100%);
+      color: var(--text);
+    }
+    .page {
+      min-height: 100vh;
+      padding: 32px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+      padding: 24px;
+    }
+    h1 { margin: 0 0 8px 0; font-size: 28px; }
+    p.lead { margin: 0 0 16px 0; color: var(--muted); }
+    .legend { display: flex; flex-wrap: wrap; gap: 12px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text); }
+    .pill { height: 10px; width: 40px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.08); }
+    .p1 { background: var(--p1); color: #fff; border-color: #312e81; }
+    .p2 { background: var(--p2); color: #fff; border-color: #065f46; }
+    .p3 { background: var(--p3); color: #111827; border-color: #d97706; }
+    .p4 { background: var(--p4); color: #fff; border-color: #9f1239; }
+    .general { background: #1f2937; color: #fff; border-color: #0f172a; }
+    .node-wrap { margin-left: 0; }
+    .node { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+    .node-box {
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      max-width: 720px;
+    }
+    .node-title { font-weight: 700; line-height: 1.2; }
+    .node-meta { margin: 4px 0 0 0; font-size: 12px; opacity: 0.9; line-height: 1.4; }
+    .children { border-left: 2px solid var(--border); margin-left: 18px; padding-left: 16px; }
+    .toggle { cursor: pointer; border: none; background: transparent; font-size: 16px; line-height: 1; padding: 4px; color: var(--muted); }
+    .bullet { width: 6px; height: 6px; border-radius: 50%; background: #9ca3af; margin-top: 9px; }
+    .hint { font-size: 14px; color: var(--muted); line-height: 1.5; }
+    @media (max-width: 720px) {
+      .page { padding: 18px; }
+      h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <div class="card">
+        <h1>S-01 Kundenverwaltung – Mindmap</h1>
+        <p class="lead">Online-Ticket-Shop | Pflichtäste: Use Cases · Objekte und Attribute · Schnittstellen</p>
+        <div class="legend" id="legend"></div>
+      </div>
 
+      <div class="card" id="mindmap"></div>
+
+      <div class="card">
+        <h2 style="margin:0 0 8px 0; font-size:20px;">Hinweis</h2>
+        <p class="hint">
+          Die Mindmap folgt den geforderten Hauptästen und deckt alle S-01-relevanten Anforderungen ab: Registrierung mit Passwort-Policy und Sperrlogik,
+          Profil- und Zahlungsdatenpflege inkl. Premium-Logik, Reservierungs- und Warenkorb-Zeiten, Bewertungsberechtigung, ausschließlich digitale
+          Ticketbereitstellung sowie die notwendigen Schnittstellen zu den Segmenten S-02, S-03, S-04, S-05, S-06 und S-09.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const roleStyles = {
+      general: 'general',
+      p1: 'p1',
+      p2: 'p2',
+      p3: 'p3',
+      p4: 'p4'
+    };
+
+    const legend = [
+      { role: 'p1', label: 'Use Cases / Stories' },
+      { role: 'p2', label: 'Objekte & Attribute' },
+      { role: 'p3', label: 'Dynamik / Regeln' },
+      { role: 'p4', label: 'Schnittstellen zu Segmenten' },
+      { role: 'general', label: 'Knoten mit neutralem Kontext' }
+    ];
+
+    const mindMapData = {
+      label: 'S-01 Kundenverwaltung – Mindmap',
+      role: 'general',
+      meta: 'Pflichtäste: Use Cases, Objekte und Attribute, Schnittstellen zu anderen Segmenten und externen Systemen',
+      children: [
+        {
+          label: 'Use Cases',
+          role: 'p1',
+          children: [
+            {
+              label: 'Registrierung anlegen',
+              role: 'p1',
+              children: [
+                { label: 'Als Besucher möchte ich mich registrieren, um Tickets kaufen zu können.', role: 'p1' },
+                { label: 'Passwortregeln: Mindestlänge, Groß-/Kleinbuchstaben, Ziffern, Sonderzeichen, doppelte Eingabe', role: 'p3' },
+                { label: 'Benutzername eindeutig; Sperre nach 3 Fehlversuchen für 1 Stunde (S-09)', role: 'p3' }
+              ]
+            },
+            {
+              label: 'Anmelden & entsperren',
+              role: 'p1',
+              children: [
+                { label: 'Als Kunde möchte ich mich anmelden, um meinen Warenkorb und meine Käufe zu nutzen.', role: 'p1' },
+                { label: 'Als Kunde möchte ich nach Sperrfrist wieder Zugriff erhalten, um weiter einkaufen zu können.', role: 'p1' }
+              ]
+            },
+            {
+              label: 'Profil- und Kontaktdaten pflegen',
+              role: 'p1',
+              children: [
+                { label: 'Als Kunde möchte ich Liefer- und Rechnungsadresse hinterlegen, um digitale Tickets und Rechnungen zu empfangen.', role: 'p1' },
+                { label: 'Als Kunde möchte ich Kontaktdaten aktualisieren, um zustellbar zu bleiben (nur digitale Tickets).', role: 'p1' }
+              ]
+            },
+            {
+              label: 'Zahlungswege verwalten',
+              role: 'p1',
+              children: [
+                { label: 'Als Kunde möchte ich Zahlungsarten (Vorkasse, Kreditkarte, PayPal, Bankeinzug) hinterlegen, um den Kauf abzuschließen.', role: 'p1' },
+                { label: 'Als Premium-Kunde möchte ich zusätzlich auf Rechnung per Überweisung zahlen, um später bezahlen zu können.', role: 'p1' },
+                { label: 'Validierung aller Zahlungsdaten (IBAN/BIC/Luhn, PayPal-Token, Mandatsdaten) zwingend', role: 'p3' }
+              ]
+            },
+            {
+              label: 'Premium-Status nutzen',
+              role: 'p1',
+              children: [
+                { label: 'Als Kunde möchte ich auf Premium upgraden, um längere Reservierungen (4h) und zusätzliche Zahlungsarten zu nutzen.', role: 'p1' },
+                { label: 'Reservierungsdauer: 2h Standard, 4h Premium (S-02 Übergabe der Dauer)', role: 'p3' },
+                { label: 'Warenkorb-Timeout: 24h Standard, 36h Premium (S-06 nutzt Premium-Flag)', role: 'p3' }
+              ]
+            },
+            {
+              label: 'Bewertungsberechtigung prüfen',
+              role: 'p1',
+              children: [
+                { label: 'Als Kunde möchte ich gekaufte Tickets/Services nach dem Termin bewerten, um Feedback zu geben.', role: 'p1' },
+                { label: 'System prüft Kaufnachweis und vergangenes Veranstaltungsdatum (S-05)', role: 'p3' },
+                { label: 'Shop-Bewertungen sind ausgeschlossen', role: 'p3' }
+              ]
+            }
+          ]
+        },
+        {
+          label: 'Objekte und Attribute',
+          role: 'p2',
+          children: [
+            {
+              label: 'Kunde (zentral)',
+              role: 'p2',
+              meta: 'IDs als String modellieren',
+              children: [
+                { label: 'kundennr: string; benutzername: string; email: string', role: 'p2' },
+                { label: 'passwortHash: string; fehlversuche: number; gesperrtBis: datetime', role: 'p2' },
+                { label: 'status: enum{Neu,Aktiv,Gesperrt,Deaktiviert}; premium: boolean', role: 'p2' }
+              ]
+            },
+            {
+              label: 'Kundenprofil',
+              role: 'p2',
+              children: [
+                { label: 'lieferadresse: string; rechnungsadresse: string; telefon: string', role: 'p2' },
+                { label: 'kontaktPraeferenz: enum{Email,Telefon}', role: 'p2' }
+              ]
+            },
+            {
+              label: 'Zahlungsart',
+              role: 'p2',
+              children: [
+                { label: 'typ: enum{Vorkasse,Kreditkarte,PayPal,Bankeinzug,RechnungPremium}', role: 'p2' },
+                { label: 'iban: string; bic: string; kartenToken: string; paypalToken: string', role: 'p2' },
+                { label: 'mandatsReferenz: string; gueltigBis: date', role: 'p2' }
+              ]
+            },
+            {
+              label: 'Berechtigung / Historie',
+              role: 'p2',
+              children: [
+                { label: 'gekaufteArtikel: list<string> (für Bewertungsrecht)', role: 'p2' },
+                { label: 'letzterLogin: datetime; registriertAm: date', role: 'p2' }
+              ]
+            },
+            {
+              label: 'Ableitungen',
+              role: 'p2',
+              children: [
+                { label: 'reservierungsdauer(): duration -> 2h/4h je Premium', role: 'p2' },
+                { label: 'warenkorbTimeout(): duration -> 24h/36h je Premium', role: 'p2' }
+              ]
+            }
+          ]
+        },
+        {
+          label: 'Dynamik & Regeln',
+          role: 'p3',
+          children: [
+            { label: 'Passwort-Policy erzwingen (Komplexität, Doppel-Eingabe, Sperre nach 3 Fehlversuchen/1h)', role: 'p3' },
+            { label: 'Premium-Upgrade schaltet Zahlungsart Rechnung und längere Reservierungen frei', role: 'p3' },
+            { label: 'Bewertungen nur für gekaufte Artikel und erst nach Terminende', role: 'p3' },
+            { label: 'Digitale Bereitstellung: Tickets nur per E-Mail/Download/QR, keine Papierlieferung', role: 'p3' }
+          ]
+        },
+        {
+          label: 'Schnittstellen zu Segmenten und externen Systemen',
+          role: 'p4',
+          children: [
+            { label: 'S-09 Login & Passwortmanagement: Authentifizierung, Sperrlogik, Passwortvalidierung', role: 'p4' },
+            { label: 'S-03 Bezahlung des Warenkorbs: Zahlungsarten und Validierungsstatus bereitstellen', role: 'p4' },
+            { label: 'S-06 Warenkorb: Kundentyp (Premium/Standard) für Zahlungswege, Timeout (24h/36h) und Checkout-Erlaubnis', role: 'p4' },
+            { label: 'S-02 Sitzplatzauswahl: Reservierungsdauer 2h/4h nach Kundentyp', role: 'p4' },
+            { label: 'S-05 Kundenbewertung: Kaufnachweis und Terminprüfung für Bewertungsfreigabe', role: 'p4' },
+            { label: 'S-04 Ticketbereitstellung: E-Mail/Account als Übergabepunkt für Download und QR-Code', role: 'p4' },
+            { label: 'Externe Zahlungsanbieter: PayPal-Token, Karten-Token, SEPA-Mandat verwalten', role: 'p4' }
+          ]
+        }
+      ]
+    };
+
+    const mindmapContainer = document.getElementById('mindmap');
+    const legendContainer = document.getElementById('legend');
+
+    function renderLegend() {
+      legend.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'legend-item';
+        const pill = document.createElement('span');
+        pill.className = `pill ${roleStyles[item.role]}`;
+        const label = document.createElement('span');
+        label.textContent = item.label;
+        el.appendChild(pill);
+        el.appendChild(label);
+        legendContainer.appendChild(el);
+      });
+    }
+
+    function createNode(node, level = 0) {
+      const wrap = document.createElement('div');
+      wrap.className = 'node-wrap';
+
+      const row = document.createElement('div');
+      row.className = 'node';
+
+      const hasChildren = node.children && node.children.length > 0;
+
+      if (hasChildren) {
+        const btn = document.createElement('button');
+        btn.className = 'toggle';
+        btn.textContent = level < 1 ? '▾' : '▸';
+        btn.setAttribute('aria-label', level < 1 ? 'Einklappen' : 'Ausklappen');
+        row.appendChild(btn);
+
+        const box = document.createElement('div');
+        box.className = `node-box ${roleStyles[node.role] || 'general'}`;
+        const title = document.createElement('div');
+        title.className = 'node-title';
+        title.textContent = node.label;
+        box.appendChild(title);
+        if (node.meta) {
+          const meta = document.createElement('div');
+          meta.className = 'node-meta';
+          meta.textContent = node.meta;
+          box.appendChild(meta);
+        }
+        row.appendChild(box);
+        wrap.appendChild(row);
+
+        const childContainer = document.createElement('div');
+        childContainer.className = 'children';
+        childContainer.style.display = level < 1 ? 'block' : 'none';
+        node.children.forEach((child) => childContainer.appendChild(createNode(child, level + 1)));
+        wrap.appendChild(childContainer);
+
+        btn.addEventListener('click', () => {
+          const isOpen = childContainer.style.display !== 'none';
+          childContainer.style.display = isOpen ? 'none' : 'block';
+          btn.textContent = isOpen ? '▸' : '▾';
+          btn.setAttribute('aria-label', isOpen ? 'Ausklappen' : 'Einklappen');
+        });
+      } else {
+        const bullet = document.createElement('div');
+        bullet.className = 'bullet';
+        row.appendChild(bullet);
+
+        const box = document.createElement('div');
+        box.className = `node-box ${roleStyles[node.role] || 'general'}`;
+        const title = document.createElement('div');
+        title.className = 'node-title';
+        title.textContent = node.label;
+        box.appendChild(title);
+        if (node.meta) {
+          const meta = document.createElement('div');
+          meta.className = 'node-meta';
+          meta.textContent = node.meta;
+          box.appendChild(meta);
+        }
+        row.appendChild(box);
+        wrap.appendChild(row);
+      }
+
+      return wrap;
+    }
+
+    function renderMindmap() {
+      mindmapContainer.innerHTML = '';
+      mindmapContainer.appendChild(createNode(mindMapData));
+    }
+
+    renderLegend();
+    renderMindmap();
+  </script>
+</body>
+</html>
