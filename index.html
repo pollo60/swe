@@ -137,48 +137,48 @@
               label: 'Registrierung anlegen',
               role: 'p1',
               children: [
-                { label: 'Als Besucher möchte ich mich registrieren, um Tickets kaufen zu können.', role: 'p1', meta: 'Story sauber formulieren, Akteur+Nutzen klar; Akzeptanzkriterien aus Passwortpolicy ableiten.' },
-                { label: 'Passwortregeln (Komplexität, doppelte Eingabe); Sperre nach 3 Fehlversuchen', role: 'p3', meta: 'In den UC-Flow aufnehmen; Fehlversuchszähler und Lockout als Schritte modellieren (VL6 UC, VL3 Agile).' }
+                { label: 'Als Besucher möchte ich mich registrieren, um Tickets kaufen zu können.', role: 'p1', meta: 'Story sauber formulieren, Akteur+Nutzen klar; Akzeptanzkriterien aus Passwortpolicy ableiten; Format: User Story + Akzeptanzkriterien (Text); Tool: Markdown/Jira; Vorlesung: VL3 – Agiles Vorgehen & User Stories.' },
+                { label: 'Passwortregeln (Komplexität, doppelte Eingabe); Sperre nach 3 Fehlversuchen', role: 'p3', meta: 'In den UC-Flow aufnehmen; Fehlversuchszähler und Lockout als Schritte modellieren; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation; Bezug: VL3 – Agiles Vorgehen & User Stories.' }
               ]
             },
             {
               label: 'Anmelden & entsperren',
               role: 'p1',
               children: [
-                { label: 'Login für Warenkorb/Käufe nutzen', role: 'p1', meta: 'UC inkl. Preconditions (Account aktiv) und Postconditions (Session offen) beschreiben.' },
-                { label: 'Nach Sperrfrist wieder Zugriff erhalten', role: 'p1', meta: 'Flow für Entsperren definieren; Zeitfenster 1h berücksichtigen; alternative Pfade dokumentieren.' }
+                { label: 'Login für Warenkorb/Käufe nutzen', role: 'p1', meta: 'UC inkl. Preconditions (Account aktiv) und Postconditions (Session offen) beschreiben; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
+                { label: 'Nach Sperrfrist wieder Zugriff erhalten', role: 'p1', meta: 'Flow für Entsperren definieren; Zeitfenster 1h berücksichtigen; alternative Pfade dokumentieren; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' }
               ]
             },
             {
               label: 'Profil- und Kontaktdaten pflegen',
               role: 'p1',
               children: [
-                { label: 'Liefer- und Rechnungsadresse, Kontaktdaten aktualisieren', role: 'p1', meta: 'UC mit Validierungen (E-Mail-Format, Pflichtfelder) und rein digitalen Zustellwegen formulieren.' }
+                { label: 'Liefer- und Rechnungsadresse, Kontaktdaten aktualisieren', role: 'p1', meta: 'UC mit Validierungen (E-Mail-Format, Pflichtfelder) und rein digitalen Zustellwegen formulieren; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' }
               ]
             },
             {
               label: 'Zahlungswege verwalten',
               role: 'p1',
               children: [
-                { label: 'Zahlungsarten: Vorkasse, Kreditkarte, PayPal, Bankeinzug', role: 'p1', meta: 'UC-Flows pro Zahlart skizzieren; Eingabefehlerpfade aufnehmen.' },
-                { label: 'Premium: zusätzlich Rechnung/Überweisung', role: 'p1', meta: 'Premium-Guard in UC verankern; Abhängigkeit zum Status beschreiben.' },
-                { label: 'Validierung aller Zahlungsdaten zwingend (IBAN/BIC/Luhn, Token, Mandat)', role: 'p3', meta: 'Akzeptanzkriterien für Validität definieren; Fehler-Responses festlegen.' }
+                { label: 'Zahlungsarten: Vorkasse, Kreditkarte, PayPal, Bankeinzug', role: 'p1', meta: 'UC-Flows pro Zahlart skizzieren; Eingabefehlerpfade aufnehmen; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
+                { label: 'Premium: zusätzlich Rechnung/Überweisung', role: 'p1', meta: 'Premium-Guard in UC verankern; Abhängigkeit zum Status beschreiben; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
+                { label: 'Validierung aller Zahlungsdaten zwingend (IBAN/BIC/Luhn, Token, Mandat)', role: 'p3', meta: 'Akzeptanzkriterien für Validität definieren; Fehler-Responses festlegen; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm Payment; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' }
               ]
             },
             {
               label: 'Premium-Status nutzen',
               role: 'p1',
               children: [
-                { label: 'Upgrade auf Premium für 4h Reservierung + zusätzliche Zahlungsart', role: 'p1', meta: 'UC mit Trigger, Preconditions (zahlungsfaehig), Postconditions (Status=Premium) beschreiben.' },
-                { label: 'Reservierungsdauer an S-02 übergeben; Warenkorb-Timeout nutzt Premium-Flag (S-06)', role: 'p3', meta: 'Schnittstellen-Calls als Schritte im UC aufführen; Parameter benennen.' }
+                { label: 'Upgrade auf Premium für 4h Reservierung + zusätzliche Zahlungsart', role: 'p1', meta: 'UC mit Trigger, Preconditions (zahlungsfaehig), Postconditions (Status=Premium) beschreiben; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
+                { label: 'Reservierungsdauer an S-02 übergeben; Warenkorb-Timeout nutzt Premium-Flag (S-06)', role: 'p3', meta: 'Schnittstellen-Calls als Schritte im UC aufführen; Parameter benennen; Format: Use-Case-Spezifikation (Text) + Schnittstellen-Call-Liste; Tool: Markdown; Vorlesung: VL10 – Architektur & Schnittstellen.' }
               ]
             },
             {
               label: 'Bewertungsberechtigung prüfen',
               role: 'p1',
               children: [
-                { label: 'Bewerten nur für gekaufte Artikel nach Terminende', role: 'p1', meta: 'UC mit Guard „Artikel gekauft + Termin vorbei“; Ausnahmen dokumentieren.' },
-                { label: 'System prüft Kaufnachweis und Datum (S-05); Shop-Bewertungen ausgeschlossen', role: 'p3', meta: 'Interaktion mit S-05 als Include/Extend modellieren; Negativpfade beschreiben.' }
+                { label: 'Bewerten nur für gekaufte Artikel nach Terminende', role: 'p1', meta: 'UC mit Guard „Artikel gekauft + Termin vorbei“; Ausnahmen dokumentieren; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
+                { label: 'System prüft Kaufnachweis und Datum (S-05); Shop-Bewertungen ausgeschlossen', role: 'p3', meta: 'Interaktion mit S-05 als Include/Extend modellieren; Negativpfade beschreiben; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' }
               ]
             }
           ]
@@ -186,49 +186,49 @@
         {
           label: 'Person 2 – Objekte & Attribute',
           role: 'p2',
-          meta: 'Klassendiagramm, Datenstruktur, Ableitungen',
+          meta: 'Klassendiagramm, Datenstruktur, Ableitungen; Format: UML-Klassendiagramm + Attribute-Tabellen; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II',
           children: [
             {
               label: 'Kunde (zentral)',
               role: 'p2',
-              meta: 'IDs als String; Status & Premium-Flag',
+              meta: 'IDs als String; Status & Premium-Flag; Format: UML-Klassendiagramm; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II',
               children: [
-                { label: 'kundennr, benutzername, email', role: 'p2', meta: 'IDs als String; Eindeutigkeit für benutzername sicherstellen (VL7/8 UML Klassen).' },
-                { label: 'passwortHash, fehlversuche, gesperrtBis', role: 'p2', meta: 'Attribute für Sperrlogik vorsehen; Typen präzisieren (datetime).' },
-                { label: 'status: Neu/Aktiv/Gesperrt/Deaktiviert; premium: boolean', role: 'p2', meta: 'Enum definieren; Premium-Flag konsistent zu Ableitungen halten.' }
+                { label: 'kundennr, benutzername, email', role: 'p2', meta: 'IDs als String; Eindeutigkeit für benutzername sicherstellen; Format: UML-Klassendiagramm + Attributtabelle; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
+                { label: 'passwortHash, fehlversuche, gesperrtBis', role: 'p2', meta: 'Attribute für Sperrlogik vorsehen; Typen präzisieren (datetime); Format: UML-Klassendiagramm; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
+                { label: 'status: Neu/Aktiv/Gesperrt/Deaktiviert; premium: boolean', role: 'p2', meta: 'Enum definieren; Premium-Flag konsistent zu Ableitungen halten; Format: UML-Klassendiagramm + Enum-Tabelle; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' }
               ]
             },
             {
               label: 'Kundenprofil',
               role: 'p2',
               children: [
-                { label: 'lieferadresse, rechnungsadresse, telefon', role: 'p2', meta: '1:1 zum Kunden; Pflichtfelder markieren; nur digitale Zustellung bedenken.' },
-                { label: 'kontaktPraeferenz: Email/Telefon', role: 'p2', meta: 'Enum modellieren; Default Email; Validierung auf erlaubte Werte.' }
+                { label: 'lieferadresse, rechnungsadresse, telefon', role: 'p2', meta: '1:1 zum Kunden; Pflichtfelder markieren; nur digitale Zustellung bedenken; Format: UML-Klassendiagramm; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
+                { label: 'kontaktPraeferenz: Email/Telefon', role: 'p2', meta: 'Enum modellieren; Default Email; Validierung auf erlaubte Werte; Format: UML-Klassendiagramm + Enum-Tabelle; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' }
               ]
             },
             {
               label: 'Zahlungsart',
               role: 'p2',
               children: [
-                { label: 'typ: Vorkasse/Kreditkarte/PayPal/Bankeinzug/RechnungPremium', role: 'p2', meta: 'Enum inkl. Premium-only Wert; Constraints je Typ festhalten.' },
-                { label: 'iban, bic, kartenToken, paypalToken', role: 'p2', meta: 'Attribute nur für relevante Typen befüllen; Kardinalitäten dokumentieren.' },
-                { label: 'mandatsReferenz, gueltigBis', role: 'p2', meta: 'Für SEPA erfassen; Datumstyp setzen; Pflicht nur bei Bankeinzug.' }
+                { label: 'typ: Vorkasse/Kreditkarte/PayPal/Bankeinzug/RechnungPremium', role: 'p2', meta: 'Enum inkl. Premium-only Wert; Constraints je Typ festhalten; Format: UML-Klassendiagramm + Enum; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
+                { label: 'iban, bic, kartenToken, paypalToken', role: 'p2', meta: 'Attribute nur für relevante Typen befüllen; Kardinalitäten dokumentieren; Format: UML-Klassendiagramm + Attributliste; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
+                { label: 'mandatsReferenz, gueltigBis', role: 'p2', meta: 'Für SEPA erfassen; Datumstyp setzen; Pflicht nur bei Bankeinzug; Format: UML-Klassendiagramm; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' }
               ]
             },
             {
               label: 'Berechtigung / Historie',
               role: 'p2',
               children: [
-                { label: 'gekaufteArtikel: list<string> (Bewertungsrecht)', role: 'p2', meta: 'Liste für Berechtigungsprüfung (S-05); Persistenzform überlegen.' },
-                { label: 'letzterLogin, registriertAm', role: 'p2', meta: 'Audit-Attribute; Datentypen präzisieren; optional/null festhalten.' }
+                { label: 'gekaufteArtikel: list<string> (Bewertungsrecht)', role: 'p2', meta: 'Liste für Berechtigungsprüfung (S-05); Persistenzform überlegen; Format: UML-Klassendiagramm + Attributliste; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
+                { label: 'letzterLogin, registriertAm', role: 'p2', meta: 'Audit-Attribute; Datentypen präzisieren; optional/null festhalten; Format: UML-Klassendiagramm; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' }
               ]
             },
             {
               label: 'Ableitungen',
               role: 'p2',
               children: [
-                { label: 'reservierungsdauer(): 2h / 4h je Premium', role: 'p2', meta: 'Operation mit Rückgabetyp Duration modellieren; nutzt premium-Flag.' },
-                { label: 'warenkorbTimeout(): 24h / 36h je Premium', role: 'p2', meta: 'Operation für S-06; Werte als Konstante oder Konfiguration halten.' }
+                { label: 'reservierungsdauer(): 2h / 4h je Premium', role: 'p2', meta: 'Operation mit Rückgabetyp Duration modellieren; nutzt premium-Flag; Format: UML-Klassendiagramm (Operation); Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
+                { label: 'warenkorbTimeout(): 24h / 36h je Premium', role: 'p2', meta: 'Operation für S-06; Werte als Konstante oder Konfiguration halten; Format: UML-Klassendiagramm (Operation); Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' }
               ]
             }
           ]
@@ -236,26 +236,26 @@
         {
           label: 'Person 3 – Dynamik & Regeln',
           role: 'p3',
-          meta: 'Sequenzen, Guards, Policies',
+          meta: 'Sequenzen, Guards, Policies; Format: Aktivitäts- und Sequenzdiagramme (UML); Tool: draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme',
           children: [
-            { label: 'Passwort-Policy erzwingen (Komplexität, Doppel-Eingabe, Sperre 3x/1h)', role: 'p3', meta: 'In Sequenz- und Aktivitätsdiagrammen als Guard/Decision modellieren (VL6, VL9).' },
-            { label: 'Premium-Upgrade schaltet Rechnung + längere Reservierungen frei', role: 'p3', meta: 'Statuswechsel zeigen; Folgeschritte in S-02/S-06 markieren; Alternativpfad bei Fehlschlag.' },
-            { label: 'Bewertungen nur für gekaufte Artikel und erst nach Terminende', role: 'p3', meta: 'Guard mit Termin- und Kaufprüfung; Fehlpfad skizzieren.' },
-            { label: 'Digitale Bereitstellung: Tickets nur per E-Mail/Download/QR', role: 'p3', meta: 'Aktivität für Übergabe an S-04 modellieren; keine Papierzweige darstellen.' }
+            { label: 'Passwort-Policy erzwingen (Komplexität, Doppel-Eingabe, Sperre 3x/1h)', role: 'p3', meta: 'In Sequenz- und Aktivitätsdiagrammen als Guard/Decision modellieren; Format: Aktivitäts-/Sequenzdiagramm; Tool: draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme; Bezug: VL6 – Use Cases & UC-Spezifikation.' },
+            { label: 'Premium-Upgrade schaltet Rechnung + längere Reservierungen frei', role: 'p3', meta: 'Statuswechsel zeigen; Folgeschritte in S-02/S-06 markieren; Alternativpfad bei Fehlschlag; Format: Aktivitäts-/Sequenzdiagramm; Tool: draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme.' },
+            { label: 'Bewertungen nur für gekaufte Artikel und erst nach Terminende', role: 'p3', meta: 'Guard mit Termin- und Kaufprüfung; Fehlpfad skizzieren; Format: Aktivitätsdiagramm; Tool: draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme.' },
+            { label: 'Digitale Bereitstellung: Tickets nur per E-Mail/Download/QR', role: 'p3', meta: 'Aktivität für Übergabe an S-04 modellieren; keine Papierzweige darstellen; Format: Aktivitätsdiagramm; Tool: draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme.' }
           ]
         },
         {
           label: 'Person 4 – Schnittstellen & Segmente',
           role: 'p4',
-          meta: 'Segmente S-02..S-09 und externe Payment-Provider',
+          meta: 'Segmente S-02..S-09 und externe Payment-Provider; Format: Schnittstellenvertrag/Context-Map (Tabelle/Text); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen',
           children: [
-            { label: 'S-09 Login & Passwortmanagement: Authentifizierung, Sperrlogik, Passwortvalidierung', role: 'p4', meta: 'Schnittstelle definieren: Sperrstatus/Passwortregeln konsumieren und liefern.' },
-            { label: 'S-03 Bezahlung: Zahlungsarten + Validierungsstatus bereitstellen', role: 'p4', meta: 'API/Port spezifizieren: PaymentMethod-Liste mit Validierungsflags ausgeben.' },
-            { label: 'S-06 Warenkorb: Kundentyp (Premium/Standard), Timeout 24h/36h, Checkout-Erlaubnis', role: 'p4', meta: 'Datenvertrag: premium-Flag, Timeout-Werte, Berechtigungsstatus liefern.' },
-            { label: 'S-02 Sitzplatzauswahl: Reservierungsdauer 2h/4h nach Kundentyp', role: 'p4', meta: 'Reservierungsdauer als Parameter übergeben; Quelle ist reservierungsdauer()-Ableitung.' },
-            { label: 'S-05 Kundenbewertung: Kaufnachweis + Terminprüfung für Freigabe', role: 'p4', meta: 'Berechtigungsservice bereitstellen (hatGekauft, terminVorbei) für S-05.' },
-            { label: 'S-04 Ticketbereitstellung: E-Mail/Account als Übergabepunkt für Download und QR-Code', role: 'p4', meta: 'Lieferkanal definieren (E-Mail/Account); nur digitale Medien modellieren.' },
-            { label: 'Externe Zahlungsanbieter: PayPal-Token, Karten-Token, SEPA-Mandat verwalten', role: 'p4', meta: 'Adapter/Ports ausarbeiten; Token-Speicherung und Mandatsstatus bereitstellen.' }
+            { label: 'S-09 Login & Passwortmanagement: Authentifizierung, Sperrlogik, Passwortvalidierung', role: 'p4', meta: 'Schnittstelle definieren: Sperrstatus/Passwortregeln konsumieren und liefern; Format: Schnittstellenvertrag (Text/Tabelle); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'S-03 Bezahlung: Zahlungsarten + Validierungsstatus bereitstellen', role: 'p4', meta: 'API/Port spezifizieren: PaymentMethod-Liste mit Validierungsflags ausgeben; Format: Schnittstellenvertrag (Text/Tabelle); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'S-06 Warenkorb: Kundentyp (Premium/Standard), Timeout 24h/36h, Checkout-Erlaubnis', role: 'p4', meta: 'Datenvertrag: premium-Flag, Timeout-Werte, Berechtigungsstatus liefern; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'S-02 Sitzplatzauswahl: Reservierungsdauer 2h/4h nach Kundentyp', role: 'p4', meta: 'Reservierungsdauer als Parameter übergeben; Quelle ist reservierungsdauer()-Ableitung; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'S-05 Kundenbewertung: Kaufnachweis + Terminprüfung für Freigabe', role: 'p4', meta: 'Berechtigungsservice bereitstellen (hatGekauft, terminVorbei) für S-05; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'S-04 Ticketbereitstellung: E-Mail/Account als Übergabepunkt für Download und QR-Code', role: 'p4', meta: 'Lieferkanal definieren (E-Mail/Account); nur digitale Medien modellieren; Format: Schnittstellenvertrag + Kontextskizze; Tool: Markdown/draw.io; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'Externe Zahlungsanbieter: PayPal-Token, Karten-Token, SEPA-Mandat verwalten', role: 'p4', meta: 'Adapter/Ports ausarbeiten; Token-Speicherung und Mandatsstatus bereitstellen; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' }
           ]
         }
       ]
