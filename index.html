@@ -96,6 +96,7 @@
   </div>
   <script>
     const nodeIndex = new Map();
+    const parentIndex = new Map();
     const allTasks = [];
     const roleStyles = { general: 'general', p1: 'p1', p2: 'p2', p3: 'p3', p4: 'p4' };
     const legend = [
@@ -326,7 +327,7 @@
         
         if (branch.children) {
           branch.children.forEach(child => {
-            const childNode = createNode(child, 0);
+            const childNode = createNode(child, 0, branch.label);
             content.appendChild(childNode);
           });
         }
@@ -338,10 +339,12 @@
         col.appendChild(header);
         col.appendChild(content);
         container.appendChild(col);
+        
+        nodeIndex.set(branch.label, { toggle: null, childContainer: content });
       });
     }
 
-    function createNode(node, level = 0) {
+    function createNode(node, level = 0, parentLabel = null) {
       const wrap = document.createElement('div');
       wrap.className = 'node-wrap';
       const nodeEl = document.createElement('div');
@@ -389,13 +392,45 @@
       
       if (node.children && node.children.length > 0) {
         node.children.forEach(child => {
-          const childNode = createNode(child, level + 1);
+          const childNode = createNode(child, level + 1, node.label);
           childContainer.appendChild(childNode);
         });
         wrap.appendChild(childContainer);
       }
       
+      nodeIndex.set(node.label, { toggle, childContainer });
+      if (parentLabel) {
+        parentIndex.set(node.label, parentLabel);
+      }
+      
       return wrap;
+    }
+
+    function expandLabel(label) {
+      const nodeEntry = nodeIndex.get(label);
+      if (!nodeEntry) return;
+      
+      // Expand parent chain first
+      const parentLabel = parentIndex.get(label);
+      if (parentLabel) {
+        expandLabel(parentLabel);
+      }
+      
+      // Expand branch content if this is a branch label
+      if (nodeEntry.childContainer && nodeEntry.toggle === null) {
+        if (!nodeEntry.childContainer.classList.contains('expanded')) {
+          nodeEntry.childContainer.classList.add('expanded');
+        }
+        return;
+      }
+      
+      // Expand this node
+      if (nodeEntry.toggle && nodeEntry.childContainer) {
+        if (nodeEntry.childContainer.style.display === 'none') {
+          nodeEntry.childContainer.style.display = 'block';
+          nodeEntry.toggle.textContent = '▼';
+        }
+      }
     }
 
     function renderTimeline() {
@@ -418,6 +453,10 @@
           const bubble = document.createElement('div');
           bubble.className = `task-bubble ${roleStyles[task.role]}`;
           bubble.textContent = task.label;
+          bubble.addEventListener('click', (e) => {
+            e.stopPropagation();
+            expandLabel(task.label);
+          });
           tasksContainer.appendChild(bubble);
         });
         
