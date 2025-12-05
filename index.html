@@ -2,48 +2,19 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>S-01 Kundenverwaltung – Mindmap</title>
+  <title>S-01 Kundenverwaltung</title>
   <style>
-    :root {
-      --bg: #f7f9fc;
-      --card: #ffffff;
-      --border: #e5e7eb;
-      --text: #1f2937;
-      --muted: #4b5563;
-      --general: #1f2937;
-      --p1: #4f46e5;
-      --p2: #059669;
-      --p3: #f59e0b;
-      --p4: #e11d48;
-    }
+    :root { --bg: #f7f9fc; --card: #ffffff; --border: #e5e7eb; --text: #1f2937; --muted: #4b5563; --general: #1f2937; --p1: #4f46e5; --p2: #059669; --p3: #f59e0b; --p4: #e11d48; }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: radial-gradient(circle at 20% 20%, #f2f5ff 0%, #f7f9fc 35%, #eef2ff 100%);
-      color: var(--text);
-    }
-    .page {
-      min-height: 100vh;
-      padding: 32px;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      gap: 24px;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
-      padding: 24px;
-    }
+    body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: radial-gradient(circle at 20% 20%, #f2f5ff 0%, #f7f9fc 35%, #eef2ff 100%); color: var(--text); }
+    .page { min-height: 100vh; padding: 32px; }
+    .container { max-width: 1400px; margin: 0 auto; display: grid; gap: 24px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08); padding: 24px; }
     h1 { margin: 0 0 8px 0; font-size: 28px; }
-    p.lead { margin: 0 0 16px 0; color: var(--muted); }
-    .legend { display: flex; flex-wrap: wrap; gap: 12px; }
+    h2 { margin: 0 0 12px 0; font-size: 20px; }
+    p.lead { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .header-info { background: linear-gradient(135deg, rgba(79, 70, 229, 0.06), rgba(5, 150, 105, 0.06)); border-left: 4px solid var(--p1); padding: 16px; border-radius: 12px; margin-top: 16px; }
+    .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
     .legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text); }
     .pill { height: 10px; width: 40px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.08); }
     .p1 { background: var(--p1); color: #fff; border-color: #312e81; }
@@ -51,99 +22,67 @@
     .p3 { background: var(--p3); color: #111827; border-color: #d97706; }
     .p4 { background: var(--p4); color: #fff; border-color: #9f1239; }
     .general { background: #1f2937; color: #fff; border-color: #0f172a; }
-    .node-wrap { margin-left: 0; }
-    .node { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
-    .node-box {
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 2px solid transparent;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-      max-width: 720px;
-    }
-    .node-title { font-weight: 700; line-height: 1.2; }
-    .node-meta { margin: 4px 0 0 0; font-size: 12px; opacity: 0.9; line-height: 1.4; }
-    .children { border-left: 2px solid var(--border); margin-left: 18px; padding-left: 16px; }
-    .toggle { cursor: pointer; border: none; background: transparent; font-size: 16px; line-height: 1; padding: 4px; color: var(--muted); }
-    .bullet { width: 6px; height: 6px; border-radius: 50%; background: #9ca3af; margin-top: 9px; }
-    .hint { font-size: 14px; color: var(--muted); line-height: 1.5; }
-    .assignment-item, .timeline-item { padding: 8px 12px; margin: 6px 0; border-radius: 8px; cursor: pointer; transition: opacity 0.2s; }
-    .assignment-item:hover, .timeline-item:hover { opacity: 0.85; }
-    .assignment-a { background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(79, 70, 229, 0.06)); border-left: 3px solid var(--p1); }
-    .assignment-b { background: linear-gradient(135deg, rgba(5, 150, 105, 0.12), rgba(5, 150, 105, 0.06)); border-left: 3px solid var(--p2); }
-    .assignment-c { background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(245, 158, 11, 0.06)); border-left: 3px solid var(--p3); }
-    .assignment-d { background: linear-gradient(135deg, rgba(225, 29, 72, 0.12), rgba(225, 29, 72, 0.06)); border-left: 3px solid var(--p4); }
-    .timeline-kw50 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(34, 197, 94, 0.04)); border-left: 3px solid #86efac; }
-    .timeline-kw51 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.14), rgba(34, 197, 94, 0.07)); border-left: 3px solid #4ade80; }
-    .timeline-kw52 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.20), rgba(34, 197, 94, 0.10)); border-left: 3px solid #22c55e; }
-    .timeline-kw01 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.26), rgba(34, 197, 94, 0.13)); border-left: 3px solid #16a34a; }
-    .timeline-kw02 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.32), rgba(34, 197, 94, 0.16)); border-left: 3px solid #15803d; }
-    .timeline-kw03 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.38), rgba(34, 197, 94, 0.19)); border-left: 3px solid #166534; }
-    .timeline-kw04 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.44), rgba(34, 197, 94, 0.22)); border-left: 3px solid #14532d; }
-    @media (max-width: 720px) {
-      .page { padding: 18px; }
-      h1 { font-size: 22px; }
+    
+    /* Horizontal Layout für Hauptäste */
+    .branches-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .branch-column { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+    .branch-header { padding: 14px 18px; border-radius: 12px; margin-bottom: 16px; cursor: pointer; transition: transform 0.2s; }
+    .branch-header:hover { transform: translateY(-2px); }
+    .branch-title { font-weight: 700; font-size: 18px; margin: 0; }
+    .branch-meta { font-size: 12px; margin: 6px 0 0 0; opacity: 0.9; line-height: 1.4; }
+    .branch-content { display: none; }
+    .branch-content.expanded { display: block; }
+    
+    /* Node-Styles für Kinder */
+    .node-wrap { margin-left: 0; margin-bottom: 12px; }
+    .node { display: flex; align-items: flex-start; gap: 10px; }
+    .node-box { padding: 10px 14px; border-radius: 12px; border: 2px solid transparent; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .node-title { font-weight: 600; line-height: 1.3; font-size: 14px; }
+    .node-meta { margin: 4px 0 0 0; font-size: 11px; opacity: 0.85; line-height: 1.4; }
+    .children { border-left: 2px solid var(--border); margin-left: 18px; padding-left: 16px; margin-top: 8px; }
+    .toggle { cursor: pointer; border: none; background: transparent; font-size: 14px; line-height: 1; padding: 4px; color: var(--muted); }
+    .bullet { width: 6px; height: 6px; border-radius: 50%; background: #9ca3af; margin-top: 8px; flex-shrink: 0; }
+    
+    /* Bubble-Auflistung */
+    .task-bubbles { display: flex; flex-wrap: wrap; gap: 10px; }
+    .task-bubble { padding: 10px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 2px solid transparent; }
+    .task-bubble:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+    
+    @media (max-width: 1200px) {
+      .branches-container { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <div class="page">
     <div class="container">
+      <!-- Header Card -->
       <div class="card">
-        <h1>S-01 Kundenverwaltung – Mindmap</h1>
-        <p class="lead">Online-Ticket-Shop | Pflichtäste: Use Cases · Objekte und Attribute · Schnittstellen</p>
+        <h1>S-01 Kundenverwaltung</h1>
+        <div class="header-info">
+          <p class="lead"><strong>Aufgabenstellung:</strong> Fachliche Gliederung der Anforderungen für das Segment Kundenverwaltung im Online-Ticket-Shop</p>
+          <p class="lead"><strong>Pflichtäste:</strong> Use Cases · Objekte und Attribute · Schnittstellen zu anderen Segmenten und externen Systemen</p>
+          <p class="lead"><strong>Tools:</strong> Mindmapping mit XMind oder FreeMind · UML-Diagramme mit Visual Paradigm Community Edition</p>
+        </div>
         <div class="legend" id="legend"></div>
       </div>
 
-      <div class="card" id="mindmap"></div>
+      <!-- Drei Hauptäste horizontal -->
+      <div class="branches-container" id="branches"></div>
 
+      <!-- Alle Aufgaben als Bubbles -->
       <div class="card">
-        <h2 style="margin:0 0 8px 0; font-size:20px;">Vorschlag Aufgabenteilung (4 Personen)</h2>
-        <ul style="margin:0; padding:0; list-style:none; line-height:1.5; color:var(--text);">
-          <li class="assignment-item assignment-a" data-targets="Registrierung & Login|Profil & Kontaktdaten|Zahlungsarten & Validierung|Bewertungen & Berechtigungen|Premium-Status & Reservierungen/Warenkorb"><strong>Person A – Use Cases & Stories:</strong> Registrierung/Login, Profil/Kontakt, Zahlungsarten inkl. Premium-Rechnung, Premium-Upgrade, Bewertungsberechtigung; Artefakte: User Stories, UC-Spezifikationen, Akzeptanzkriterien, Aktivitätsdiagramme (VL3, VL6, VL9).</li>
-          <li class="assignment-item assignment-b" data-targets="Domänenmodell – Objekte & Attribute"><strong>Person B – Domänenmodell:</strong> Kunde, Profil, Zahlungsarten, Berechtigungs-/Historienobjekte, Ableitungen (reservierungsdauer, warenkorbTimeout); Artefakte: UML-Klassendiagramm mit Attributtabellen/Enums/Operationen (VL7/8).</li>
-          <li class="assignment-item assignment-c" data-targets="Dynamik & Regeln"><strong>Person C – Dynamik & Regeln:</strong> Passwort-Policy/Sperrlogik, Payment-Validierung, Premium-Upgrade-Folgen, Bewertungs-Guards, digitale Bereitstellung; Artefakte: Aktivitäts-/Sequenzdiagramme mit Guards/Decisions (VL9, Bezug VL6).</li>
-          <li class="assignment-item assignment-d" data-targets="Schnittstellen & Segmente"><strong>Person D – Schnittstellen & Segmente:</strong> Verträge zu S-02/S-03/S-04/S-05/S-06/S-09 (externe Gruppen), Parameterübergaben (Premium-Flag, Reservierungsdauer, Timeouts), externe Payment-Adapter; Artefakte: Schnittstellenverträge/Context-Map/Parametertabellen (VL10).</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2 style="margin:0 0 8px 0; font-size:20px;">Timeline bis 25.01.2026</h2>
-        <ul style="margin:0; padding:0; list-style:none; line-height:1.6; color:var(--text);">
-          <li class="timeline-item timeline-kw50" data-targets="Registrierung & Login|Profil & Kontaktdaten|Zahlungsarten & Validierung"><strong>KW 50 (09.12–15.12):</strong> User Stories & UC-Spezifikationen für Registrierung/Login, Profil, Zahlungsarten; Passwort-Policy-Checkliste; erste Aktivitätsdiagramme (Schnittstellen zu Gruppen S-09, S-03).</li>
-          <li class="timeline-item timeline-kw51" data-targets="Domänenmodell – Objekte & Attribute"><strong>KW 51 (16.12–22.12):</strong> Domänenmodell (Kunde, Profil, Zahlungsarten, Berechtigungen, Ableitungen); Attributtabellen/Enums; Review mit Use-Case-Flows.</li>
-          <li class="timeline-item timeline-kw52" data-targets="Dynamik & Regeln"><strong>KW 52 (23.12–29.12):</strong> Dynamik/Regeln ausarbeiten: Sperrlogik, Payment-Validierung, Premium-Upgrade-Folgen, Bewertungs-Guards, digitale Bereitstellung; Aktivitäts-/Sequenzdiagramme.</li>
-          <li class="timeline-item timeline-kw01" data-targets="Schnittstellen & Segmente"><strong>KW 01 (30.12–05.01):</strong> Schnittstellenverträge zu externen Gruppen S-02/S-03/S-04/S-05/S-06/S-09 inkl. Parameter (Premium-Flag, Reservierungsdauer, Timeouts); Kontextskizze.</li>
-          <li class="timeline-item timeline-kw02" data-targets="Premium-Status & Reservierungen/Warenkorb|Bewertungen & Berechtigungen|Domänenmodell – Objekte & Attribute"><strong>KW 02 (06.01–12.01):</strong> Konsolidierung: Trace zwischen UCs, Domänenmodell, Regeln, Schnittstellen; Parametertabellen (Reservierung/Warenkorb zu S-02/S-06) finalisieren; Lücken schließen.</li>
-          <li class="timeline-item timeline-kw03" data-targets="Registrierung & Login|Digitale Ticketbereitstellung|Schnittstellen & Segmente"><strong>KW 03 (13.01–19.01):</strong> Qualitätssicherung: Peer-Reviews der Diagramme/Verträge; Konsistenz-Check gegen Vorgaben (S-04 digital only, S-05 Kaufnachweis, S-09 Sperre 3x/1h).</li>
-          <li class="timeline-item timeline-kw04" data-targets="Registrierung & Login|Profil & Kontaktdaten|Zahlungsarten & Validierung|Premium-Status & Reservierungen/Warenkorb|Bewertungen & Berechtigungen|Digitale Ticketbereitstellung|Domänenmodell – Objekte & Attribute|Dynamik & Regeln|Schnittstellen & Segmente"><strong>KW 04 (20.01–25.01):</strong> Finalisierung & Puffer: letzte Anpassungen, Export/Packaging aller Artefakte; Abnahme-Checkliste und Präsentationsfolien erstellen (Ende: 25.01.2026).</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2 style="margin:0 0 8px 0; font-size:20px;">Hinweis</h2>
-        <p class="hint">
-          Die Mindmap folgt den geforderten Hauptästen und deckt alle S-01-relevanten Anforderungen ab: Registrierung mit Passwort-Policy und Sperrlogik,
-          Profil- und Zahlungsdatenpflege inkl. Premium-Logik, Reservierungs- und Warenkorb-Zeiten, Bewertungsberechtigung, ausschließlich digitale
-          Ticketbereitstellung sowie die notwendigen Schnittstellen zu den Segmenten S-02, S-03, S-04, S-05, S-06 und S-09.
-        </p>
+        <h2>Alle Aufgaben im Überblick</h2>
+        <div class="task-bubbles" id="taskBubbles"></div>
       </div>
     </div>
   </div>
-
   <script>
-    const nodeIndex = new Map(); // label -> { toggle, childContainer }
-    const parentIndex = new Map(); // label -> parent label
-
-    const roleStyles = {
-      general: 'general',
-      p1: 'p1',
-      p2: 'p2',
-      p3: 'p3',
-      p4: 'p4'
-    };
-
+    const nodeIndex = new Map();
+    const allTasks = [];
+    const roleStyles = { general: 'general', p1: 'p1', p2: 'p2', p3: 'p3', p4: 'p4' };
     const legend = [
-      { role: 'general', label: 'Aufgabestellung / Neutral' },
+      { role: 'general', label: 'Aufgabenstellung / Neutral' },
       { role: 'p1', label: 'Use Cases & Stories' },
       { role: 'p2', label: 'Objekte & Attribute' },
       { role: 'p3', label: 'Dynamik & Regeln' },
@@ -151,143 +90,71 @@
     ];
 
     const mindMapData = {
-      label: 'S-01 Kundenverwaltung – Aufgabestellung und Personenverantwortung',
+      label: 'S-01 Kundenverwaltung',
       role: 'general',
-      meta: 'Fachliche Gliederung der Anforderungen; Format: Mindmap (HTML/JS); Tool: Browser/VS Code; Vorlesung: VL1 – Einführung & Projektrahmen',
+      meta: 'Format: Mindmap; Tools: XMind/FreeMind',
       children: [
-        {
-          label: 'Registrierung & Login',
-          role: 'p1',
-          meta: 'Stories, UC-Flows, Passwort-Policy, Sperrlogik; Schnittstelle zu S-09 (Login/Passwort-Management); Format: User Stories + UC-Spezifikation + Aktivitätsdiagramm; Tools: Markdown/Jira + draw.io; Vorlesung: VL3 – Agiles Vorgehen & User Stories, VL6 – Use Cases & UC-Spezifikation, VL9 – Aktivitäts- & Sequenzdiagramme',
-          children: [
-            { label: 'Als Besucher möchte ich mich registrieren, um Tickets kaufen zu können.', role: 'p1', meta: 'Story sauber formulieren, Akteur+Nutzen klar; Akzeptanzkriterien aus Passwortpolicy ableiten; Format: User Story + Akzeptanzkriterien (Text); Tool: Markdown/Jira; Vorlesung: VL3 – Agiles Vorgehen & User Stories.' },
-            { label: 'Passwortregeln (Komplexität, doppelte Eingabe); Sperre nach 3 Fehlversuchen', role: 'p3', meta: 'In den UC-Flow aufnehmen; Fehlversuchszähler und Lockout als Schritte modellieren; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation; Bezug: VL3 – Agiles Vorgehen & User Stories.' },
-            { label: 'Login für Warenkorb/Käufe nutzen', role: 'p1', meta: 'UC inkl. Preconditions (Account aktiv) und Postconditions (Session offen) beschreiben; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
-            { label: 'Nach Sperrfrist wieder Zugriff erhalten', role: 'p1', meta: 'Flow für Entsperren definieren; Zeitfenster 1h berücksichtigen; alternative Pfade dokumentieren; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' }
-          ]
-        },
-        {
-          label: 'Profil & Kontaktdaten',
-          role: 'p1',
-          meta: 'Adresse, Kontaktpräferenzen, digitale Zustellung; Format: Use-Case-Spezifikation; Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation',
-          children: [
-            { label: 'Liefer- und Rechnungsadresse, Kontaktdaten aktualisieren', role: 'p1', meta: 'UC mit Validierungen (E-Mail-Format, Pflichtfelder) und rein digitalen Zustellwegen formulieren; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' }
-          ]
-        },
-        {
-          label: 'Zahlungsarten & Validierung',
-          role: 'p1',
-          meta: 'Zahlarten, Premium-Rechnung, Validierung IBAN/BIC/Luhn/Token; Schnittstelle zu S-03 (Bezahlung); Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: Markdown + draw.io; Vorlesung: VL6 – Use Cases, VL10 – Architektur & Schnittstellen',
-          children: [
-            { label: 'Zahlungsarten: Vorkasse, Kreditkarte, PayPal, Bankeinzug', role: 'p1', meta: 'UC-Flows pro Zahlart skizzieren; Eingabefehlerpfade aufnehmen; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
-            { label: 'Premium: zusätzlich Rechnung/Überweisung', role: 'p1', meta: 'Premium-Guard in UC verankern; Abhängigkeit zum Status beschreiben; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
-            { label: 'Validierung aller Zahlungsdaten zwingend (IBAN/BIC/Luhn, Token, Mandat)', role: 'p3', meta: 'Akzeptanzkriterien für Validität definieren; Fehler-Responses festlegen; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm Payment; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' }
-          ]
-        },
-        {
-          label: 'Premium-Status & Reservierungen/Warenkorb',
-          role: 'p1',
-          meta: 'Premium-Upgrade, Reservierungsdauer 2h/4h, Warenkorb-Timeout 24h/36h; Schnittstellen zu S-02 (Sitzplatzauswahl) und S-06 (Warenkorb); Format: UC-Spezifikation + Parametertabelle; Tools: Markdown/Excel; Vorlesung: VL6 – Use Cases, VL10 – Architektur & Schnittstellen',
-          children: [
-            { label: 'Upgrade auf Premium für 4h Reservierung + zusätzliche Zahlungsart', role: 'p1', meta: 'UC mit Trigger, Preconditions (zahlungsfaehig), Postconditions (Status=Premium) beschreiben; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
-            { label: 'Reservierungsdauer und Warenkorb-Timeout übergeben', role: 'p3', meta: 'Schnittstellen-Calls als Schritte im UC aufführen; Parameter benennen (an externe Gruppen S-02 Sitzplatzauswahl, S-06 Warenkorb); Format: Use-Case-Spezifikation (Text) + Schnittstellen-Call-Liste; Tool: Markdown; Vorlesung: VL10 – Architektur & Schnittstellen.' }
-          ]
-        },
-        {
-          label: 'Bewertungen & Berechtigungen',
-          role: 'p1',
-          meta: 'Kaufnachweis + Terminende als Guard; Schnittstelle zu S-05 (Kundenbewertung); Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: Markdown + draw.io; Vorlesung: VL6 – Use Cases, VL9 – Aktivitätsdiagramme',
-          children: [
-            { label: 'Bewerten nur für gekaufte Artikel nach Terminende', role: 'p1', meta: 'UC mit Guard „Artikel gekauft + Termin vorbei“; Ausnahmen dokumentieren; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
-            { label: 'System prüft Kaufnachweis und Datum; Shop-Bewertungen ausgeschlossen', role: 'p3', meta: 'Interaktion mit externer Gruppe S-05 (Kundenbewertung) als Include/Extend modellieren; Negativpfade beschreiben; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' }
-          ]
-        },
-        {
-          label: 'Digitale Ticketbereitstellung',
-          role: 'general',
-          meta: 'Nur E-Mail/Download/QR, keine Papierlieferung; Schnittstelle zu S-04 (Ticketbereitstellung); Format: Architektur-/Kontextnotiz; Tool: Markdown; Vorlesung: VL4 – Geschäftsprozesse & Segmente',
-          children: []
-        },
-        {
-          label: 'Domänenmodell – Objekte & Attribute',
-          role: 'p2',
-          meta: 'Klassendiagramm, Datenstruktur, Ableitungen; Format: UML-Klassendiagramm + Attribute-Tabellen; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II',
-          children: [
-            {
-              label: 'Kunde (zentral)',
-              role: 'p2',
-              meta: 'IDs als String; Status & Premium-Flag; Format: UML-Klassendiagramm; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II',
-              children: [
-                { label: 'kundennr, benutzername, email', role: 'p2', meta: 'IDs als String; Eindeutigkeit für benutzername sicherstellen; Format: UML-Klassendiagramm + Attributtabelle; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
-                { label: 'passwortHash, fehlversuche, gesperrtBis', role: 'p2', meta: 'Attribute für Sperrlogik vorsehen; Typen präzisieren (datetime); Format: UML-Klassendiagramm; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
-                { label: 'status: Neu/Aktiv/Gesperrt/Deaktiviert; premium: boolean', role: 'p2', meta: 'Enum definieren; Premium-Flag konsistent zu Ableitungen halten; Format: UML-Klassendiagramm + Enum-Tabelle; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' }
-              ]
-            },
-            {
-              label: 'Kundenprofil',
-              role: 'p2',
-              children: [
-                { label: 'lieferadresse, rechnungsadresse, telefon', role: 'p2', meta: '1:1 zum Kunden; Pflichtfelder markieren; nur digitale Zustellung bedenken; Format: UML-Klassendiagramm; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
-                { label: 'kontaktPraeferenz: Email/Telefon', role: 'p2', meta: 'Enum modellieren; Default Email; Validierung auf erlaubte Werte; Format: UML-Klassendiagramm + Enum-Tabelle; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' }
-              ]
-            },
-            {
-              label: 'Zahlungsart',
-              role: 'p2',
-              children: [
-                { label: 'typ: Vorkasse/Kreditkarte/PayPal/Bankeinzug/RechnungPremium', role: 'p2', meta: 'Enum inkl. Premium-only Wert; Constraints je Typ festhalten; Format: UML-Klassendiagramm + Enum; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
-                { label: 'iban, bic, kartenToken, paypalToken', role: 'p2', meta: 'Attribute nur für relevante Typen befüllen; Kardinalitäten dokumentieren; Format: UML-Klassendiagramm + Attributliste; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
-                { label: 'mandatsReferenz, gueltigBis', role: 'p2', meta: 'Für SEPA erfassen; Datumstyp setzen; Pflicht nur bei Bankeinzug; Format: UML-Klassendiagramm; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' }
-              ]
-            },
-            {
-              label: 'Berechtigung / Historie',
-              role: 'p2',
-              children: [
-                { label: 'gekaufteArtikel: list<string> (Bewertungsrecht)', role: 'p2', meta: 'Liste für Berechtigungsprüfung (S-05); Persistenzform überlegen; Format: UML-Klassendiagramm + Attributliste; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
-                { label: 'letzterLogin, registriertAm', role: 'p2', meta: 'Audit-Attribute; Datentypen präzisieren; optional/null festhalten; Format: UML-Klassendiagramm; Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' }
-              ]
-            },
-            {
-              label: 'Ableitungen',
-              role: 'p2',
-              children: [
-                { label: 'reservierungsdauer(): 2h / 4h je Premium', role: 'p2', meta: 'Operation mit Rückgabetyp Duration modellieren; nutzt premium-Flag; Format: UML-Klassendiagramm (Operation); Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' },
-                { label: 'warenkorbTimeout(): 24h / 36h je Premium', role: 'p2', meta: 'Operation für S-06; Werte als Konstante oder Konfiguration halten; Format: UML-Klassendiagramm (Operation); Tool: draw.io; Vorlesung: VL7/8 – UML-Klassendiagramme I/II.' }
-              ]
-            }
-          ]
-        },
-        {
-          label: 'Dynamik & Regeln',
-          role: 'p3',
-          meta: 'Sequenzen, Guards, Policies; Format: Aktivitäts- und Sequenzdiagramme (UML); Tool: draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme',
-          children: [
-            { label: 'Passwort-Policy erzwingen (Komplexität, Doppel-Eingabe, Sperre 3x/1h)', role: 'p3', meta: 'In Sequenz- und Aktivitätsdiagrammen als Guard/Decision modellieren; Format: Aktivitäts-/Sequenzdiagramm; Tool: draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme; Bezug: VL6 – Use Cases & UC-Spezifikation.' },
-            { label: 'Premium-Upgrade schaltet Rechnung + längere Reservierungen frei', role: 'p3', meta: 'Statuswechsel zeigen; Folgeschritte in S-02/S-06 markieren; Alternativpfad bei Fehlschlag; Format: Aktivitäts-/Sequenzdiagramm; Tool: draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme.' },
-            { label: 'Bewertungen nur für gekaufte Artikel und erst nach Terminende', role: 'p3', meta: 'Guard mit Termin- und Kaufprüfung; Fehlpfad skizzieren; Format: Aktivitätsdiagramm; Tool: draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme.' },
-            { label: 'Digitale Bereitstellung: Tickets nur per E-Mail/Download/QR', role: 'p3', meta: 'Aktivität für Übergabe an S-04 modellieren; keine Papierzweige darstellen; Format: Aktivitätsdiagramm; Tool: draw.io; Vorlesung: VL9 – Aktivitäts- & Sequenzdiagramme.' }
-          ]
-        },
-        {
-          label: 'Schnittstellen & Segmente',
-          role: 'p4',
-          meta: 'Segmente S-02..S-09 und externe Payment-Provider; Format: Schnittstellenvertrag/Context-Map (Tabelle/Text); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen',
-          children: [
-            { label: 'Schnittstelle zu Login & Passwortmanagement (S-09)', role: 'p4', meta: 'Schnittstelle zur externen Gruppe S-09 definieren: Authentifizierung, Sperrstatus/Passwortregeln konsumieren und liefern; Format: Schnittstellenvertrag (Text/Tabelle); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'Schnittstelle zu Bezahlung (S-03)', role: 'p4', meta: 'API/Port zur externen Gruppe S-03 spezifizieren: Zahlungsarten, PaymentMethod-Liste mit Validierungsflags ausgeben; Format: Schnittstellenvertrag (Text/Tabelle); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'Schnittstelle zu Warenkorb (S-06)', role: 'p4', meta: 'Datenvertrag zur externen Gruppe S-06: Kundentyp (Premium/Standard), Timeout 24h/36h, premium-Flag, Berechtigungsstatus liefern; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'Schnittstelle zu Sitzplatzauswahl (S-02)', role: 'p4', meta: 'Reservierungsdauer 2h/4h als Parameter an externe Gruppe S-02 übergeben; Quelle ist reservierungsdauer()-Ableitung; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'Schnittstelle zu Kundenbewertung (S-05)', role: 'p4', meta: 'Berechtigungsservice für externe Gruppe S-05: Kaufnachweis + Terminprüfung (hatGekauft, terminVorbei) bereitstellen; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'Schnittstelle zu Ticketbereitstellung (S-04)', role: 'p4', meta: 'Lieferkanal zur externen Gruppe S-04 definieren (E-Mail/Account als Übergabepunkt für Download und QR-Code); nur digitale Medien modellieren; Format: Schnittstellenvertrag + Kontextskizze; Tool: Markdown/draw.io; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'Externe Zahlungsanbieter: PayPal-Token, Karten-Token, SEPA-Mandat verwalten', role: 'p4', meta: 'Adapter/Ports ausarbeiten; Token-Speicherung und Mandatsstatus bereitstellen; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' }
-          ]
-        }
+        { label: 'Use Cases', role: 'p1', meta: 'Alle Use Cases mit User Stories; Format: User Stories + UC-Spezifikationen; Tools: XMind/FreeMind + Visual Paradigm', children: [
+          { label: 'UC: Registrierung & Login', role: 'p1', meta: 'Passwort-Policy, Sperrlogik; Schnittstelle zu S-09; Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: XMind + Visual Paradigm', children: [
+            { label: 'Als Besucher möchte ich mich registrieren, um Tickets kaufen zu können.', role: 'p1', meta: 'User Story; Akzeptanzkriterien: Benutzername, Passwort 2× eingeben' },
+            { label: 'Als Kunde möchte ich mich anmelden, um auf Warenkorb zuzugreifen.', role: 'p1', meta: 'User Story; 3× falsches Passwort → 1h Sperre' },
+            { label: 'Passwortregeln (Komplexität, doppelte Eingabe); Sperre nach 3 Fehlversuchen/1h', role: 'p3', meta: 'Policy-Details: Mindestlänge, Zeichen; Sperrlogik; Format: Aktivitätsdiagramm; Tool: Visual Paradigm' }
+          ]},
+          { label: 'UC: Profil & Kontaktdaten pflegen', role: 'p1', meta: 'Liefer-/Rechnungsadresse, nur digitale Zustellung (Anforderung für S-04); Format: UC-Spezifikation; Tool: XMind', children: [
+            { label: 'Als Kunde möchte ich meine Kontakt- und Adressdaten pflegen.', role: 'p1', meta: 'User Story; E-Mail/Download/QR-Code (keine Papiertickets)' }
+          ]},
+          { label: 'UC: Zahlungswege verwalten', role: 'p1', meta: 'Zahlarten hinterlegen; Validierung IBAN/BIC/Luhn/Token; Schnittstelle zu S-03; Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: XMind + Visual Paradigm', children: [
+            { label: 'Als Kunde möchte ich meine Zahlungswege hinterlegen.', role: 'p1', meta: 'User Story; Vorkasse, Kreditkarte, PayPal, Bankeinzug; Premium: + Rechnung/Überweisung' },
+            { label: 'Validierung aller Zahlungsdaten (IBAN/BIC/Luhn, Token, Mandat)', role: 'p3', meta: 'Akzeptanzkriterien für Validität; Format: Aktivitätsdiagramm; Tool: Visual Paradigm' }
+          ]},
+          { label: 'UC: Premium-Status nutzen', role: 'p1', meta: 'Premium-Upgrade; Reservierungsdauer 2h/4h; Warenkorb-Timeout 24h/36h; Schnittstellen zu S-02, S-06; Format: UC-Spezifikation; Tool: XMind', children: [
+            { label: 'Als Kunde möchte ich Premium-Kunde werden, um längere Reservierungen (4h) zu nutzen.', role: 'p1', meta: 'User Story; Vorteile: 4h Reservierung, Warenkorb-Timeout 36h, + Rechnung/Überweisung' },
+            { label: 'Reservierungsdauer und Warenkorb-Timeout übergeben', role: 'p3', meta: 'Parameter je Kundenstatus (Standard/Premium) an externe Segmente liefern; Format: Sequenzdiagramm; Tool: Visual Paradigm' }
+          ]},
+          { label: 'UC: Artikel bewerten', role: 'p1', meta: 'Bewertung nur für gekaufte Artikel nach Terminende; Schnittstelle zu S-05; Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: XMind + Visual Paradigm', children: [
+            { label: 'Als Kunde möchte ich gekaufte Artikel bewerten.', role: 'p1', meta: 'User Story; nur gekaufte Artikel, erst nach Terminende, Shop nicht bewertbar' },
+            { label: 'Kaufnachweis & Terminprüfung (Guard); Shop-Bewertungen ausgeschlossen', role: 'p3', meta: 'Berechtigungsprüfung mit S-05; Guard-Bedingungen; Format: Aktivitätsdiagramm; Tool: Visual Paradigm' }
+          ]}
+        ]},
+        { label: 'Objekte und Attribute', role: 'p2', meta: 'Klassendiagramm, Datenstruktur, Ableitungen; Format: UML-Klassendiagramm; Tool: Visual Paradigm', children: [
+          { label: 'Kunde (zentral)', role: 'p2', meta: 'Basis-Entity mit Ableitungen Standard/Premium; Format: UML-Klassendiagramm (Vererbung); Tool: Visual Paradigm', children: [
+            { label: 'Attribute: Name, Kontaktdaten, Status, Registrierungsdatum', role: 'p2', meta: 'Datentypen (String, Email, Date), Constraints (NOT NULL, UNIQUE)' },
+            { label: 'Ableitung: Standardkunde, Premium-Kunde (Upgrade-Datum)', role: 'p2', meta: 'Generalisierung/Spezialisierung' }
+          ]},
+          { label: 'Adresse', role: 'p2', meta: 'Trennung Liefer-/Rechnungsadresse; Format: UML-Klassendiagramm (Aggregation); Tool: Visual Paradigm', children: [
+            { label: 'Attribute: Straße, PLZ, Ort, Land, Typ (Liefer-/Rechnungsadresse)', role: 'p2', meta: 'Assoziationsvielfalt (Kunde 1 zu N Adressen)' }
+          ]},
+          { label: 'Zahlungsweg', role: 'p2', meta: 'Basis-Entity mit Ableitungen pro Zahlungsart; Format: UML-Klassendiagramm (Vererbung); Tool: Visual Paradigm', children: [
+            { label: 'Ableitungen: Vorkasse, Kreditkarte, PayPal, Bankeinzug, Rechnung', role: 'p2', meta: 'Generalisierung → Spezialisierung' },
+            { label: 'Attribute je Zahlart: IBAN/BIC, Kartentoken, PayPal-ID, Mandatsreferenz', role: 'p2', meta: 'Constraints (UNIQUE, verschlüsselte Speicherung)' }
+          ]},
+          { label: 'Reservierungsparameter', role: 'p2', meta: 'Abgeleitet aus Kundenstatus; Format: UML-Klassendiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Attribute: Dauer (2h/4h), Warenkorb-Timeout (24h/36h)', role: 'p2', meta: 'Verwendung in Schnittstellen zu S-02/S-06' }
+          ]}
+        ]},
+        { label: 'Schnittstellen zu anderen Segmenten und externen Systemen', role: 'p4', meta: 'Übersicht Schnittstellenaufrufe; Format: Sequenzdiagramme; Tool: Visual Paradigm', children: [
+          { label: 'S-02 Sitzplatzauswahl', role: 'p4', meta: 'Externe Gruppe; Format: Sequenzdiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Parameter: Reservierungsdauer (2h Standard / 4h Premium)', role: 'p4', meta: 'S-01 liefert Reservierungsdauer an S-02' }
+          ]},
+          { label: 'S-03 Bezahlung', role: 'p4', meta: 'Externe Gruppe; Format: Sequenzdiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Parameter: Zahlungsweg-Objekt (IBAN, Card-Token, PayPal-ID, Mandat)', role: 'p4', meta: 'S-01 liefert validiertes Zahlungsweg-Objekt an S-03' }
+          ]},
+          { label: 'S-04 Ticketbereitstellung', role: 'p4', meta: 'Externe Gruppe; Format: Sequenzdiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Anforderung: Nur digitale Zustellung (E-Mail/Download/QR)', role: 'p4', meta: 'S-01 gibt vor: keine Papiertickets, nur digitale Kanäle' }
+          ]},
+          { label: 'S-05 Kundenbewertung', role: 'p4', meta: 'Externe Gruppe; Format: Sequenzdiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Guard: Kaufnachweis + Terminende (erst danach Bewertung)', role: 'p4', meta: 'S-01 liefert Kaufhistorie an S-05' },
+            { label: 'Ausschluss: Shop selbst nicht bewertbar', role: 'p4', meta: 'Geschäftsregel aus Aufgabenstellung' }
+          ]},
+          { label: 'S-06 Warenkorb', role: 'p4', meta: 'Externe Gruppe; Format: Sequenzdiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Parameter: Warenkorb-Timeout (24h Standard / 36h Premium)', role: 'p4', meta: 'S-01 liefert Timeout-Dauer an S-06' }
+          ]},
+          { label: 'S-09 Zentrales Login/Passwort-Management', role: 'p4', meta: 'Externe Gruppe; Format: Sequenzdiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Policy: Passwort-Regeln (Komplexität, doppelte Eingabe, Sperre 3×/1h)', role: 'p4', meta: 'S-01 nutzt S-09 für Passwort-Validierung und Sperrlogik' }
+          ]}
+        ]}
       ]
     };
-
-    const mindmapContainer = document.getElementById('mindmap');
-    const legendContainer = document.getElementById('legend');
 
     function renderLegend() {
       legend.forEach(item => {
@@ -299,131 +166,120 @@
         label.textContent = item.label;
         el.appendChild(pill);
         el.appendChild(label);
-        legendContainer.appendChild(el);
+        document.getElementById('legend').appendChild(el);
       });
     }
 
-    function createNode(node, level = 0, parentLabel = null) {
+    function collectTasks(node) {
+      if (node.label && node.role) {
+        allTasks.push({ label: node.label, role: node.role });
+      }
+      if (node.children) {
+        node.children.forEach(child => collectTasks(child));
+      }
+    }
+
+    function renderBranches() {
+      const container = document.getElementById('branches');
+      mindMapData.children.forEach(branch => {
+        const col = document.createElement('div');
+        col.className = 'branch-column';
+        
+        const header = document.createElement('div');
+        header.className = `branch-header ${roleStyles[branch.role]}`;
+        header.innerHTML = `<div class="branch-title">${branch.label}</div><div class="branch-meta">${branch.meta || ''}</div>`;
+        
+        const content = document.createElement('div');
+        content.className = 'branch-content';
+        
+        if (branch.children) {
+          branch.children.forEach(child => {
+            const childNode = createNode(child, 0);
+            content.appendChild(childNode);
+          });
+        }
+        
+        header.addEventListener('click', () => {
+          content.classList.toggle('expanded');
+        });
+        
+        col.appendChild(header);
+        col.appendChild(content);
+        container.appendChild(col);
+      });
+    }
+
+    function createNode(node, level = 0) {
       const wrap = document.createElement('div');
       wrap.className = 'node-wrap';
-
-      const row = document.createElement('div');
-      row.className = 'node';
-
-      const hasChildren = node.children && node.children.length > 0;
-
-      if (hasChildren) {
-        const btn = document.createElement('button');
-        btn.className = 'toggle';
-        btn.textContent = level < 1 ? '▾' : '▸';
-        btn.setAttribute('aria-label', level < 1 ? 'Einklappen' : 'Ausklappen');
-        row.appendChild(btn);
-
-        const box = document.createElement('div');
-        box.className = `node-box ${roleStyles[node.role] || 'general'}`;
-        const title = document.createElement('div');
-        title.className = 'node-title';
-        title.textContent = node.label;
-        box.appendChild(title);
-        if (node.meta) {
-          const meta = document.createElement('div');
-          meta.className = 'node-meta';
-          meta.textContent = node.meta;
-          box.appendChild(meta);
-        }
-        row.appendChild(box);
-        wrap.appendChild(row);
-
-        const childContainer = document.createElement('div');
-        childContainer.className = 'children';
-        childContainer.style.display = level < 1 ? 'block' : 'none';
-        node.children.forEach((child) => childContainer.appendChild(createNode(child, level + 1, node.label)));
-        wrap.appendChild(childContainer);
-
-        nodeIndex.set(node.label, { toggle: btn, childContainer });
-
-        btn.addEventListener('click', () => {
-          const isOpen = childContainer.style.display !== 'none';
-          childContainer.style.display = isOpen ? 'none' : 'block';
-          btn.textContent = isOpen ? '▸' : '▾';
-          btn.setAttribute('aria-label', isOpen ? 'Ausklappen' : 'Einklappen');
+      const nodeEl = document.createElement('div');
+      nodeEl.className = 'node';
+      
+      let toggle;
+      const childContainer = document.createElement('div');
+      childContainer.className = 'children';
+      childContainer.style.display = 'none';
+      
+      if (node.children && node.children.length > 0) {
+        toggle = document.createElement('button');
+        toggle.className = 'toggle';
+        toggle.textContent = '▶';
+        toggle.addEventListener('click', () => {
+          if (childContainer.style.display === 'none') {
+            childContainer.style.display = 'block';
+            toggle.textContent = '▼';
+          } else {
+            childContainer.style.display = 'none';
+            toggle.textContent = '▶';
+          }
         });
+        nodeEl.appendChild(toggle);
       } else {
-        const bullet = document.createElement('div');
+        const bullet = document.createElement('span');
         bullet.className = 'bullet';
-        row.appendChild(bullet);
-
-        const box = document.createElement('div');
-        box.className = `node-box ${roleStyles[node.role] || 'general'}`;
-        const title = document.createElement('div');
-        title.className = 'node-title';
-        title.textContent = node.label;
-        box.appendChild(title);
-        if (node.meta) {
-          const meta = document.createElement('div');
-          meta.className = 'node-meta';
-          meta.textContent = node.meta;
-          box.appendChild(meta);
-        }
-        row.appendChild(box);
-        wrap.appendChild(row);
-
-        nodeIndex.set(node.label, {});
+        nodeEl.appendChild(bullet);
       }
-
-      parentIndex.set(node.label, parentLabel);
+      
+      const boxEl = document.createElement('div');
+      boxEl.className = `node-box ${roleStyles[node.role] || 'general'}`;
+      const title = document.createElement('div');
+      title.className = 'node-title';
+      title.textContent = node.label;
+      boxEl.appendChild(title);
+      if (node.meta) {
+        const meta = document.createElement('p');
+        meta.className = 'node-meta';
+        meta.textContent = node.meta;
+        boxEl.appendChild(meta);
+      }
+      nodeEl.appendChild(boxEl);
+      wrap.appendChild(nodeEl);
+      
+      if (node.children && node.children.length > 0) {
+        node.children.forEach(child => {
+          const childNode = createNode(child, level + 1);
+          childContainer.appendChild(childNode);
+        });
+        wrap.appendChild(childContainer);
+      }
+      
       return wrap;
     }
 
-    function renderMindmap() {
-      mindmapContainer.innerHTML = '';
-      nodeIndex.clear();
-      parentIndex.clear();
-      mindmapContainer.appendChild(createNode(mindMapData));
-    }
-
-    renderLegend();
-    renderMindmap();
-
-    function expandLabel(label) {
-      if (!parentIndex.has(label) && label !== mindMapData.label) return;
-      const entrySelf = nodeIndex.get(label);
-      if (entrySelf && entrySelf.childContainer) {
-        entrySelf.childContainer.style.display = 'block';
-        if (entrySelf.toggle) {
-          entrySelf.toggle.textContent = '▾';
-          entrySelf.toggle.setAttribute('aria-label', 'Einklappen');
-        }
-      }
-      let current = label;
-      while (current) {
-        const parent = parentIndex.get(current);
-        if (parent) {
-          const entry = nodeIndex.get(parent);
-          if (entry && entry.childContainer) {
-            entry.childContainer.style.display = 'block';
-            if (entry.toggle) {
-              entry.toggle.textContent = '▾';
-              entry.toggle.setAttribute('aria-label', 'Einklappen');
-            }
-          }
-        }
-        current = parent;
-      }
-    }
-
-    function attachInteractions() {
-      const clickables = document.querySelectorAll('[data-targets]');
-      clickables.forEach((el) => {
-        el.style.cursor = 'pointer';
-        el.addEventListener('click', () => {
-          const targets = (el.getAttribute('data-targets') || '').split('|').map(t => t.trim()).filter(Boolean);
-          targets.forEach(expandLabel);
-        });
+    function renderTaskBubbles() {
+      const container = document.getElementById('taskBubbles');
+      allTasks.forEach(task => {
+        const bubble = document.createElement('div');
+        bubble.className = `task-bubble ${roleStyles[task.role]}`;
+        bubble.textContent = task.label;
+        container.appendChild(bubble);
       });
     }
 
-    attachInteractions();
+    collectTasks(mindMapData);
+    renderLegend();
+    renderBranches();
+    renderTaskBubbles();
   </script>
 </body>
 </html>
