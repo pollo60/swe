@@ -48,6 +48,23 @@
     .task-bubble { padding: 10px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 2px solid transparent; }
     .task-bubble:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
     
+    /* Timeline horizontal */
+    .timeline-horizontal { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .timeline-week { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 16px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .timeline-week:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+    .timeline-week-header { padding: 12px 16px; border-radius: 12px; margin-bottom: 12px; }
+    .timeline-week-title { font-weight: 700; font-size: 16px; margin: 0 0 6px 0; }
+    .timeline-week-info { font-size: 13px; line-height: 1.5; opacity: 0.9; margin: 0; }
+    .timeline-week-tasks { display: none; flex-direction: column; gap: 8px; margin-top: 12px; }
+    .timeline-week-tasks.expanded { display: flex; }
+    .timeline-kw50 .timeline-week-header { background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(34, 197, 94, 0.04)); border-left: 3px solid #86efac; }
+    .timeline-kw51 .timeline-week-header { background: linear-gradient(135deg, rgba(34, 197, 94, 0.14), rgba(34, 197, 94, 0.07)); border-left: 3px solid #4ade80; }
+    .timeline-kw52 .timeline-week-header { background: linear-gradient(135deg, rgba(34, 197, 94, 0.20), rgba(34, 197, 94, 0.10)); border-left: 3px solid #22c55e; }
+    .timeline-kw01 .timeline-week-header { background: linear-gradient(135deg, rgba(34, 197, 94, 0.26), rgba(34, 197, 94, 0.13)); border-left: 3px solid #16a34a; }
+    .timeline-kw02 .timeline-week-header { background: linear-gradient(135deg, rgba(34, 197, 94, 0.32), rgba(34, 197, 94, 0.16)); border-left: 3px solid #15803d; }
+    .timeline-kw03 .timeline-week-header { background: linear-gradient(135deg, rgba(34, 197, 94, 0.38), rgba(34, 197, 94, 0.19)); border-left: 3px solid #166534; }
+    .timeline-kw04 .timeline-week-header { background: linear-gradient(135deg, rgba(34, 197, 94, 0.44), rgba(34, 197, 94, 0.22)); border-left: 3px solid #14532d; }
+    
     @media (max-width: 1200px) {
       .branches-container { grid-template-columns: 1fr; }
     }
@@ -70,10 +87,10 @@
       <!-- Drei Hauptäste horizontal -->
       <div class="branches-container" id="branches"></div>
 
-      <!-- Alle Aufgaben als Bubbles -->
+      <!-- Timeline mit Aufgaben pro Woche -->
       <div class="card">
-        <h2>Alle Aufgaben im Überblick</h2>
-        <div class="task-bubbles" id="taskBubbles"></div>
+        <h2>Timeline bis 25.01.2026</h2>
+        <div class="timeline-horizontal" id="timeline"></div>
       </div>
     </div>
   </div>
@@ -155,6 +172,114 @@
         ]}
       ]
     };
+
+    const timelineData = [
+      {
+        week: 'KW 50',
+        period: '09.12–15.12',
+        class: 'timeline-kw50',
+        description: 'User Stories & UC-Spezifikationen für Registrierung/Login, Profil, Zahlungsarten; Passwort-Policy-Checkliste; erste Aktivitätsdiagramme (Schnittstellen zu S-09, S-03)',
+        tasks: [
+          { label: 'UC: Registrierung & Login', role: 'p1' },
+          { label: 'Als Besucher möchte ich mich registrieren, um Tickets kaufen zu können.', role: 'p1' },
+          { label: 'Als Kunde möchte ich mich anmelden, um auf Warenkorb zuzugreifen.', role: 'p1' },
+          { label: 'Passwortregeln (Komplexität, doppelte Eingabe); Sperre nach 3 Fehlversuchen/1h', role: 'p3' },
+          { label: 'UC: Profil & Kontaktdaten pflegen', role: 'p1' },
+          { label: 'Als Kunde möchte ich meine Kontakt- und Adressdaten pflegen.', role: 'p1' },
+          { label: 'UC: Zahlungswege verwalten', role: 'p1' },
+          { label: 'Als Kunde möchte ich meine Zahlungswege hinterlegen.', role: 'p1' },
+          { label: 'Validierung aller Zahlungsdaten (IBAN/BIC/Luhn, Token, Mandat)', role: 'p3' }
+        ]
+      },
+      {
+        week: 'KW 51',
+        period: '16.12–22.12',
+        class: 'timeline-kw51',
+        description: 'Domänenmodell (Kunde, Profil, Zahlungsarten, Berechtigungen, Ableitungen); Attributtabellen/Enums; Review mit Use-Case-Flows',
+        tasks: [
+          { label: 'Objekte und Attribute', role: 'p2' },
+          { label: 'Kunde (zentral)', role: 'p2' },
+          { label: 'Attribute: Name, Kontaktdaten, Status, Registrierungsdatum', role: 'p2' },
+          { label: 'Ableitung: Standardkunde, Premium-Kunde (Upgrade-Datum)', role: 'p2' },
+          { label: 'Adresse', role: 'p2' },
+          { label: 'Attribute: Straße, PLZ, Ort, Land, Typ (Liefer-/Rechnungsadresse)', role: 'p2' },
+          { label: 'Zahlungsweg', role: 'p2' },
+          { label: 'Ableitungen: Vorkasse, Kreditkarte, PayPal, Bankeinzug, Rechnung', role: 'p2' },
+          { label: 'Attribute je Zahlart: IBAN/BIC, Kartentoken, PayPal-ID, Mandatsreferenz', role: 'p2' },
+          { label: 'Reservierungsparameter', role: 'p2' },
+          { label: 'Attribute: Dauer (2h/4h), Warenkorb-Timeout (24h/36h)', role: 'p2' }
+        ]
+      },
+      {
+        week: 'KW 52',
+        period: '23.12–29.12',
+        class: 'timeline-kw52',
+        description: 'Dynamik/Regeln ausarbeiten: Sperrlogik, Payment-Validierung, Premium-Upgrade-Folgen, Bewertungs-Guards, digitale Bereitstellung; Aktivitäts-/Sequenzdiagramme',
+        tasks: [
+          { label: 'Passwortregeln (Komplexität, doppelte Eingabe); Sperre nach 3 Fehlversuchen/1h', role: 'p3' },
+          { label: 'Validierung aller Zahlungsdaten (IBAN/BIC/Luhn, Token, Mandat)', role: 'p3' },
+          { label: 'Reservierungsdauer und Warenkorb-Timeout übergeben', role: 'p3' },
+          { label: 'Kaufnachweis & Terminprüfung (Guard); Shop-Bewertungen ausgeschlossen', role: 'p3' }
+        ]
+      },
+      {
+        week: 'KW 01',
+        period: '30.12–05.01',
+        class: 'timeline-kw01',
+        description: 'Schnittstellenverträge zu externen Gruppen S-02/S-03/S-04/S-05/S-06/S-09 inkl. Parameter (Premium-Flag, Reservierungsdauer, Timeouts); Kontextskizze',
+        tasks: [
+          { label: 'Schnittstellen zu anderen Segmenten und externen Systemen', role: 'p4' },
+          { label: 'S-02 Sitzplatzauswahl', role: 'p4' },
+          { label: 'Parameter: Reservierungsdauer (2h Standard / 4h Premium)', role: 'p4' },
+          { label: 'S-03 Bezahlung', role: 'p4' },
+          { label: 'Parameter: Zahlungsweg-Objekt (IBAN, Card-Token, PayPal-ID, Mandat)', role: 'p4' },
+          { label: 'S-04 Ticketbereitstellung', role: 'p4' },
+          { label: 'Anforderung: Nur digitale Zustellung (E-Mail/Download/QR)', role: 'p4' },
+          { label: 'S-05 Kundenbewertung', role: 'p4' },
+          { label: 'Guard: Kaufnachweis + Terminende (erst danach Bewertung)', role: 'p4' },
+          { label: 'Ausschluss: Shop selbst nicht bewertbar', role: 'p4' },
+          { label: 'S-06 Warenkorb', role: 'p4' },
+          { label: 'Parameter: Warenkorb-Timeout (24h Standard / 36h Premium)', role: 'p4' },
+          { label: 'S-09 Zentrales Login/Passwort-Management', role: 'p4' },
+          { label: 'Policy: Passwort-Regeln (Komplexität, doppelte Eingabe, Sperre 3×/1h)', role: 'p4' }
+        ]
+      },
+      {
+        week: 'KW 02',
+        period: '06.01–12.01',
+        class: 'timeline-kw02',
+        description: 'Konsolidierung: Trace zwischen UCs, Domänenmodell, Regeln, Schnittstellen; Parametertabellen (Reservierung/Warenkorb zu S-02/S-06) finalisieren; Lücken schließen',
+        tasks: [
+          { label: 'UC: Premium-Status nutzen', role: 'p1' },
+          { label: 'Als Kunde möchte ich Premium-Kunde werden, um längere Reservierungen (4h) zu nutzen.', role: 'p1' },
+          { label: 'UC: Artikel bewerten', role: 'p1' },
+          { label: 'Als Kunde möchte ich gekaufte Artikel bewerten.', role: 'p1' },
+          { label: 'Objekte und Attribute', role: 'p2' }
+        ]
+      },
+      {
+        week: 'KW 03',
+        period: '13.01–19.01',
+        class: 'timeline-kw03',
+        description: 'Qualitätssicherung: Peer-Reviews der Diagramme/Verträge; Konsistenz-Check gegen Vorgaben (S-04 digital only, S-05 Kaufnachweis, S-09 Sperre 3x/1h)',
+        tasks: [
+          { label: 'UC: Registrierung & Login', role: 'p1' },
+          { label: 'S-04 Ticketbereitstellung', role: 'p4' },
+          { label: 'Schnittstellen zu anderen Segmenten und externen Systemen', role: 'p4' }
+        ]
+      },
+      {
+        week: 'KW 04',
+        period: '20.01–25.01',
+        class: 'timeline-kw04',
+        description: 'Finalisierung & Puffer: letzte Anpassungen, Export/Packaging aller Artefakte; Abnahme-Checkliste und Präsentationsfolien erstellen (Ende: 25.01.2026)',
+        tasks: [
+          { label: 'Use Cases', role: 'p1' },
+          { label: 'Objekte und Attribute', role: 'p2' },
+          { label: 'Schnittstellen zu anderen Segmenten und externen Systemen', role: 'p4' }
+        ]
+      }
+    ];
 
     function renderLegend() {
       legend.forEach(item => {
@@ -266,20 +391,43 @@
       return wrap;
     }
 
-    function renderTaskBubbles() {
-      const container = document.getElementById('taskBubbles');
-      allTasks.forEach(task => {
-        const bubble = document.createElement('div');
-        bubble.className = `task-bubble ${roleStyles[task.role]}`;
-        bubble.textContent = task.label;
-        container.appendChild(bubble);
+    function renderTimeline() {
+      const container = document.getElementById('timeline');
+      timelineData.forEach(weekData => {
+        const weekEl = document.createElement('div');
+        weekEl.className = `timeline-week ${weekData.class}`;
+        
+        const header = document.createElement('div');
+        header.className = 'timeline-week-header';
+        header.innerHTML = `
+          <div class="timeline-week-title">${weekData.week} (${weekData.period})</div>
+          <p class="timeline-week-info">${weekData.description}</p>
+        `;
+        
+        const tasksContainer = document.createElement('div');
+        tasksContainer.className = 'timeline-week-tasks';
+        
+        weekData.tasks.forEach(task => {
+          const bubble = document.createElement('div');
+          bubble.className = `task-bubble ${roleStyles[task.role]}`;
+          bubble.textContent = task.label;
+          tasksContainer.appendChild(bubble);
+        });
+        
+        weekEl.addEventListener('click', () => {
+          tasksContainer.classList.toggle('expanded');
+        });
+        
+        weekEl.appendChild(header);
+        weekEl.appendChild(tasksContainer);
+        container.appendChild(weekEl);
       });
     }
 
     collectTasks(mindMapData);
     renderLegend();
     renderBranches();
-    renderTaskBubbles();
+    renderTimeline();
   </script>
 </body>
 </html>
