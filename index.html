@@ -66,6 +66,19 @@
     .toggle { cursor: pointer; border: none; background: transparent; font-size: 16px; line-height: 1; padding: 4px; color: var(--muted); }
     .bullet { width: 6px; height: 6px; border-radius: 50%; background: #9ca3af; margin-top: 9px; }
     .hint { font-size: 14px; color: var(--muted); line-height: 1.5; }
+    .assignment-item, .timeline-item { padding: 8px 12px; margin: 6px 0; border-radius: 8px; cursor: pointer; transition: opacity 0.2s; }
+    .assignment-item:hover, .timeline-item:hover { opacity: 0.85; }
+    .assignment-a { background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(79, 70, 229, 0.06)); border-left: 3px solid var(--p1); }
+    .assignment-b { background: linear-gradient(135deg, rgba(5, 150, 105, 0.12), rgba(5, 150, 105, 0.06)); border-left: 3px solid var(--p2); }
+    .assignment-c { background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(245, 158, 11, 0.06)); border-left: 3px solid var(--p3); }
+    .assignment-d { background: linear-gradient(135deg, rgba(225, 29, 72, 0.12), rgba(225, 29, 72, 0.06)); border-left: 3px solid var(--p4); }
+    .timeline-kw50 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(34, 197, 94, 0.04)); border-left: 3px solid #86efac; }
+    .timeline-kw51 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.14), rgba(34, 197, 94, 0.07)); border-left: 3px solid #4ade80; }
+    .timeline-kw52 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.20), rgba(34, 197, 94, 0.10)); border-left: 3px solid #22c55e; }
+    .timeline-kw01 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.26), rgba(34, 197, 94, 0.13)); border-left: 3px solid #16a34a; }
+    .timeline-kw02 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.32), rgba(34, 197, 94, 0.16)); border-left: 3px solid #15803d; }
+    .timeline-kw03 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.38), rgba(34, 197, 94, 0.19)); border-left: 3px solid #166534; }
+    .timeline-kw04 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.44), rgba(34, 197, 94, 0.22)); border-left: 3px solid #14532d; }
     @media (max-width: 720px) {
       .page { padding: 18px; }
       h1 { font-size: 22px; }
@@ -85,24 +98,24 @@
 
       <div class="card">
         <h2 style="margin:0 0 8px 0; font-size:20px;">Vorschlag Aufgabenteilung (4 Personen)</h2>
-        <ul style="margin:0; padding-left:18px; line-height:1.5; color:var(--text);">
-          <li data-targets="Registrierung & Login (S-09)|Profil & Kontaktdaten|Zahlungsarten & Validierung (S-03)|Bewertungen & Berechtigungen (S-05)|Premium-Status & Reservierungen/Warenkorb (S-02, S-06)"><strong>Person A – Use Cases & Stories:</strong> Registrierung/Login, Profil/Kontakt, Zahlungsarten inkl. Premium-Rechnung, Premium-Upgrade, Bewertungsberechtigung; Artefakte: User Stories, UC-Spezifikationen, Akzeptanzkriterien, Aktivitätsdiagramme (VL3, VL6, VL9).</li>
-          <li data-targets="Domänenmodell – Objekte & Attribute"><strong>Person B – Domänenmodell:</strong> Kunde, Profil, Zahlungsarten, Berechtigungs-/Historienobjekte, Ableitungen (reservierungsdauer, warenkorbTimeout); Artefakte: UML-Klassendiagramm mit Attributtabellen/Enums/Operationen (VL7/8).</li>
-          <li data-targets="Dynamik & Regeln"><strong>Person C – Dynamik & Regeln:</strong> Passwort-Policy/Sperrlogik, Payment-Validierung, Premium-Upgrade-Folgen, Bewertungs-Guards, digitale Bereitstellung; Artefakte: Aktivitäts-/Sequenzdiagramme mit Guards/Decisions (VL9, Bezug VL6).</li>
-          <li data-targets="Schnittstellen & Segmente"><strong>Person D – Schnittstellen & Segmente:</strong> Verträge zu S-02/S-03/S-04/S-05/S-06/S-09, Parameterübergaben (Premium-Flag, Reservierungsdauer, Timeouts), externe Payment-Adapter; Artefakte: Schnittstellenverträge/Context-Map/Parametertabellen (VL10).</li>
+        <ul style="margin:0; padding:0; list-style:none; line-height:1.5; color:var(--text);">
+          <li class="assignment-item assignment-a" data-targets="Registrierung & Login|Profil & Kontaktdaten|Zahlungsarten & Validierung|Bewertungen & Berechtigungen|Premium-Status & Reservierungen/Warenkorb"><strong>Person A – Use Cases & Stories:</strong> Registrierung/Login, Profil/Kontakt, Zahlungsarten inkl. Premium-Rechnung, Premium-Upgrade, Bewertungsberechtigung; Artefakte: User Stories, UC-Spezifikationen, Akzeptanzkriterien, Aktivitätsdiagramme (VL3, VL6, VL9).</li>
+          <li class="assignment-item assignment-b" data-targets="Domänenmodell – Objekte & Attribute"><strong>Person B – Domänenmodell:</strong> Kunde, Profil, Zahlungsarten, Berechtigungs-/Historienobjekte, Ableitungen (reservierungsdauer, warenkorbTimeout); Artefakte: UML-Klassendiagramm mit Attributtabellen/Enums/Operationen (VL7/8).</li>
+          <li class="assignment-item assignment-c" data-targets="Dynamik & Regeln"><strong>Person C – Dynamik & Regeln:</strong> Passwort-Policy/Sperrlogik, Payment-Validierung, Premium-Upgrade-Folgen, Bewertungs-Guards, digitale Bereitstellung; Artefakte: Aktivitäts-/Sequenzdiagramme mit Guards/Decisions (VL9, Bezug VL6).</li>
+          <li class="assignment-item assignment-d" data-targets="Schnittstellen & Segmente"><strong>Person D – Schnittstellen & Segmente:</strong> Verträge zu S-02/S-03/S-04/S-05/S-06/S-09 (externe Gruppen), Parameterübergaben (Premium-Flag, Reservierungsdauer, Timeouts), externe Payment-Adapter; Artefakte: Schnittstellenverträge/Context-Map/Parametertabellen (VL10).</li>
         </ul>
       </div>
 
       <div class="card">
         <h2 style="margin:0 0 8px 0; font-size:20px;">Timeline bis 25.01.2026</h2>
-        <ul style="margin:0; padding-left:18px; line-height:1.6; color:var(--text);">
-          <li data-targets="Registrierung & Login (S-09)|Profil & Kontaktdaten|Zahlungsarten & Validierung (S-03)"><strong>KW 50 (09.12–15.12):</strong> User Stories & UC-Spezifikationen für Registrierung/Login, Profil, Zahlungsarten; Passwort-Policy-Checkliste; erste Aktivitätsdiagramme (S-09, S-03).</li>
-          <li data-targets="Domänenmodell – Objekte & Attribute"><strong>KW 51 (16.12–22.12):</strong> Domänenmodell (Kunde, Profil, Zahlungsarten, Berechtigungen, Ableitungen); Attributtabellen/Enums; Review mit Use-Case-Flows.</li>
-          <li data-targets="Dynamik & Regeln"><strong>KW 52 (23.12–29.12):</strong> Dynamik/Regeln ausarbeiten: Sperrlogik, Payment-Validierung, Premium-Upgrade-Folgen, Bewertungs-Guards, digitale Bereitstellung; Aktivitäts-/Sequenzdiagramme.</li>
-          <li data-targets="Schnittstellen & Segmente"><strong>KW 01 (30.12–05.01):</strong> Schnittstellenverträge S-02/S-03/S-04/S-05/S-06/S-09 inkl. Parameter (Premium-Flag, Reservierungsdauer, Timeouts); Kontextskizze.</li>
-          <li data-targets="Premium-Status & Reservierungen/Warenkorb (S-02, S-06)|Bewertungen & Berechtigungen (S-05)|Domänenmodell – Objekte & Attribute"><strong>KW 02 (06.01–12.01):</strong> Konsolidierung: Trace zwischen UCs, Domänenmodell, Regeln, Schnittstellen; Parametertabellen (Reservierung/Warenkorb) finalisieren; Lücken schließen.</li>
-          <li data-targets="Registrierung & Login (S-09)|Digitale Ticketbereitstellung (S-04)|Schnittstellen & Segmente"><strong>KW 03 (13.01–19.01):</strong> Qualitätssicherung: Peer-Reviews der Diagramme/Verträge; Konsistenz-Check gegen Vorgaben (S-04 digital only, S-05 Kaufnachweis, S-09 Sperre 3x/1h).</li>
-          <li data-targets="Registrierung & Login (S-09)|Profil & Kontaktdaten|Zahlungsarten & Validierung (S-03)|Premium-Status & Reservierungen/Warenkorb (S-02, S-06)|Bewertungen & Berechtigungen (S-05)|Digitale Ticketbereitstellung (S-04)|Domänenmodell – Objekte & Attribute|Dynamik & Regeln|Schnittstellen & Segmente"><strong>KW 04 (20.01–25.01):</strong> Finalisierung & Puffer: letzte Anpassungen, Export/Packaging aller Artefakte; Abnahme-Checkliste und Präsentationsfolien erstellen (Ende: 25.01.2026).</li>
+        <ul style="margin:0; padding:0; list-style:none; line-height:1.6; color:var(--text);">
+          <li class="timeline-item timeline-kw50" data-targets="Registrierung & Login|Profil & Kontaktdaten|Zahlungsarten & Validierung"><strong>KW 50 (09.12–15.12):</strong> User Stories & UC-Spezifikationen für Registrierung/Login, Profil, Zahlungsarten; Passwort-Policy-Checkliste; erste Aktivitätsdiagramme (Schnittstellen zu Gruppen S-09, S-03).</li>
+          <li class="timeline-item timeline-kw51" data-targets="Domänenmodell – Objekte & Attribute"><strong>KW 51 (16.12–22.12):</strong> Domänenmodell (Kunde, Profil, Zahlungsarten, Berechtigungen, Ableitungen); Attributtabellen/Enums; Review mit Use-Case-Flows.</li>
+          <li class="timeline-item timeline-kw52" data-targets="Dynamik & Regeln"><strong>KW 52 (23.12–29.12):</strong> Dynamik/Regeln ausarbeiten: Sperrlogik, Payment-Validierung, Premium-Upgrade-Folgen, Bewertungs-Guards, digitale Bereitstellung; Aktivitäts-/Sequenzdiagramme.</li>
+          <li class="timeline-item timeline-kw01" data-targets="Schnittstellen & Segmente"><strong>KW 01 (30.12–05.01):</strong> Schnittstellenverträge zu externen Gruppen S-02/S-03/S-04/S-05/S-06/S-09 inkl. Parameter (Premium-Flag, Reservierungsdauer, Timeouts); Kontextskizze.</li>
+          <li class="timeline-item timeline-kw02" data-targets="Premium-Status & Reservierungen/Warenkorb|Bewertungen & Berechtigungen|Domänenmodell – Objekte & Attribute"><strong>KW 02 (06.01–12.01):</strong> Konsolidierung: Trace zwischen UCs, Domänenmodell, Regeln, Schnittstellen; Parametertabellen (Reservierung/Warenkorb zu S-02/S-06) finalisieren; Lücken schließen.</li>
+          <li class="timeline-item timeline-kw03" data-targets="Registrierung & Login|Digitale Ticketbereitstellung|Schnittstellen & Segmente"><strong>KW 03 (13.01–19.01):</strong> Qualitätssicherung: Peer-Reviews der Diagramme/Verträge; Konsistenz-Check gegen Vorgaben (S-04 digital only, S-05 Kaufnachweis, S-09 Sperre 3x/1h).</li>
+          <li class="timeline-item timeline-kw04" data-targets="Registrierung & Login|Profil & Kontaktdaten|Zahlungsarten & Validierung|Premium-Status & Reservierungen/Warenkorb|Bewertungen & Berechtigungen|Digitale Ticketbereitstellung|Domänenmodell – Objekte & Attribute|Dynamik & Regeln|Schnittstellen & Segmente"><strong>KW 04 (20.01–25.01):</strong> Finalisierung & Puffer: letzte Anpassungen, Export/Packaging aller Artefakte; Abnahme-Checkliste und Präsentationsfolien erstellen (Ende: 25.01.2026).</li>
         </ul>
       </div>
 
@@ -143,9 +156,9 @@
       meta: 'Fachliche Gliederung der Anforderungen; Format: Mindmap (HTML/JS); Tool: Browser/VS Code; Vorlesung: VL1 – Einführung & Projektrahmen',
       children: [
         {
-          label: 'Registrierung & Login (S-09)',
+          label: 'Registrierung & Login',
           role: 'p1',
-          meta: 'Stories, UC-Flows, Passwort-Policy, Sperrlogik; Format: User Stories + UC-Spezifikation + Aktivitätsdiagramm; Tools: Markdown/Jira + draw.io; Vorlesung: VL3 – Agiles Vorgehen & User Stories, VL6 – Use Cases & UC-Spezifikation, VL9 – Aktivitäts- & Sequenzdiagramme',
+          meta: 'Stories, UC-Flows, Passwort-Policy, Sperrlogik; Schnittstelle zu S-09 (Login/Passwort-Management); Format: User Stories + UC-Spezifikation + Aktivitätsdiagramm; Tools: Markdown/Jira + draw.io; Vorlesung: VL3 – Agiles Vorgehen & User Stories, VL6 – Use Cases & UC-Spezifikation, VL9 – Aktivitäts- & Sequenzdiagramme',
           children: [
             { label: 'Als Besucher möchte ich mich registrieren, um Tickets kaufen zu können.', role: 'p1', meta: 'Story sauber formulieren, Akteur+Nutzen klar; Akzeptanzkriterien aus Passwortpolicy ableiten; Format: User Story + Akzeptanzkriterien (Text); Tool: Markdown/Jira; Vorlesung: VL3 – Agiles Vorgehen & User Stories.' },
             { label: 'Passwortregeln (Komplexität, doppelte Eingabe); Sperre nach 3 Fehlversuchen', role: 'p3', meta: 'In den UC-Flow aufnehmen; Fehlversuchszähler und Lockout als Schritte modellieren; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation; Bezug: VL3 – Agiles Vorgehen & User Stories.' },
@@ -162,9 +175,9 @@
           ]
         },
         {
-          label: 'Zahlungsarten & Validierung (S-03)',
+          label: 'Zahlungsarten & Validierung',
           role: 'p1',
-          meta: 'Zahlarten, Premium-Rechnung, Validierung IBAN/BIC/Luhn/Token; Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: Markdown + draw.io; Vorlesung: VL6 – Use Cases, VL10 – Architektur & Schnittstellen',
+          meta: 'Zahlarten, Premium-Rechnung, Validierung IBAN/BIC/Luhn/Token; Schnittstelle zu S-03 (Bezahlung); Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: Markdown + draw.io; Vorlesung: VL6 – Use Cases, VL10 – Architektur & Schnittstellen',
           children: [
             { label: 'Zahlungsarten: Vorkasse, Kreditkarte, PayPal, Bankeinzug', role: 'p1', meta: 'UC-Flows pro Zahlart skizzieren; Eingabefehlerpfade aufnehmen; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
             { label: 'Premium: zusätzlich Rechnung/Überweisung', role: 'p1', meta: 'Premium-Guard in UC verankern; Abhängigkeit zum Status beschreiben; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
@@ -172,27 +185,27 @@
           ]
         },
         {
-          label: 'Premium-Status & Reservierungen/Warenkorb (S-02, S-06)',
+          label: 'Premium-Status & Reservierungen/Warenkorb',
           role: 'p1',
-          meta: 'Premium-Upgrade, Reservierungsdauer 2h/4h, Warenkorb-Timeout 24h/36h; Format: UC-Spezifikation + Parametertabelle; Tools: Markdown/Excel; Vorlesung: VL6 – Use Cases, VL10 – Architektur & Schnittstellen',
+          meta: 'Premium-Upgrade, Reservierungsdauer 2h/4h, Warenkorb-Timeout 24h/36h; Schnittstellen zu S-02 (Sitzplatzauswahl) und S-06 (Warenkorb); Format: UC-Spezifikation + Parametertabelle; Tools: Markdown/Excel; Vorlesung: VL6 – Use Cases, VL10 – Architektur & Schnittstellen',
           children: [
             { label: 'Upgrade auf Premium für 4h Reservierung + zusätzliche Zahlungsart', role: 'p1', meta: 'UC mit Trigger, Preconditions (zahlungsfaehig), Postconditions (Status=Premium) beschreiben; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
-            { label: 'Reservierungsdauer an S-02 übergeben; Warenkorb-Timeout nutzt Premium-Flag (S-06)', role: 'p3', meta: 'Schnittstellen-Calls als Schritte im UC aufführen; Parameter benennen; Format: Use-Case-Spezifikation (Text) + Schnittstellen-Call-Liste; Tool: Markdown; Vorlesung: VL10 – Architektur & Schnittstellen.' }
+            { label: 'Reservierungsdauer und Warenkorb-Timeout übergeben', role: 'p3', meta: 'Schnittstellen-Calls als Schritte im UC aufführen; Parameter benennen (an externe Gruppen S-02 Sitzplatzauswahl, S-06 Warenkorb); Format: Use-Case-Spezifikation (Text) + Schnittstellen-Call-Liste; Tool: Markdown; Vorlesung: VL10 – Architektur & Schnittstellen.' }
           ]
         },
         {
-          label: 'Bewertungen & Berechtigungen (S-05)',
+          label: 'Bewertungen & Berechtigungen',
           role: 'p1',
-          meta: 'Kaufnachweis + Terminende als Guard; Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: Markdown + draw.io; Vorlesung: VL6 – Use Cases, VL9 – Aktivitätsdiagramme',
+          meta: 'Kaufnachweis + Terminende als Guard; Schnittstelle zu S-05 (Kundenbewertung); Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: Markdown + draw.io; Vorlesung: VL6 – Use Cases, VL9 – Aktivitätsdiagramme',
           children: [
             { label: 'Bewerten nur für gekaufte Artikel nach Terminende', role: 'p1', meta: 'UC mit Guard „Artikel gekauft + Termin vorbei“; Ausnahmen dokumentieren; Format: Use-Case-Spezifikation (Text); Tool: Markdown; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' },
-            { label: 'System prüft Kaufnachweis und Datum (S-05); Shop-Bewertungen ausgeschlossen', role: 'p3', meta: 'Interaktion mit S-05 als Include/Extend modellieren; Negativpfade beschreiben; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' }
+            { label: 'System prüft Kaufnachweis und Datum; Shop-Bewertungen ausgeschlossen', role: 'p3', meta: 'Interaktion mit externer Gruppe S-05 (Kundenbewertung) als Include/Extend modellieren; Negativpfade beschreiben; Format: Use-Case-Spezifikation (Text) + Aktivitätsdiagramm; Tool: Markdown + draw.io; Vorlesung: VL6 – Use Cases & UC-Spezifikation.' }
           ]
         },
         {
-          label: 'Digitale Ticketbereitstellung (S-04)',
+          label: 'Digitale Ticketbereitstellung',
           role: 'general',
-          meta: 'Nur E-Mail/Download/QR, keine Papierlieferung; Format: Architektur-/Kontextnotiz; Tool: Markdown; Vorlesung: VL4 – Geschäftsprozesse & Segmente',
+          meta: 'Nur E-Mail/Download/QR, keine Papierlieferung; Schnittstelle zu S-04 (Ticketbereitstellung); Format: Architektur-/Kontextnotiz; Tool: Markdown; Vorlesung: VL4 – Geschäftsprozesse & Segmente',
           children: []
         },
         {
@@ -261,12 +274,12 @@
           role: 'p4',
           meta: 'Segmente S-02..S-09 und externe Payment-Provider; Format: Schnittstellenvertrag/Context-Map (Tabelle/Text); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen',
           children: [
-            { label: 'S-09 Login & Passwortmanagement: Authentifizierung, Sperrlogik, Passwortvalidierung', role: 'p4', meta: 'Schnittstelle definieren: Sperrstatus/Passwortregeln konsumieren und liefern; Format: Schnittstellenvertrag (Text/Tabelle); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'S-03 Bezahlung: Zahlungsarten + Validierungsstatus bereitstellen', role: 'p4', meta: 'API/Port spezifizieren: PaymentMethod-Liste mit Validierungsflags ausgeben; Format: Schnittstellenvertrag (Text/Tabelle); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'S-06 Warenkorb: Kundentyp (Premium/Standard), Timeout 24h/36h, Checkout-Erlaubnis', role: 'p4', meta: 'Datenvertrag: premium-Flag, Timeout-Werte, Berechtigungsstatus liefern; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'S-02 Sitzplatzauswahl: Reservierungsdauer 2h/4h nach Kundentyp', role: 'p4', meta: 'Reservierungsdauer als Parameter übergeben; Quelle ist reservierungsdauer()-Ableitung; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'S-05 Kundenbewertung: Kaufnachweis + Terminprüfung für Freigabe', role: 'p4', meta: 'Berechtigungsservice bereitstellen (hatGekauft, terminVorbei) für S-05; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
-            { label: 'S-04 Ticketbereitstellung: E-Mail/Account als Übergabepunkt für Download und QR-Code', role: 'p4', meta: 'Lieferkanal definieren (E-Mail/Account); nur digitale Medien modellieren; Format: Schnittstellenvertrag + Kontextskizze; Tool: Markdown/draw.io; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'Schnittstelle zu Login & Passwortmanagement (S-09)', role: 'p4', meta: 'Schnittstelle zur externen Gruppe S-09 definieren: Authentifizierung, Sperrstatus/Passwortregeln konsumieren und liefern; Format: Schnittstellenvertrag (Text/Tabelle); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'Schnittstelle zu Bezahlung (S-03)', role: 'p4', meta: 'API/Port zur externen Gruppe S-03 spezifizieren: Zahlungsarten, PaymentMethod-Liste mit Validierungsflags ausgeben; Format: Schnittstellenvertrag (Text/Tabelle); Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'Schnittstelle zu Warenkorb (S-06)', role: 'p4', meta: 'Datenvertrag zur externen Gruppe S-06: Kundentyp (Premium/Standard), Timeout 24h/36h, premium-Flag, Berechtigungsstatus liefern; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'Schnittstelle zu Sitzplatzauswahl (S-02)', role: 'p4', meta: 'Reservierungsdauer 2h/4h als Parameter an externe Gruppe S-02 übergeben; Quelle ist reservierungsdauer()-Ableitung; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'Schnittstelle zu Kundenbewertung (S-05)', role: 'p4', meta: 'Berechtigungsservice für externe Gruppe S-05: Kaufnachweis + Terminprüfung (hatGekauft, terminVorbei) bereitstellen; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' },
+            { label: 'Schnittstelle zu Ticketbereitstellung (S-04)', role: 'p4', meta: 'Lieferkanal zur externen Gruppe S-04 definieren (E-Mail/Account als Übergabepunkt für Download und QR-Code); nur digitale Medien modellieren; Format: Schnittstellenvertrag + Kontextskizze; Tool: Markdown/draw.io; Vorlesung: VL10 – Architektur & Schnittstellen.' },
             { label: 'Externe Zahlungsanbieter: PayPal-Token, Karten-Token, SEPA-Mandat verwalten', role: 'p4', meta: 'Adapter/Ports ausarbeiten; Token-Speicherung und Mandatsstatus bereitstellen; Format: Schnittstellenvertrag; Tool: Markdown/Excel; Vorlesung: VL10 – Architektur & Schnittstellen.' }
           ]
         }
