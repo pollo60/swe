@@ -121,11 +121,11 @@
           role: 'general',
           meta: 'Kernanforderungen S-01: Registrierung, Sicherheit, Premium, Zahlungsdaten, Schnittstellen',
           children: [
-            { label: 'Registrierung/Login mit Passwort-Policy und Sperre nach 3 Fehlversuchen/1h (S-09)', role: 'general' },
-            { label: 'Digitale Tickets only: E-Mail/Download/QR, keine Papierlieferung (S-04)', role: 'general' },
-            { label: 'Zahlungsarten verwalten inkl. Premium-Rechnung; Validierung IBAN/BIC/Luhn/Token', role: 'general' },
-            { label: 'Reservierungsdauer 2h Standard / 4h Premium; Warenkorb-Timeout 24h/36h', role: 'general' },
-            { label: 'Bewertungen nur nach Kauf & Terminende; Kaufnachweis nötig (S-05)', role: 'general' }
+            { label: 'Registrierung/Login mit Passwort-Policy und Sperre nach 3 Fehlversuchen/1h (S-09)', role: 'general', meta: 'Prof-Vorgabe: Passwortregeln, Doppeleingabe, Sperrlogik implementieren und an Login-Segment koppeln.' },
+            { label: 'Digitale Tickets only: E-Mail/Download/QR, keine Papierlieferung (S-04)', role: 'general', meta: 'Nur digitale Bereitstellung modellieren; keine Postwege; Übergabepunkt an Ticketbereitstellung definieren.' },
+            { label: 'Zahlungsarten verwalten inkl. Premium-Rechnung; Validierung IBAN/BIC/Luhn/Token', role: 'general', meta: 'Alle Payment-Flows validieren; Fehlerpfade vorsehen; Premium-Rechnung erst nach Status-Check erlauben.' },
+            { label: 'Reservierungsdauer 2h Standard / 4h Premium; Warenkorb-Timeout 24h/36h', role: 'general', meta: 'Parameter an S-02/S-06 weiterreichen; Premium-Flag als Steuergröße in beiden Segmenten nutzen.' },
+            { label: 'Bewertungen nur nach Kauf & Terminende; Kaufnachweis nötig (S-05)', role: 'general', meta: 'Berechtigungsprüfung zentral in S-01 hinterlegen; Terminprüfung und Kaufbeleg an Bewertungssystem liefern.' }
           ]
         },
         {
@@ -137,48 +137,48 @@
               label: 'Registrierung anlegen',
               role: 'p1',
               children: [
-                { label: 'Als Besucher möchte ich mich registrieren, um Tickets kaufen zu können.', role: 'p1' },
-                { label: 'Passwortregeln (Komplexität, doppelte Eingabe); Sperre nach 3 Fehlversuchen', role: 'p3' }
+                { label: 'Als Besucher möchte ich mich registrieren, um Tickets kaufen zu können.', role: 'p1', meta: 'Story sauber formulieren, Akteur+Nutzen klar; Akzeptanzkriterien aus Passwortpolicy ableiten.' },
+                { label: 'Passwortregeln (Komplexität, doppelte Eingabe); Sperre nach 3 Fehlversuchen', role: 'p3', meta: 'In den UC-Flow aufnehmen; Fehlversuchszähler und Lockout als Schritte modellieren (VL6 UC, VL3 Agile).' }
               ]
             },
             {
               label: 'Anmelden & entsperren',
               role: 'p1',
               children: [
-                { label: 'Login für Warenkorb/Käufe nutzen', role: 'p1' },
-                { label: 'Nach Sperrfrist wieder Zugriff erhalten', role: 'p1' }
+                { label: 'Login für Warenkorb/Käufe nutzen', role: 'p1', meta: 'UC inkl. Preconditions (Account aktiv) und Postconditions (Session offen) beschreiben.' },
+                { label: 'Nach Sperrfrist wieder Zugriff erhalten', role: 'p1', meta: 'Flow für Entsperren definieren; Zeitfenster 1h berücksichtigen; alternative Pfade dokumentieren.' }
               ]
             },
             {
               label: 'Profil- und Kontaktdaten pflegen',
               role: 'p1',
               children: [
-                { label: 'Liefer- und Rechnungsadresse, Kontaktdaten aktualisieren', role: 'p1' }
+                { label: 'Liefer- und Rechnungsadresse, Kontaktdaten aktualisieren', role: 'p1', meta: 'UC mit Validierungen (E-Mail-Format, Pflichtfelder) und rein digitalen Zustellwegen formulieren.' }
               ]
             },
             {
               label: 'Zahlungswege verwalten',
               role: 'p1',
               children: [
-                { label: 'Zahlungsarten: Vorkasse, Kreditkarte, PayPal, Bankeinzug', role: 'p1' },
-                { label: 'Premium: zusätzlich Rechnung/Überweisung', role: 'p1' },
-                { label: 'Validierung aller Zahlungsdaten zwingend (IBAN/BIC/Luhn, Token, Mandat)', role: 'p3' }
+                { label: 'Zahlungsarten: Vorkasse, Kreditkarte, PayPal, Bankeinzug', role: 'p1', meta: 'UC-Flows pro Zahlart skizzieren; Eingabefehlerpfade aufnehmen.' },
+                { label: 'Premium: zusätzlich Rechnung/Überweisung', role: 'p1', meta: 'Premium-Guard in UC verankern; Abhängigkeit zum Status beschreiben.' },
+                { label: 'Validierung aller Zahlungsdaten zwingend (IBAN/BIC/Luhn, Token, Mandat)', role: 'p3', meta: 'Akzeptanzkriterien für Validität definieren; Fehler-Responses festlegen.' }
               ]
             },
             {
               label: 'Premium-Status nutzen',
               role: 'p1',
               children: [
-                { label: 'Upgrade auf Premium für 4h Reservierung + zusätzliche Zahlungsart', role: 'p1' },
-                { label: 'Reservierungsdauer an S-02 übergeben; Warenkorb-Timeout nutzt Premium-Flag (S-06)', role: 'p3' }
+                { label: 'Upgrade auf Premium für 4h Reservierung + zusätzliche Zahlungsart', role: 'p1', meta: 'UC mit Trigger, Preconditions (zahlungsfaehig), Postconditions (Status=Premium) beschreiben.' },
+                { label: 'Reservierungsdauer an S-02 übergeben; Warenkorb-Timeout nutzt Premium-Flag (S-06)', role: 'p3', meta: 'Schnittstellen-Calls als Schritte im UC aufführen; Parameter benennen.' }
               ]
             },
             {
               label: 'Bewertungsberechtigung prüfen',
               role: 'p1',
               children: [
-                { label: 'Bewerten nur für gekaufte Artikel nach Terminende', role: 'p1' },
-                { label: 'System prüft Kaufnachweis und Datum (S-05); Shop-Bewertungen ausgeschlossen', role: 'p3' }
+                { label: 'Bewerten nur für gekaufte Artikel nach Terminende', role: 'p1', meta: 'UC mit Guard „Artikel gekauft + Termin vorbei“; Ausnahmen dokumentieren.' },
+                { label: 'System prüft Kaufnachweis und Datum (S-05); Shop-Bewertungen ausgeschlossen', role: 'p3', meta: 'Interaktion mit S-05 als Include/Extend modellieren; Negativpfade beschreiben.' }
               ]
             }
           ]
@@ -193,42 +193,42 @@
               role: 'p2',
               meta: 'IDs als String; Status & Premium-Flag',
               children: [
-                { label: 'kundennr, benutzername, email', role: 'p2' },
-                { label: 'passwortHash, fehlversuche, gesperrtBis', role: 'p2' },
-                { label: 'status: Neu/Aktiv/Gesperrt/Deaktiviert; premium: boolean', role: 'p2' }
+                { label: 'kundennr, benutzername, email', role: 'p2', meta: 'IDs als String; Eindeutigkeit für benutzername sicherstellen (VL7/8 UML Klassen).' },
+                { label: 'passwortHash, fehlversuche, gesperrtBis', role: 'p2', meta: 'Attribute für Sperrlogik vorsehen; Typen präzisieren (datetime).' },
+                { label: 'status: Neu/Aktiv/Gesperrt/Deaktiviert; premium: boolean', role: 'p2', meta: 'Enum definieren; Premium-Flag konsistent zu Ableitungen halten.' }
               ]
             },
             {
               label: 'Kundenprofil',
               role: 'p2',
               children: [
-                { label: 'lieferadresse, rechnungsadresse, telefon', role: 'p2' },
-                { label: 'kontaktPraeferenz: Email/Telefon', role: 'p2' }
+                { label: 'lieferadresse, rechnungsadresse, telefon', role: 'p2', meta: '1:1 zum Kunden; Pflichtfelder markieren; nur digitale Zustellung bedenken.' },
+                { label: 'kontaktPraeferenz: Email/Telefon', role: 'p2', meta: 'Enum modellieren; Default Email; Validierung auf erlaubte Werte.' }
               ]
             },
             {
               label: 'Zahlungsart',
               role: 'p2',
               children: [
-                { label: 'typ: Vorkasse/Kreditkarte/PayPal/Bankeinzug/RechnungPremium', role: 'p2' },
-                { label: 'iban, bic, kartenToken, paypalToken', role: 'p2' },
-                { label: 'mandatsReferenz, gueltigBis', role: 'p2' }
+                { label: 'typ: Vorkasse/Kreditkarte/PayPal/Bankeinzug/RechnungPremium', role: 'p2', meta: 'Enum inkl. Premium-only Wert; Constraints je Typ festhalten.' },
+                { label: 'iban, bic, kartenToken, paypalToken', role: 'p2', meta: 'Attribute nur für relevante Typen befüllen; Kardinalitäten dokumentieren.' },
+                { label: 'mandatsReferenz, gueltigBis', role: 'p2', meta: 'Für SEPA erfassen; Datumstyp setzen; Pflicht nur bei Bankeinzug.' }
               ]
             },
             {
               label: 'Berechtigung / Historie',
               role: 'p2',
               children: [
-                { label: 'gekaufteArtikel: list<string> (Bewertungsrecht)', role: 'p2' },
-                { label: 'letzterLogin, registriertAm', role: 'p2' }
+                { label: 'gekaufteArtikel: list<string> (Bewertungsrecht)', role: 'p2', meta: 'Liste für Berechtigungsprüfung (S-05); Persistenzform überlegen.' },
+                { label: 'letzterLogin, registriertAm', role: 'p2', meta: 'Audit-Attribute; Datentypen präzisieren; optional/null festhalten.' }
               ]
             },
             {
               label: 'Ableitungen',
               role: 'p2',
               children: [
-                { label: 'reservierungsdauer(): 2h / 4h je Premium', role: 'p2' },
-                { label: 'warenkorbTimeout(): 24h / 36h je Premium', role: 'p2' }
+                { label: 'reservierungsdauer(): 2h / 4h je Premium', role: 'p2', meta: 'Operation mit Rückgabetyp Duration modellieren; nutzt premium-Flag.' },
+                { label: 'warenkorbTimeout(): 24h / 36h je Premium', role: 'p2', meta: 'Operation für S-06; Werte als Konstante oder Konfiguration halten.' }
               ]
             }
           ]
@@ -238,10 +238,10 @@
           role: 'p3',
           meta: 'Sequenzen, Guards, Policies',
           children: [
-            { label: 'Passwort-Policy erzwingen (Komplexität, Doppel-Eingabe, Sperre 3x/1h)', role: 'p3' },
-            { label: 'Premium-Upgrade schaltet Rechnung + längere Reservierungen frei', role: 'p3' },
-            { label: 'Bewertungen nur für gekaufte Artikel und erst nach Terminende', role: 'p3' },
-            { label: 'Digitale Bereitstellung: Tickets nur per E-Mail/Download/QR', role: 'p3' }
+            { label: 'Passwort-Policy erzwingen (Komplexität, Doppel-Eingabe, Sperre 3x/1h)', role: 'p3', meta: 'In Sequenz- und Aktivitätsdiagrammen als Guard/Decision modellieren (VL6, VL9).' },
+            { label: 'Premium-Upgrade schaltet Rechnung + längere Reservierungen frei', role: 'p3', meta: 'Statuswechsel zeigen; Folgeschritte in S-02/S-06 markieren; Alternativpfad bei Fehlschlag.' },
+            { label: 'Bewertungen nur für gekaufte Artikel und erst nach Terminende', role: 'p3', meta: 'Guard mit Termin- und Kaufprüfung; Fehlpfad skizzieren.' },
+            { label: 'Digitale Bereitstellung: Tickets nur per E-Mail/Download/QR', role: 'p3', meta: 'Aktivität für Übergabe an S-04 modellieren; keine Papierzweige darstellen.' }
           ]
         },
         {
@@ -249,13 +249,13 @@
           role: 'p4',
           meta: 'Segmente S-02..S-09 und externe Payment-Provider',
           children: [
-            { label: 'S-09 Login & Passwortmanagement: Authentifizierung, Sperrlogik, Passwortvalidierung', role: 'p4' },
-            { label: 'S-03 Bezahlung: Zahlungsarten + Validierungsstatus bereitstellen', role: 'p4' },
-            { label: 'S-06 Warenkorb: Kundentyp (Premium/Standard), Timeout 24h/36h, Checkout-Erlaubnis', role: 'p4' },
-            { label: 'S-02 Sitzplatzauswahl: Reservierungsdauer 2h/4h nach Kundentyp', role: 'p4' },
-            { label: 'S-05 Kundenbewertung: Kaufnachweis + Terminprüfung für Freigabe', role: 'p4' },
-            { label: 'S-04 Ticketbereitstellung: E-Mail/Account als Übergabepunkt für Download und QR-Code', role: 'p4' },
-            { label: 'Externe Zahlungsanbieter: PayPal-Token, Karten-Token, SEPA-Mandat verwalten', role: 'p4' }
+            { label: 'S-09 Login & Passwortmanagement: Authentifizierung, Sperrlogik, Passwortvalidierung', role: 'p4', meta: 'Schnittstelle definieren: Sperrstatus/Passwortregeln konsumieren und liefern.' },
+            { label: 'S-03 Bezahlung: Zahlungsarten + Validierungsstatus bereitstellen', role: 'p4', meta: 'API/Port spezifizieren: PaymentMethod-Liste mit Validierungsflags ausgeben.' },
+            { label: 'S-06 Warenkorb: Kundentyp (Premium/Standard), Timeout 24h/36h, Checkout-Erlaubnis', role: 'p4', meta: 'Datenvertrag: premium-Flag, Timeout-Werte, Berechtigungsstatus liefern.' },
+            { label: 'S-02 Sitzplatzauswahl: Reservierungsdauer 2h/4h nach Kundentyp', role: 'p4', meta: 'Reservierungsdauer als Parameter übergeben; Quelle ist reservierungsdauer()-Ableitung.' },
+            { label: 'S-05 Kundenbewertung: Kaufnachweis + Terminprüfung für Freigabe', role: 'p4', meta: 'Berechtigungsservice bereitstellen (hatGekauft, terminVorbei) für S-05.' },
+            { label: 'S-04 Ticketbereitstellung: E-Mail/Account als Übergabepunkt für Download und QR-Code', role: 'p4', meta: 'Lieferkanal definieren (E-Mail/Account); nur digitale Medien modellieren.' },
+            { label: 'Externe Zahlungsanbieter: PayPal-Token, Karten-Token, SEPA-Mandat verwalten', role: 'p4', meta: 'Adapter/Ports ausarbeiten; Token-Speicherung und Mandatsstatus bereitstellen.' }
           ]
         }
       ]
