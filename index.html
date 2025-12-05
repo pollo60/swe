@@ -104,144 +104,156 @@
     };
 
     const legend = [
-      { role: 'p1', label: 'Use Cases / Stories' },
-      { role: 'p2', label: 'Objekte & Attribute' },
-      { role: 'p3', label: 'Dynamik / Regeln' },
-      { role: 'p4', label: 'Schnittstellen zu Segmenten' },
-      { role: 'general', label: 'Knoten mit neutralem Kontext' }
+      { role: 'general', label: 'Aufgabestellung / Neutral' },
+      { role: 'p1', label: 'Person 1 – Use Cases & Stories' },
+      { role: 'p2', label: 'Person 2 – Objekte & Attribute' },
+      { role: 'p3', label: 'Person 3 – Dynamik & Regeln' },
+      { role: 'p4', label: 'Person 4 – Schnittstellen & Segmente' }
     ];
 
     const mindMapData = {
-      label: 'S-01 Kundenverwaltung – Mindmap',
+      label: 'S-01 Kundenverwaltung – Aufgabestellung und Personenverantwortung',
       role: 'general',
-      meta: 'Pflichtäste: Use Cases, Objekte und Attribute, Schnittstellen zu anderen Segmenten und externen Systemen',
+      meta: 'Sortiert nach Aufgabenstellung und den Anforderungen pro Person (1–4)',
       children: [
         {
-          label: 'Use Cases',
+          label: 'Aufgabestellung Gesamt',
+          role: 'general',
+          meta: 'Kernanforderungen S-01: Registrierung, Sicherheit, Premium, Zahlungsdaten, Schnittstellen',
+          children: [
+            { label: 'Registrierung/Login mit Passwort-Policy und Sperre nach 3 Fehlversuchen/1h (S-09)', role: 'general' },
+            { label: 'Digitale Tickets only: E-Mail/Download/QR, keine Papierlieferung (S-04)', role: 'general' },
+            { label: 'Zahlungsarten verwalten inkl. Premium-Rechnung; Validierung IBAN/BIC/Luhn/Token', role: 'general' },
+            { label: 'Reservierungsdauer 2h Standard / 4h Premium; Warenkorb-Timeout 24h/36h', role: 'general' },
+            { label: 'Bewertungen nur nach Kauf & Terminende; Kaufnachweis nötig (S-05)', role: 'general' }
+          ]
+        },
+        {
+          label: 'Person 1 – Use Cases & Stories',
           role: 'p1',
+          meta: 'Erarbeitet Nutzerziele, Stories und Use-Case-Sicht',
           children: [
             {
               label: 'Registrierung anlegen',
               role: 'p1',
               children: [
                 { label: 'Als Besucher möchte ich mich registrieren, um Tickets kaufen zu können.', role: 'p1' },
-                { label: 'Passwortregeln: Mindestlänge, Groß-/Kleinbuchstaben, Ziffern, Sonderzeichen, doppelte Eingabe', role: 'p3' },
-                { label: 'Benutzername eindeutig; Sperre nach 3 Fehlversuchen für 1 Stunde (S-09)', role: 'p3' }
+                { label: 'Passwortregeln (Komplexität, doppelte Eingabe); Sperre nach 3 Fehlversuchen', role: 'p3' }
               ]
             },
             {
               label: 'Anmelden & entsperren',
               role: 'p1',
               children: [
-                { label: 'Als Kunde möchte ich mich anmelden, um meinen Warenkorb und meine Käufe zu nutzen.', role: 'p1' },
-                { label: 'Als Kunde möchte ich nach Sperrfrist wieder Zugriff erhalten, um weiter einkaufen zu können.', role: 'p1' }
+                { label: 'Login für Warenkorb/Käufe nutzen', role: 'p1' },
+                { label: 'Nach Sperrfrist wieder Zugriff erhalten', role: 'p1' }
               ]
             },
             {
               label: 'Profil- und Kontaktdaten pflegen',
               role: 'p1',
               children: [
-                { label: 'Als Kunde möchte ich Liefer- und Rechnungsadresse hinterlegen, um digitale Tickets und Rechnungen zu empfangen.', role: 'p1' },
-                { label: 'Als Kunde möchte ich Kontaktdaten aktualisieren, um zustellbar zu bleiben (nur digitale Tickets).', role: 'p1' }
+                { label: 'Liefer- und Rechnungsadresse, Kontaktdaten aktualisieren', role: 'p1' }
               ]
             },
             {
               label: 'Zahlungswege verwalten',
               role: 'p1',
               children: [
-                { label: 'Als Kunde möchte ich Zahlungsarten (Vorkasse, Kreditkarte, PayPal, Bankeinzug) hinterlegen, um den Kauf abzuschließen.', role: 'p1' },
-                { label: 'Als Premium-Kunde möchte ich zusätzlich auf Rechnung per Überweisung zahlen, um später bezahlen zu können.', role: 'p1' },
-                { label: 'Validierung aller Zahlungsdaten (IBAN/BIC/Luhn, PayPal-Token, Mandatsdaten) zwingend', role: 'p3' }
+                { label: 'Zahlungsarten: Vorkasse, Kreditkarte, PayPal, Bankeinzug', role: 'p1' },
+                { label: 'Premium: zusätzlich Rechnung/Überweisung', role: 'p1' },
+                { label: 'Validierung aller Zahlungsdaten zwingend (IBAN/BIC/Luhn, Token, Mandat)', role: 'p3' }
               ]
             },
             {
               label: 'Premium-Status nutzen',
               role: 'p1',
               children: [
-                { label: 'Als Kunde möchte ich auf Premium upgraden, um längere Reservierungen (4h) und zusätzliche Zahlungsarten zu nutzen.', role: 'p1' },
-                { label: 'Reservierungsdauer: 2h Standard, 4h Premium (S-02 Übergabe der Dauer)', role: 'p3' },
-                { label: 'Warenkorb-Timeout: 24h Standard, 36h Premium (S-06 nutzt Premium-Flag)', role: 'p3' }
+                { label: 'Upgrade auf Premium für 4h Reservierung + zusätzliche Zahlungsart', role: 'p1' },
+                { label: 'Reservierungsdauer an S-02 übergeben; Warenkorb-Timeout nutzt Premium-Flag (S-06)', role: 'p3' }
               ]
             },
             {
               label: 'Bewertungsberechtigung prüfen',
               role: 'p1',
               children: [
-                { label: 'Als Kunde möchte ich gekaufte Tickets/Services nach dem Termin bewerten, um Feedback zu geben.', role: 'p1' },
-                { label: 'System prüft Kaufnachweis und vergangenes Veranstaltungsdatum (S-05)', role: 'p3' },
-                { label: 'Shop-Bewertungen sind ausgeschlossen', role: 'p3' }
+                { label: 'Bewerten nur für gekaufte Artikel nach Terminende', role: 'p1' },
+                { label: 'System prüft Kaufnachweis und Datum (S-05); Shop-Bewertungen ausgeschlossen', role: 'p3' }
               ]
             }
           ]
         },
         {
-          label: 'Objekte und Attribute',
+          label: 'Person 2 – Objekte & Attribute',
           role: 'p2',
+          meta: 'Klassendiagramm, Datenstruktur, Ableitungen',
           children: [
             {
               label: 'Kunde (zentral)',
               role: 'p2',
-              meta: 'IDs als String modellieren',
+              meta: 'IDs als String; Status & Premium-Flag',
               children: [
-                { label: 'kundennr: string; benutzername: string; email: string', role: 'p2' },
-                { label: 'passwortHash: string; fehlversuche: number; gesperrtBis: datetime', role: 'p2' },
-                { label: 'status: enum{Neu,Aktiv,Gesperrt,Deaktiviert}; premium: boolean', role: 'p2' }
+                { label: 'kundennr, benutzername, email', role: 'p2' },
+                { label: 'passwortHash, fehlversuche, gesperrtBis', role: 'p2' },
+                { label: 'status: Neu/Aktiv/Gesperrt/Deaktiviert; premium: boolean', role: 'p2' }
               ]
             },
             {
               label: 'Kundenprofil',
               role: 'p2',
               children: [
-                { label: 'lieferadresse: string; rechnungsadresse: string; telefon: string', role: 'p2' },
-                { label: 'kontaktPraeferenz: enum{Email,Telefon}', role: 'p2' }
+                { label: 'lieferadresse, rechnungsadresse, telefon', role: 'p2' },
+                { label: 'kontaktPraeferenz: Email/Telefon', role: 'p2' }
               ]
             },
             {
               label: 'Zahlungsart',
               role: 'p2',
               children: [
-                { label: 'typ: enum{Vorkasse,Kreditkarte,PayPal,Bankeinzug,RechnungPremium}', role: 'p2' },
-                { label: 'iban: string; bic: string; kartenToken: string; paypalToken: string', role: 'p2' },
-                { label: 'mandatsReferenz: string; gueltigBis: date', role: 'p2' }
+                { label: 'typ: Vorkasse/Kreditkarte/PayPal/Bankeinzug/RechnungPremium', role: 'p2' },
+                { label: 'iban, bic, kartenToken, paypalToken', role: 'p2' },
+                { label: 'mandatsReferenz, gueltigBis', role: 'p2' }
               ]
             },
             {
               label: 'Berechtigung / Historie',
               role: 'p2',
               children: [
-                { label: 'gekaufteArtikel: list<string> (für Bewertungsrecht)', role: 'p2' },
-                { label: 'letzterLogin: datetime; registriertAm: date', role: 'p2' }
+                { label: 'gekaufteArtikel: list<string> (Bewertungsrecht)', role: 'p2' },
+                { label: 'letzterLogin, registriertAm', role: 'p2' }
               ]
             },
             {
               label: 'Ableitungen',
               role: 'p2',
               children: [
-                { label: 'reservierungsdauer(): duration -> 2h/4h je Premium', role: 'p2' },
-                { label: 'warenkorbTimeout(): duration -> 24h/36h je Premium', role: 'p2' }
+                { label: 'reservierungsdauer(): 2h / 4h je Premium', role: 'p2' },
+                { label: 'warenkorbTimeout(): 24h / 36h je Premium', role: 'p2' }
               ]
             }
           ]
         },
         {
-          label: 'Dynamik & Regeln',
+          label: 'Person 3 – Dynamik & Regeln',
           role: 'p3',
+          meta: 'Sequenzen, Guards, Policies',
           children: [
-            { label: 'Passwort-Policy erzwingen (Komplexität, Doppel-Eingabe, Sperre nach 3 Fehlversuchen/1h)', role: 'p3' },
-            { label: 'Premium-Upgrade schaltet Zahlungsart Rechnung und längere Reservierungen frei', role: 'p3' },
+            { label: 'Passwort-Policy erzwingen (Komplexität, Doppel-Eingabe, Sperre 3x/1h)', role: 'p3' },
+            { label: 'Premium-Upgrade schaltet Rechnung + längere Reservierungen frei', role: 'p3' },
             { label: 'Bewertungen nur für gekaufte Artikel und erst nach Terminende', role: 'p3' },
-            { label: 'Digitale Bereitstellung: Tickets nur per E-Mail/Download/QR, keine Papierlieferung', role: 'p3' }
+            { label: 'Digitale Bereitstellung: Tickets nur per E-Mail/Download/QR', role: 'p3' }
           ]
         },
         {
-          label: 'Schnittstellen zu Segmenten und externen Systemen',
+          label: 'Person 4 – Schnittstellen & Segmente',
           role: 'p4',
+          meta: 'Segmente S-02..S-09 und externe Payment-Provider',
           children: [
             { label: 'S-09 Login & Passwortmanagement: Authentifizierung, Sperrlogik, Passwortvalidierung', role: 'p4' },
-            { label: 'S-03 Bezahlung des Warenkorbs: Zahlungsarten und Validierungsstatus bereitstellen', role: 'p4' },
-            { label: 'S-06 Warenkorb: Kundentyp (Premium/Standard) für Zahlungswege, Timeout (24h/36h) und Checkout-Erlaubnis', role: 'p4' },
+            { label: 'S-03 Bezahlung: Zahlungsarten + Validierungsstatus bereitstellen', role: 'p4' },
+            { label: 'S-06 Warenkorb: Kundentyp (Premium/Standard), Timeout 24h/36h, Checkout-Erlaubnis', role: 'p4' },
             { label: 'S-02 Sitzplatzauswahl: Reservierungsdauer 2h/4h nach Kundentyp', role: 'p4' },
-            { label: 'S-05 Kundenbewertung: Kaufnachweis und Terminprüfung für Bewertungsfreigabe', role: 'p4' },
+            { label: 'S-05 Kundenbewertung: Kaufnachweis + Terminprüfung für Freigabe', role: 'p4' },
             { label: 'S-04 Ticketbereitstellung: E-Mail/Account als Übergabepunkt für Download und QR-Code', role: 'p4' },
             { label: 'Externe Zahlungsanbieter: PayPal-Token, Karten-Token, SEPA-Mandat verwalten', role: 'p4' }
           ]
