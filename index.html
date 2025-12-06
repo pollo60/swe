@@ -758,7 +758,11 @@
       meta: 'Format: Mindmap; Tools: XMind/FreeMind',
       children: [
         { label: 'Use Cases', role: 'p1', meta: 'Alle Use Cases mit User Stories; Format: User Stories + UC-Spezifikationen; Tools: XMind/FreeMind + Visual Paradigm', children: [
+          { label: 'Use-Case-Diagramm (gesamt)', role: 'p1', meta: 'Alle Akteure/UCs in einem Diagramm; Tool: Visual Paradigm' },
           { label: 'UC: Registrierung & Login', role: 'p1', meta: 'Passwort-Policy, Sperrlogik; Schnittstelle zu S-09; Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: XMind + Visual Paradigm', children: [
+            { label: 'Profil anlegen', role: 'p1', meta: 'Include: legt Profil an inkl. Stammdaten' },
+            { label: 'Benutzername und Passwort wählen', role: 'p1', meta: 'Include: Credentials wählen; Passwort-Policy' },
+            { label: 'Kundenprofile/-daten speichern', role: 'p1', meta: 'Include: Persistenz der Profildaten' },
             { label: 'User Story: Registrierung', role: 'p1', meta: 'Erstelle in XMind einen Topic-Knoten "User Story: Registrierung" mit Subtopics für Akzeptanzkriterien: Benutzername (unique), E-Mail (validiert), Passwort 2× eingeben (identisch), Registrierungsdatum (automatisch)' },
             { label: 'User Story: Login', role: 'p1', meta: 'Erstelle in XMind einen Topic-Knoten "User Story: Login" mit Subtopics: Eingabe Benutzername/Passwort, 3× falsches Passwort → 1h Sperre, Erfolgreiches Login → Zugriff auf Warenkorb' },
             { label: 'UC-Spezifikation: Registrierung', role: 'p1', meta: 'Erstelle in XMind eine UC-Spezifikation mit Knoten: Vorbedingung (kein Account), Nachbedingung (Account erstellt), Hauptszenario (1. Formular öffnen, 2. Daten eingeben, 3. Passwort 2× eingeben, 4. Bestätigen), Alternativszenarien (E-Mail bereits vorhanden, Passwörter nicht identisch)' },
@@ -770,15 +774,23 @@
           { label: 'UC: Profil & Kontaktdaten pflegen', role: 'p1', meta: 'Liefer-/Rechnungsadresse, nur digitale Zustellung (Anforderung für S-04); Format: UC-Spezifikation; Tool: XMind', children: [
             { label: 'User Story: Profil pflegen', role: 'p1', meta: 'Erstelle in XMind einen Topic-Knoten "User Story: Profil pflegen" mit Subtopics: Akzeptanzkriterien (Vorname, Nachname, E-Mail änderbar; Liefer-/Rechnungsadresse separat pflegen; nur digitale Ticket-Zustellung E-Mail/Download/QR-Code, keine Papiertickets)' },
             { label: 'UC-Spezifikation: Profil bearbeiten', role: 'p1', meta: 'Erstelle in XMind eine UC-Spezifikation mit Knoten: Vorbedingung (eingeloggt), Nachbedingung (Daten aktualisiert), Hauptszenario (1. Profil öffnen, 2. Felder bearbeiten: Name, E-Mail, 3. Speichern, 4. Bestätigung), Alternativszenarien (E-Mail bereits vergeben → Fehlermeldung)' },
-            { label: 'UC-Spezifikation: Adresse pflegen', role: 'p1', meta: 'Erstelle in XMind eine UC-Spezifikation mit Knoten: Vorbedingung (eingeloggt), Nachbedingung (Adresse gespeichert), Hauptszenario (1. Adresstyp wählen: Liefer- oder Rechnungsadresse, 2. Felder eingeben: Straße, PLZ, Ort, Land, 3. Speichern), Alternativszenarien (PLZ ungültig → Validierung), Hinweis: S-04 nutzt nur digitale Kanäle für Tickets' }
+            { label: 'UC-Spezifikation: Adresse pflegen', role: 'p1', meta: 'Erstelle in XMind eine UC-Spezifikation mit Knoten: Vorbedingung (eingeloggt), Nachbedingung (Adresse gespeichert), Hauptszenario (1. Adresstyp wählen: Liefer- oder Rechnungsadresse, 2. Felder eingeben: Straße, PLZ, Ort, Land, 3. Speichern), Alternativszenarien (PLZ ungültig → Validierung), Hinweis: S-04 nutzt nur digitale Kanäle für Tickets' },
+            { label: 'Lieferdaten hinterlegen', role: 'p1', meta: 'Extend/Include: Lieferadresse erfassen' },
+            { label: 'Rechnungsversand hinterlegen', role: 'p1', meta: 'Extend/Include: Rechnungsadresse erfassen' }
           ]},
           { label: 'UC: Zahlungswege verwalten', role: 'p1', meta: 'Zahlarten hinterlegen; Validierung IBAN/BIC/Luhn/Token; Schnittstelle zu S-03; Format: UC-Spezifikation + Aktivitätsdiagramm; Tools: XMind + Visual Paradigm', children: [
             { label: 'User Story: Zahlungsweg hinzufügen', role: 'p1', meta: 'Erstelle in XMind einen Topic-Knoten "User Story: Zahlungsweg hinzufügen" mit Subtopics: Akzeptanzkriterien (Standardkunde: Vorkasse, Kreditkarte, PayPal, Bankeinzug; Premium-Kunde zusätzlich: Rechnung, Überweisung; alle Zahlungsdaten validiert vor Speicherung)' },
             { label: 'UC-Spezifikation: Zahlungsweg anlegen', role: 'p1', meta: 'Erstelle in XMind eine UC-Spezifikation mit Knoten: Vorbedingung (eingeloggt), Nachbedingung (Zahlungsweg gespeichert), Hauptszenario (1. Zahlart wählen, 2. Daten eingeben: IBAN/BIC für Bankeinzug, Kartennummer/CVV für Kreditkarte, PayPal-ID, 3. Validierung durchführen, 4. Speichern), Alternativszenarien (IBAN ungültig → Fehlermeldung, Luhn-Check fehlgeschlagen)' },
+            { label: 'Zahlungsweise wählen', role: 'p1', meta: 'Include/Extend: Zahlart auswählen' },
             { label: 'Aktivitätsdiagramm: IBAN-Validierung', role: 'p3', meta: 'Öffne Visual Paradigm, erstelle ein neues Activity Diagram. Start-Node → Action "IBAN eingeben" → Action "Ländercode prüfen (DE: 22 Zeichen)" → Decision-Node "Länge korrekt?" → bei [nein] Action "Fehlermeldung" → zurück. Bei [ja] → Action "Prüfziffer berechnen (Modulo 97)" → Decision-Node "Prüfziffer korrekt?" → bei [nein] zurück, bei [ja] → Action "BIC eingeben" → Action "BIC-Format prüfen (8 oder 11 Zeichen)" → Decision-Node "BIC korrekt?" → bei [ja] Action "IBAN/BIC speichern" → End-Node' },
             { label: 'Aktivitätsdiagramm: Kreditkarten-Validierung (Luhn)', role: 'p3', meta: 'Öffne Visual Paradigm, erstelle ein neues Activity Diagram. Start-Node → Action "Kartennummer eingeben" → Action "Luhn-Algorithmus anwenden (jede 2. Ziffer verdoppeln, Quersumme bilden, Modulo 10 = 0)" → Decision-Node "Luhn-Check bestanden?" → bei [nein] Action "Fehlermeldung: ungültige Kartennummer" → zurück. Bei [ja] → Action "CVV eingeben" → Action "Ablaufdatum prüfen (nicht abgelaufen)" → Decision-Node "Karte gültig?" → bei [nein] zurück, bei [ja] → Action "Kartentoken generieren" → Action "Token speichern (verschlüsselt)" → End-Node' },
             { label: 'Aktivitätsdiagramm: PayPal-Validierung', role: 'p3', meta: 'Öffne Visual Paradigm, erstelle ein neues Activity Diagram. Start-Node → Action "PayPal-E-Mail eingeben" → Action "E-Mail-Format validieren (regex)" → Decision-Node "Format korrekt?" → bei [nein] zurück. Bei [ja] → Action "PayPal-API aufrufen: validateAccount(email)" → Decision-Node "Account existiert?" → bei [nein] Action "Fehlermeldung" → zurück, bei [ja] → Action "PayPal-ID speichern" → End-Node' },
             { label: 'Sequenzdiagramm: Zahlungsweg an S-03 übergeben', role: 'p3', meta: 'Öffne Visual Paradigm, erstelle ein neues Sequence Diagram. Lifelines: "Kunde", "S-01 Kundenverwaltung", "S-03 Bezahlung". Message von Kunde → S-01 "selectPaymentMethod(zahlungsweg)". S-01 → S-03 "processPayment(zahlungsweg-Objekt: {type, IBAN/Token/PayPal-ID})". S-03 validiert und antwortet mit return "paymentApproved" oder "paymentFailed". S-01 → Kunde "Bestätigung/Fehler"' }
+          ]},
+          { label: 'UC: Kundenstatus ermitteln', role: 'p1', meta: 'Status Standard/Premium/Gesperrt abfragen; Input für Reservierung/Bezahlung' },
+          { label: 'UC: Kundendaten bereitstellen', role: 'p1', meta: 'Stellt Kundendaten an andere Segmente; Format: UC-Spezifikation; Tools: XMind + Visual Paradigm', children: [
+            { label: 'User Story: Kundendaten bereitstellen', role: 'p1', meta: 'Als Shop möchte ich Kundendaten (E-Mail, Adressen, Status) bereitstellen, damit Warenkorb, Bezahlung, Tickets, Bewertungen korrekt laufen' },
+            { label: 'UC-Spezifikation: Kundendaten bereitstellen', role: 'p1', meta: 'Vorbedingung: Kunde existiert; Nachbedingung: Daten geliefert; Hauptszenario: Anfrage aus Segment, Daten zusammenstellen, liefern; Alternativen: Kunde nicht gefunden, Status gesperrt' }
           ]},
           { label: 'UC: Premium-Status nutzen', role: 'p1', meta: 'Premium-Upgrade; Reservierungsdauer 2h/4h; Warenkorb-Timeout 24h/36h; Schnittstellen zu S-02, S-06; Format: UC-Spezifikation; Tool: XMind', children: [
             { label: 'User Story: Premium-Upgrade', role: 'p1', meta: 'Erstelle in XMind einen Topic-Knoten "User Story: Premium-Upgrade" mit Subtopics: Akzeptanzkriterien (Upgrade-Button im Profil, Vorteile: Reservierungsdauer 4h statt 2h, Warenkorb-Timeout 36h statt 24h, zusätzliche Zahlarten: Rechnung/Überweisung, Upgrade-Datum speichern)' },
@@ -791,7 +803,10 @@
             { label: 'UC-Spezifikation: Bewertung abgeben', role: 'p1', meta: 'Erstelle in XMind eine UC-Spezifikation mit Knoten: Vorbedingung (eingeloggt, Artikel gekauft, Termin beendet), Nachbedingung (Bewertung gespeichert), Hauptszenario (1. Kaufhistorie öffnen, 2. Artikel auswählen, 3. Sterne-Bewertung abgeben 1-5, 4. Optional Kommentar eingeben, 5. Speichern), Alternativszenarien (Artikel nicht gekauft → Fehler, Termin noch nicht beendet → Fehler, Shop als Artikel → ausgeschlossen)' },
             { label: 'Aktivitätsdiagramm: Bewertungsberechtigung prüfen', role: 'p3', meta: 'Öffne Visual Paradigm, erstelle ein neues Activity Diagram. Start-Node → Action "Bewertung anfordern" → Action "Kaufhistorie abrufen" → Decision-Node "Artikel in Kaufhistorie?" → bei [nein] Action "Fehlermeldung: Artikel nicht gekauft" → End-Node. Bei [ja] → Action "Termindatum abrufen" → Decision-Node "Termin beendet (Datum < jetzt)?" → bei [nein] Action "Fehlermeldung: Termin noch nicht vorbei" → End-Node. Bei [ja] → Decision-Node "Artikel = Shop?" → bei [ja] Action "Fehlermeldung: Shop nicht bewertbar" → End-Node. Bei [nein] → Action "Bewertungsformular anzeigen" → End-Node' },
             { label: 'Sequenzdiagramm: Bewertung an S-05 übergeben', role: 'p3', meta: 'Öffne Visual Paradigm, erstelle ein neues Sequence Diagram. Lifelines: "Kunde", "S-01 Kundenverwaltung", "S-05 Kundenbewertung". Message von Kunde → S-01 "submitRating(artikel-ID, bewertung, kommentar)". S-01 → S-01 selbst: "validatePurchase(kunde-ID, artikel-ID)" (prüft Kaufhistorie). S-01 → S-01: "validateEventDate(artikel-ID)" (prüft Termin beendet). Alt-Fragment [berechtigt] S-01 → S-05 "storeRating(kunde-ID, artikel-ID, bewertung, kommentar, datum)". S-05 return "ratingStored". S-01 → Kunde "Bewertung gespeichert". [nicht berechtigt] S-01 → Kunde "Fehlermeldung: nicht berechtigt"' }
-          ]}
+          ]},
+          { label: 'Zustandsdiagramm: Kunde/Premium/gesperrt', role: 'p3', meta: 'State Machine für Statuswechsel Standard/Premium/gesperrt; Events: upgrade(), lock(), unlock(); Guards auf gesperrtBis' },
+          { label: 'Abnahmetests je UC', role: 'general', meta: 'Checklisten für Happy-/Alternativszenarien je Use Case; Testfälle in XMind notieren' },
+          { label: 'NFA-Check: Security/Privacy/Logging', role: 'general', meta: 'Nichtfunktionale Anforderungen prüfen: Passwort-Policy, Datenschutz (Minimierung), Audit-Logs für Statuswechsel' }
         ]},
         { label: 'Objekte und Attribute', role: 'p2', meta: 'Klassendiagramm, Datenstruktur, Ableitungen; Format: UML-Klassendiagramm; Tool: Visual Paradigm', children: [
           { label: 'Kunde (zentral)', role: 'p2', meta: 'Basis-Entity mit Ableitungen Standard/Premium; Format: UML-Klassendiagramm (Vererbung); Tool: Visual Paradigm', children: [
@@ -838,6 +853,12 @@
           { label: 'S-04 Ticketbereitstellung', role: 'p4', meta: 'Externe Gruppe; Format: Sequenzdiagramm; Tool: Visual Paradigm', children: [
             { label: 'Sequenzdiagramm: Digitale Zustellung erzwingen', role: 'p4', meta: 'Öffne Visual Paradigm, erstelle ein neues Sequence Diagram "S-01 zu S-04: Ticket-Zustellung". Füge Lifelines hinzu: "Kunde", "S-01 Kundenverwaltung", "S-04 Ticketbereitstellung". Zeichne Messages: 1. Kunde → S-01 "requestTicketDelivery(kaufID, zustellungsart)", 2. S-01 prüft Constraint "nur digitale Zustellung" (Guard), 3. Alt-Fragment [zustellungsart in {E-Mail, Download, QR-Code}] S-01 → S-04 "deliverTicket(kaufID, zustellungsart, kundeEmail)", S-04 return "ticketDelivered", S-01 → Kunde "Ticket zugestellt". [zustellungsart = Papierticket] S-01 → Kunde "Fehler: Papiertickets nicht verfügbar, nur digitale Zustellung". Notiere Constraint: "S-01 erzwingt: keine Papiertickets"' }
           ]},
+          { label: 'S-07 Veranstaltungsverwaltung', role: 'p4', meta: 'Externe Gruppe; Format: Sequenzdiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Sequenzdiagramm: Veranstalterdaten an S-07 übergeben', role: 'p4', meta: 'Lifelines: Kunde, S-01 Kundenverwaltung, S-07 Veranstaltungsverwaltung. S-01 liefert Veranstalterstammdaten/Owner-ID, damit Veranstaltungen zugeordnet werden' }
+          ]},
+          { label: 'S-08 Artikelverwaltung', role: 'p4', meta: 'Externe Gruppe; Format: Sequenzdiagramm; Tool: Visual Paradigm', children: [
+            { label: 'Sequenzdiagramm: Owner-Info an S-08 übergeben', role: 'p4', meta: 'Lifelines: Kunde/Veranstalter, S-01 Kundenverwaltung, S-08 Artikelverwaltung. S-01 liefert Owner/Veranstalter-ID für Artikel' }
+          ]},
           { label: 'S-05 Kundenbewertung', role: 'p4', meta: 'Externe Gruppe; Format: Sequenzdiagramm; Tool: Visual Paradigm', children: [
             { label: 'Sequenzdiagramm: Kaufnachweis prüfen', role: 'p4', meta: 'Öffne Visual Paradigm, erstelle ein neues Sequence Diagram "S-01 zu S-05: Bewertung mit Guard". Füge Lifelines hinzu: "Kunde", "S-01 Kundenverwaltung", "S-05 Kundenbewertung", "Kaufhistorie DB". Zeichne Messages: 1. Kunde → S-01 "submitRating(artikelID, bewertung, kommentar)", 2. S-01 → Kaufhistorie DB "findKauf(kundeID, artikelID)", 3. Kaufhistorie DB return "kauf(kaufID, termindatum, status)", 4. S-01 prüft Guards (self-call): "validatePurchase()" (kauf vorhanden?), "validateEventDate()" (termindatum < jetzt?), "validateArticleType()" (artikelTyp != Shop?), 5. Alt-Fragment [alle Guards erfüllt] S-01 → S-05 "storeRating(kundeID, artikelID, bewertung, kommentar, datum)", S-05 return "ratingStored", S-01 → Kunde "Bewertung gespeichert". [Guard fehlgeschlagen] S-01 → Kunde "Fehler: nicht berechtigt (Artikel nicht gekauft / Termin nicht beendet / Shop nicht bewertbar)"' }
           ]},
@@ -858,14 +879,24 @@
         class: 'timeline-kw50',
         description: 'Grundlagen & User Stories: Mindmap aufbauen; Use Cases für Registrierung, Login, Profil, Zahlungswege definieren; User Stories schreiben',
         tasks: [
+          { label: 'Use-Case-Diagramm (gesamt)', role: 'p1' },
           { label: 'Use Cases', role: 'p1' },
           { label: 'UC: Registrierung & Login', role: 'p1' },
           { label: 'User Story: Registrierung', role: 'p1' },
           { label: 'User Story: Login', role: 'p1' },
+          { label: 'Profil anlegen', role: 'p1' },
+          { label: 'Benutzername und Passwort wählen', role: 'p1' },
+          { label: 'Kundenprofile/-daten speichern', role: 'p1' },
           { label: 'UC: Profil & Kontaktdaten pflegen', role: 'p1' },
           { label: 'User Story: Profil pflegen', role: 'p1' },
+          { label: 'Lieferdaten hinterlegen', role: 'p1' },
+          { label: 'Rechnungsversand hinterlegen', role: 'p1' },
           { label: 'UC: Zahlungswege verwalten', role: 'p1' },
-          { label: 'User Story: Zahlungsweg hinzufügen', role: 'p1' }
+          { label: 'User Story: Zahlungsweg hinzufügen', role: 'p1' },
+          { label: 'Zahlungsweise wählen', role: 'p1' },
+          { label: 'UC: Kundendaten bereitstellen', role: 'p1' },
+          { label: 'User Story: Kundendaten bereitstellen', role: 'p1' },
+          { label: 'UC: Kundenstatus ermitteln', role: 'p1' },
         ]
       },
       {
@@ -879,6 +910,8 @@
           { label: 'UC-Spezifikation: Profil bearbeiten', role: 'p1' },
           { label: 'UC-Spezifikation: Adresse pflegen', role: 'p1' },
           { label: 'UC-Spezifikation: Zahlungsweg anlegen', role: 'p1' },
+          { label: 'UC-Spezifikation: Kundendaten bereitstellen', role: 'p1' },
+          { label: 'UC-Spezifikation: Kundenstatus ermitteln', role: 'p1' },
           { label: 'Aktivitätsdiagramm: Passwort-Validierung', role: 'p3' },
           { label: 'Aktivitätsdiagramm: Sperrlogik', role: 'p3' },
           { label: 'Aktivitätsdiagramm: IBAN-Validierung', role: 'p3' },
@@ -923,6 +956,7 @@
           { label: 'UC: Artikel bewerten', role: 'p1' },
           { label: 'User Story: Artikel bewerten', role: 'p1' },
           { label: 'UC-Spezifikation: Bewertung abgeben', role: 'p1' },
+          { label: 'Zustandsdiagramm: Kunde/Premium/gesperrt', role: 'p3' },
           { label: 'Klasse "Kauf" erstellen', role: 'p2' },
           { label: 'Aggregation: Kunde zu Kauf', role: 'p2' },
           { label: 'Klasse "Bewertung" erstellen', role: 'p2' },
@@ -934,10 +968,10 @@
         week: 'KW 02',
         period: '06.01–12.01',
         class: 'timeline-kw02',
-        description: 'Sequenzdiagramme zu Schnittstellen: Kommunikation mit S-02 (Reservierung), S-03 (Bezahlung), S-04 (Tickets), S-05 (Bewertung), S-06 (Warenkorb), S-09 (Login)',
+        description: 'Sequenzdiagramme zu Schnittstellen: Kommunikation mit S-02 (Reservierung), S-03 (Bezahlung), S-04 (Tickets), S-05 (Bewertung), S-06 (Warenkorb), S-07/S-08 (Veranstalter/Artikel), S-09 (Login)',
         tasks: [
           { label: 'Schnittstellen zu anderen Segmenten und externen Systemen', role: 'p4' },
-          { label: 'Sequenzdiagramm: Schnittstelle S-09', role: 'p3' },
+          { label: 'Sequenzdiagramm: Passwort-Validierung mit Sperre', role: 'p3' },
           { label: 'Sequenzdiagramm: Zahlungsweg an S-03 übergeben', role: 'p3' },
           { label: 'Sequenzdiagramm: Reservierungsdauer an S-02 übergeben', role: 'p3' },
           { label: 'Sequenzdiagramm: Warenkorb-Timeout an S-06 übergeben', role: 'p3' },
@@ -945,7 +979,8 @@
           { label: 'Sequenzdiagramm: Kaufnachweis prüfen', role: 'p4' },
           { label: 'Sequenzdiagramm: Bewertung an S-05 übergeben', role: 'p3' },
           { label: 'Aktivitätsdiagramm: Bewertungsberechtigung prüfen', role: 'p3' },
-          { label: 'Sequenzdiagramm: Passwort-Validierung mit Sperre', role: 'p3' }
+          { label: 'Sequenzdiagramm: Veranstalterdaten an S-07 übergeben', role: 'p4' },
+          { label: 'Sequenzdiagramm: Owner-Info an S-08 übergeben', role: 'p4' }
         ]
       },
       {
@@ -959,7 +994,9 @@
           { label: 'S-04 Ticketbereitstellung', role: 'p4' },
           { label: 'S-05 Kundenbewertung', role: 'p4' },
           { label: 'S-06 Warenkorb', role: 'p4' },
-          { label: 'S-09 Zentrales Login/Passwort-Management', role: 'p4' }
+          { label: 'S-09 Zentrales Login/Passwort-Management', role: 'p4' },
+          { label: 'S-07 Veranstaltungsverwaltung', role: 'p4' },
+          { label: 'S-08 Artikelverwaltung', role: 'p4' }
         ]
       },
       {
@@ -973,7 +1010,9 @@
           { label: 'Klassen-Diagramm-Check:', role: 'general' },
           { label: 'Sequenzdiagramm-Check:', role: 'general' },
           { label: 'Komponenten-Diagramm-Check:', role: 'general' },
-          { label: 'Traceability Matrix (Anforderungen → Artefakte)', role: 'general' }
+          { label: 'Traceability Matrix (Anforderungen → Artefakte)', role: 'general' },
+          { label: 'Abnahmetests je UC', role: 'general' },
+          { label: 'NFA-Check: Security/Privacy/Logging', role: 'general' }
         ]
       }
     ];
