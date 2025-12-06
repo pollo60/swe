@@ -79,9 +79,34 @@
     .wiki-list li { margin: 4px 0; }
     .wiki-vocab { background: rgba(79, 70, 229, 0.06); padding: 3px 8px; border-radius: 6px; font-weight: 500; color: var(--p1); }
     
+    /* Wiki Tags für Kategorisierung */
+    .wiki-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 12px; margin-right: 8px; margin-bottom: 8px; }
+    .tag-concept { color: #312e81; background: rgba(79, 70, 229, 0.12); border: 1px solid rgba(79, 70, 229, 0.3); } /* p1: Use Cases & Stories */
+    .tag-tools { color: #065f46; background: rgba(5, 150, 105, 0.12); border: 1px solid rgba(5, 150, 105, 0.3); } /* p2: Objekte & Attribute */
+    .tag-method { color: #d97706; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); } /* p3: Dynamik & Regeln */
+    .tag-role { color: #9f1239; background: rgba(225, 29, 72, 0.12); border: 1px solid rgba(225, 29, 72, 0.3); } /* p4: Schnittstellen & Segmente */
+    .tag-practice { color: #0f172a; background: rgba(31, 41, 55, 0.12); border: 1px solid rgba(31, 41, 55, 0.3); } /* general: Aufgabenstellung / Neutral */
+    
+    /* S-01 Blueprint Styles */
+    .s01-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; border-bottom: 2px solid var(--border); }
+    .s01-tab-btn { background: transparent; border: none; padding: 10px 16px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; }
+    .s01-tab-btn:hover { color: var(--p1); }
+    .s01-tab-btn.active { color: var(--p1); border-bottom-color: var(--p1); }
+    .s01-tab-content { display: none; }
+    .s01-tab-content.active { display: block; }
+    .s01-section { background: rgba(79, 70, 229, 0.02); border: 1px solid var(--p1); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .s01-subsection { margin-left: 16px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 3px solid var(--p1); }
+    .s01-code { background: #f5f5f5; border-left: 3px solid var(--p3); padding: 8px 12px; margin: 8px 0; font-family: 'Courier New', monospace; font-size: 12px; border-radius: 6px; overflow-x: auto; }
+    .s01-checklist { list-style: none; padding: 0; }
+    .s01-checklist li { padding: 6px 0; padding-left: 24px; position: relative; }
+    .s01-checklist li:before { content: '☑'; position: absolute; left: 0; color: var(--p2); font-weight: bold; }
+    .s01-requirement { background: linear-gradient(135deg, rgba(5, 150, 105, 0.06), rgba(79, 70, 229, 0.06)); padding: 10px 12px; border-radius: 8px; margin: 6px 0; border-left: 3px solid var(--p2); }
+    .s01-requirement strong { color: var(--p2); }
+    
     @media (max-width: 1200px) {
       .branches-container { grid-template-columns: 1fr; }
       .wiki-grid { grid-template-columns: 1fr; }
+      .s01-tabs { flex-direction: column; }
     }
   </style>
 </head>
@@ -114,6 +139,452 @@
         <p class="lead" style="margin-bottom: 24px;">Kompakte Übersicht zu Themen, Vokabeln und Arbeitsweisen aus den Vorlesungen</p>
         
         <div class="wiki-grid" id="wiki"></div>
+      </div>
+
+      <!-- S-01 Blueprint & Projektspezifisches Wiki -->
+      <div class="card">
+        <h2>🎯 S-01 Blueprint: Kundenverwaltung (Projekt-Arbeitsanweisungen)</h2>
+        <p class="lead" style="margin-bottom: 20px;"><strong>Dieses Wiki ist deine Arbeitsanweisung für die Abgabe Aufgaben 1–9</strong><br/>Nutze jedes Kapitel direkt als Checkliste und Vorlage. Fokus: Wie wendet S-01 die SE-Grundlagen im Online-Ticket-Shop an?</p>
+        
+        <div class="s01-tabs">
+          <button class="s01-tab-btn active" onclick="switchS01Tab(event, 'context')">0. Kontext & Scope</button>
+          <button class="s01-tab-btn" onclick="switchS01Tab(event, 'relevance')">1. Anforderungen</button>
+          <button class="s01-tab-btn" onclick="switchS01Tab(event, 'blueprint')">2. Abgabe-Bauplan</button>
+          <button class="s01-tab-btn" onclick="switchS01Tab(event, 'verif')">3. Verifikation</button>
+          <button class="s01-tab-btn" onclick="switchS01Tab(event, 'vldetail')">4. VL-Anwendung</button>
+        </div>
+
+        <!-- Tab 0: Kontext & Scope -->
+        <div id="context" class="s01-tab-content active">
+          <h3><span class="wiki-tag tag-concept">⬤ Konzept</span>0) Kontext & Scope von S-01 (Kundenverwaltung)</h3>
+          <p><strong>Projektziel:</strong> Konzeption eines Online-Ticket-Shops (Tickets, Services/Fanpakete, Fanartikel)</p>
+          
+          <div class="s01-section">
+            <strong>🎯 Was ist S-01 kurz erklärt?</strong>
+            <div class="s01-subsection">
+              S-01 ist die <strong>Verwaltung aller Kundendaten</strong> im Online-Shop. Das bedeutet: Wenn sich ein Kunde registriert, seine Adresse eingibt, eine Kreditkarte speichert oder Premium-Kunde wird – das alles verwaltet S-01. S-01 ist wie die <em>"zentrale Kundenverwaltungsdatenbank"</em> des Shops.
+            </div>
+          </div>
+
+          <div class="s01-section">
+            <strong>📋 Wichtig für die Bearbeitung:</strong>
+            <div class="s01-subsection">
+              <strong>Regel 1:</strong> Ihr beschreibt nur euer Segment (S-01) + unmittelbar abhängige andere Segmente/Komponenten. <br/>
+              <strong>Regel 2:</strong> Segment-Referenzen immer so angeben: <span class="s01-code">S-02: Sitzplatzauswahl</span> (nicht nur "S-02") <br/>
+              <strong>Regel 3:</strong> Alles muss auf eine Anforderung (04, 13, 19, 22 usw.) zurückgeführt werden können.
+            </div>
+          </div>
+
+          <h4>🔑 S-01 ist verantwortlich für (Kern):</h4>
+          <ul class="s01-checklist">
+            <li><strong>Kundenprofil:</strong> Vorname, Nachname, E-Mail, Benutzername, Passwort speichern und verwalten</li>
+            <li><strong>Kontaktdaten:</strong> Zwei verschiedene Adressen abspeichern: eine zum Versand (Lieferadresse), eine für Rechnungen (Rechnungsadresse)</li>
+            <li><strong>Zahlungswege:</strong> Kreditkarte, PayPal, Bankeinzug, Vorkasse speichern (validiert und verschlüsselt)</li>
+            <li><strong>Premium-Status:</strong> Speichern ob Kunde "Standard" oder "Premium" ist – denn andere Segmente (S-02, S-06) fragen das ab und verhalten sich unterschiedlich</li>
+            <li><strong>Premium-Vorteile:</strong>
+              <ul style="margin-top: 6px;">
+                <li>Standard-Kunde: Sitzplatz-Reservierung max. 2 Stunden, Warenkorb max. 24 Stunden gültig</li>
+                <li>Premium-Kunde: Sitzplatz-Reservierung bis 4 Stunden, Warenkorb bis 36 Stunden gültig</li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="s01-section">
+            <strong>💭 Praktisches Beispiel:</strong>
+            <div class="s01-subsection">
+              Anna registriert sich im Shop (Passwort: hash wird gespeichert). Sie trägt ihre Wohnadresse als Lieferadresse ein und eine andere für Rechnungen. Sie speichert ihre Kreditkarte. Später wird sie Premium-Kunde (zahlt Upgrade). Wenn Anna jetzt einen Sitzplatz reserviert, fragt S-02 S-01 ab: "Ist Anna Premium?" S-01 antwortet: "Ja → Reservierung gültig für 4h". Wenn Anna einen Artikel in den Warenkorb legt, fragt S-06: "Wie lange darf der Warenkorb bleiben?" S-01 antwortet: "36h, weil Premium."
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 1: Relevanzcheck Anforderungen -->
+        <div id="relevance" class="s01-tab-content">
+          <h3><span class="wiki-tag tag-method">⬤ Methode</span>1) Relevanzcheck der Anforderungen (01–22) für S-01</h3>
+          <p><strong>🤔 Das ist wichtig zu verstehen:</strong> Der Kunde hat 22 Anforderungen für den ganzen Online-Ticket-Shop vorgegeben. Nicht alle sind für S-01 relevant. Ihr müsst die rauspicken, die S-01 betreffen, und erklären wie. Das nennt sich <em>"Relevanzcheck"</em>.</p>
+
+          <h4><span class="wiki-tag tag-role">⬤ Verantwortung</span>✅ Direkt relevant – S-01 muss das implementieren:</h4>
+          <div class="s01-requirement">
+            <strong>(04) Registrierung & Kundenprofil</strong><br/>
+            <em>Was das bedeutet:</em> Ein neuer Kunde registriert sich mit Benutzername + Passwort + E-Mail. Das wird alles in S-01 gespeichert. Später kann der Kunde sein Profil ansehen und ändern: Vorname, Nachname, Liefer- und Rechnungsadresse aktualisieren.
+          </div>
+          <div class="s01-requirement">
+            <strong>(13) Zahlungswege: Normal vs. Premium</strong><br/>
+            <em>Was das bedeutet:</em> Ein Standard-Kunde kann bezahlen mit: Vorkasse, Kreditkarte, PayPal, Bankeinzug. Ein Premium-Kunde zusätzlich mit: Rechnung (Kauf auf Rechnung, Zahlung später) und Überweisung. Das muss S-01 speichern und unterscheiden können.
+          </div>
+
+          <h4><span class="wiki-tag tag-role">⬤ Verantwortung</span>⚙️ Premium-Regeln – S-01 liefert Daten, andere Segmente nutzen:</h4>
+          <div class="s01-requirement">
+            <strong>(19) Sitzplatz-Reservierungsdauer</strong><br/>
+            <em>Was das bedeutet:</em> Wenn eine Kunde einen Sitzplatz reserviert (z.B. für ein Konzert), bleibt die Reservierung kurz Zeit offen. Standard: 2 Stunden (muss schnell zahlen). Premium: 4 Stunden (mehr Zeit). S-01 speichert den Premium-Status. Wenn S-02 (Sitzplatzauswahl) einen Sitzplatz reserviert, fragt es S-01: "Wie lange darf reserviert bleiben?" S-01 antwortet basierend auf Kundenstatus.
+          </div>
+          <div class="s01-requirement">
+            <strong>(22) Warenkorb-Timeout / Verfallsdatum</strong><br/>
+            <em>Was das bedeutet:</em> Wenn der Kunde Items in den Warenkorb legt aber nicht sofort bezahlt, verfällt der Warenkorb nach Zeit X (wird geleert). Standard: 24 Stunden. Premium: 36 Stunden (längere Gültigkeitsdauer). S-06 (Warenkorb) fragt S-01: "Wie lange darf dieser Warenkorb bleiben?" → S-01 schaut Kundenstatus → antwortet 24 oder 36h.
+          </div>
+
+          <h4><span class="wiki-tag tag-practice">⬤ Praxis</span>🔗 Indirekt relevant – S-01 liefert Daten, andere Segmente nutzen sie:</h4>
+          <div class="s01-requirement">
+            <strong>(06) Ticketbereitstellung per E-Mail/Download/QR</strong><br/>
+            <em>Was das bedeutet:</em> Nach Kauf bekommt der Kunde sein Ticket digital zugestellt. S-04 (Ticketbereitstellung) braucht von S-01: Die E-Mail-Adresse des Kunden und seine ID, um das Ticket zu versenden. Also: S-01 speichert E-Mail-Adressen, andere Segmente fragen danach.
+          </div>
+          <div class="s01-requirement">
+            <strong>(12) & (20) Kundenbewertungen nur für gekaufte Artikel/Events</strong><br/>
+            <em>Was das bedeutet:</em> Ein Kunde darf nur ein Event/Fanartikel bewerten, wenn er es gekauft hat. S-05 (Kundenbewertung) muss von S-01 abfragen können: "Hat dieser Kunde diesen Artikel gekauft?" S-01 hat Zugriff auf die Kaufhistorie.
+          </div>
+          <div class="s01-requirement">
+            <strong>(16) Login & Passwort-Sperrlogik</strong><br/>
+            <em>Was das bedeutet:</em> Das zentrale Login-System ist S-09. Aber S-01 muss "wissen", dass der Kunde existiert und speichert die Grunddaten. Nach 3 falschen Passwort-Versuchen wird ein Account 1 Stunde gesperrt → Das macht S-09, aber S-01 muss auch diese Info haben/speichern können.
+          </div>
+        </div>
+
+        <!-- Tab 2: Abgabe-Bauplan -->
+        <div id="blueprint" class="s01-tab-content">
+          <h3><span class="wiki-tag tag-method">⬤ Methode</span>2) Abgabe-Bauplan (Aufgaben 1–9) – als „Wiki-Workflow"</h3>
+          <p><strong>📖 So funktioniert dieser Bauplan:</strong> Jede Aufgabe baut auf der vorherigen auf. Ihr fängt mit der Mindmap an (Überblick), geht dann zu Use Cases (was macht der Kunde?), dann Klassen (wie speichern wir die Daten?), dann Diagramme (wie läuft das ab?), und am Ende die Komponenten (wie arbeiten die Systeme zusammen?).</p>
+
+          <h4><span class="wiki-tag tag-tools">⬤ Tools</span>Aufgabe 1: Mindmap (S-01 im Zentrum)</h4>
+          <div class="s01-section">
+            <span class="wiki-tag tag-concept">⬤ Konzept</span>
+            <strong>Was ist eine Mindmap? 🧠</strong>
+            <div class="s01-subsection">
+              Eine Mindmap ist wie ein Baum: In der Mitte steht "S-01 Kundenverwaltung", von dort gehen 3 Äste aus. Jeder Ast stellt eine "Perspektive" dar. Das hilft, erst ein Gefühl für dein Segment zu bekommen, bevor du ins Detail gehst.
+            </div>
+          </div>
+          <p><strong>Erlaubte Hauptäste (genau diese 3):</strong></p>
+          <ul class="s01-checklist">
+            <li><strong>Use Cases:</strong> Was können Kunden machen? z.B. "sich registrieren", "Profil pflegen", "Premium werden"</li>
+            <li><strong>Objekte und Attribute:</strong> Was sind die Datentypen? z.B. "Kunde" mit Attributen "Vorname", "E-Mail", "Premium-Status"</li>
+            <li><strong>Schnittstellen zu anderen Segmenten:</strong> Welche anderen Teile des Shops brauchen Daten von S-01? z.B. S-02 fragt "Ist Premium?" ab</li>
+          </ul>
+
+          <h4><span class="wiki-tag tag-tools">⬤ Tools</span>Aufgabe 2–3: UML-Diagramme (Use Case + Klasse)</h4>
+          <div class="s01-section">
+            <span class="wiki-tag tag-concept">⬤ Konzept</span>
+            <strong>2. Use-Case-Diagramm – Die "Was"-Frage</strong>
+            <div class="s01-subsection">
+              <strong>Worum geht's?</strong> Ein Use-Case ist etwas, das der Kunde tun kann. "Registrieren" ist ein Use Case. "Login" ist ein Use Case. "Premium-Status ändern" ist ein Use Case. Im Diagramm zeigst du alle Use Cases für S-01 und welche "Systeme" (S-01 selbst, S-09 Login, etc.) daran beteiligt sind.
+              <br/><br/>
+              <strong>Konkrete Use Cases für S-01 (Vorschlag):</strong>
+              <ul style="margin: 8px 0;">
+                <li>Registrierung durchführen</li>
+                <li>Lieferadresse pflegen</li>
+                <li>Rechnungsadresse pflegen</li>
+                <li>Zahlungsweg(e) hinterlegen</li>
+                <li>Premium-Status verwalten</li>
+                <li>Profil ansehen / Daten ändern</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="s01-section">
+            <span class="wiki-tag tag-concept">⬤ Konzept</span>
+            <strong>3. Klassen-Diagramm – Die "Wie-speichern-wir"-Frage</strong>
+            <div class="s01-subsection">
+              <strong>Worum geht's?</strong> Ein Klassen-Diagramm ist wie ein Blueprint für die Datenbank. Jede "Klasse" ist ein Datentyp (z.B. "Kunde"). Unter dem Namen stehen die Attribute (z.B. "Vorname: String", "E-Mail: String"). Das sagt dem Programmierer: "So sieht ein Kunde aus, speichert diese Infos."
+              <br/><br/>
+              <strong>Konkrete Objekte/Attribute für S-01 (Vorschlag):</strong>
+              <ul style="margin: 8px 0;">
+                <li><strong>Klasse Kunde:</strong> kundennummer, benutzername, email, vorname, nachname, registrierungsdatum, status (Standard/Premium)</li>
+                <li><strong>Klasse Adresse:</strong> adressID, straße, hausnummer, plz, ort, land, typ (Lieferung/Rechnung)</li>
+                <li><strong>Klasse Zahlungsweg:</strong> zahlungswegID, typ (Vorkasse/Kreditkarte/PayPal/etc.), daten (je nach Typ unterschiedlich)</li>
+                <li><strong>Vererbung:</strong> "Standardkunde" und "Premiumkunde" erben von "Kunde" (Premiumkunde hat zusätzlich "upgradeDatum")</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-tools">⬤ Tools</span>Aufgabe 4–6: Diagramme (Sequenz, Aktivität, Zustand)</h4>
+          <div class="s01-section">
+            <span class="wiki-tag tag-concept">⬤ Konzept</span>
+            <strong>4. Sequenzdiagramm – Die "In-welcher-Reihenfolge"-Frage</strong>
+            <div class="s01-subsection">
+              <strong>Worum geht's?</strong> Ein Sequenzdiagramm zeigt: Wer redet mit wem und in welcher Reihenfolge? Beispiel: Der Kunde klickt "Login" → S-01 fragt S-09 ab "Passwort korrekt?" → S-09 antwortet → S-01 antwortet dem Kunden.
+              <br/><br/>
+              <strong>Szenen zum Wählen (mindestens 1 ausarbeiten):</strong>
+              <ul style="margin: 8px 0;">
+                <li>"Registrierung": Kunde gibt Daten ein → S-01 speichert → Kunde bekommt Bestätigung</li>
+                <li>"S-06 fragt Premiumstatus ab": S-06 Warenkorb → S-01 → Kunde ist Premium? → S-01 antwortet</li>
+                <li>"Rechnungsadresse ändern": Kunde → S-01 → Datenbank aktualisieren → Bestätigung</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="s01-section">
+            <span class="wiki-tag tag-concept">⬤ Konzept</span>
+            <strong>5. Aktivitätsdiagramm – Die "Was-passiert-in-jedem-Schritt"-Frage</strong>
+            <div class="s01-subsection">
+              <strong>Worum geht's?</strong> Ein Aktivitätsdiagramm zeigt den Ablauf eines Prozesses mit Entscheidungen. Beispiel: "IBAN eingeben" → "Prüfziffer korrekt?" → JA: "Speichern" / NEIN: "Fehler, nochmal".
+              <br/><br/>
+              <strong>Prozesse zum Modellieren (mindestens 2):</strong>
+              <ul style="margin: 8px 0;">
+                <li>"Kundenprofil vervollständigen": Entscheidungen: Liefeladresse? Zahlungsweg? Premium?</li>
+                <li>"IBAN/Kartendaten validieren": Luhn-Check, Format-Prüfung, Speichern oder Fehler</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="s01-section">
+            <span class="wiki-tag tag-concept">⬤ Konzept</span>
+            <strong>6. Zustandsautomat – Die "In-welchen-Zuständen-ist-der-Kunde"-Frage</strong>
+            <div class="s01-subsection">
+              <strong>Worum geht's?</strong> Ein Zustandsautomat zeigt: Ein Kunde durchläuft verschiedene Zustände. Zuerst "Unregistered", dann "Registered", dann vielleicht "PremiumActive". Jeder Zustand bedeutet etwas anderes.
+              <br/><br/>
+              <strong>Zustände für S-01:</strong>
+              <ul style="margin: 8px 0;">
+                <li>Unregistered → Registered → ProfileIncomplete → ProfileComplete</li>
+                <li>Parallel dazu: PremiumInactive ↔ PremiumActive (kann ein- und ausschalten)</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-tools">⬤ Tools</span>Aufgabe 7–9: Komponentendiagramme (Fachlich vs. Technisch)</h4>
+          <div class="s01-section">
+            <span class="wiki-tag tag-concept">⬤ Konzept</span>
+            <strong>7. Fachliche Komponenten – Die "Was-bietet-S-01"-Frage</strong>
+            <div class="s01-subsection">
+              <strong>Worum geht's?</strong> Ein fachliches Komponentendiagramm sagt: "S-01 ist verantwortlich für diese Funktionalität und bietet diese Schnittstellen an, damit andere sie nutzen können."
+              <br/><br/>
+              <strong>Komponente: S-01 Kundenverwaltung</strong>
+              <ul style="margin: 8px 0;">
+                <li><strong>Provided Interfaces</strong> (das bietet S-01 an):
+                  <ul>
+                    <li>ICustomerProfile: "Gib mir Kunde.email, Kunde.liefeladresse, etc."</li>
+                    <li>ICustomerStatus: "Ist dieser Kunde Premium? Ja/Nein"</li>
+                  </ul>
+                </li>
+                <li><strong>Required Interfaces</strong> (das braucht S-01):
+                  <ul>
+                    <li>Von S-09: IAuthManagement: "Validier das Passwort für mich"</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="s01-section">
+            <span class="wiki-tag tag-concept">⬤ Konzept</span>
+            <strong>8. Technische Komponenten – Die "Wie-ist-S-01-intern-aufgebaut"-Frage</strong>
+            <div class="s01-subsection">
+              <strong>Worum geht's?</strong> Ein technisches Komponentendiagramm sagt: "In S-01 stecken diese Teile: eine Web-Oberfläche (UI), eine Business-Logic (Service), und eine Datenbank (DB). Die reden miteinander."
+              <br/><br/>
+              <strong>Technische Komponenten in S-01:</strong>
+              <ul style="margin: 8px 0;">
+                <li>&lt;&lt;component&gt;&gt; CustomerUI: Die Web-Seite, auf der der Kunde sich registriert / Profil pflegt</li>
+                <li>&lt;&lt;component&gt;&gt; CustomerService: Die Business-Logic, die Passwörter hasht, Premium-Status abfragen bearbeitet, etc.</li>
+                <li>&lt;&lt;component&gt;&gt; CustomerRepository/DB: Die Datenbank, in der alles gespeichert wird</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="s01-section">
+            <span class="wiki-tag tag-concept">⬤ Konzept</span>
+            <strong>9. Informationsflüsse – Die "Wer-redet-mit-wem"-Frage</strong>
+            <div class="s01-subsection">
+              <strong>Worum geht's?</strong> Ein Komponentendiagramm mit &lt;&lt;flow&gt;&gt; zeigt: Welche Daten fließen zwischen S-01 und anderen Segmenten? Was sendet S-01 raus? Was empfängt S-01?
+              <br/><br/>
+              <strong>Datenflüsse von S-01:</strong>
+              <ul style="margin: 8px 0;">
+                <li>S-01 → S-02 Sitzplatzauswahl: "Customer Premium-Status" (damit S-02 2h oder 4h Reservierung setzt)</li>
+                <li>S-01 → S-03 Bezahlung: "Zahlungsweg-Objekt" (Kreditkarten-Token, IBAN, etc.)</li>
+                <li>S-01 → S-04 Ticketbereitstellung: "Kundennummer + E-Mail" (damit Ticket verschickt wird)</li>
+                <li>S-01 → S-06 Warenkorb: "Premium-Status" (damit Warenkorb 24h oder 36h gültig bleibt)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Verifikation / Checklisten -->
+        <div id="verif" class="s01-tab-content">
+          <h3><span class="wiki-tag tag-practice">⬄ Praxis</span>3) Verifikation / Checklisten (damit ihr keine Punkte verschenkt)</h3>
+          <p><strong>💡 Nutzt diese Checklisten am Ende der Bearbeitung:</strong> Bevor ihr die Aufgaben abgebt, geht diese Liste durch. Häufige Fehler sind schnell gefunden und korrigiert!</p>
+
+          <h4>✅ Mindmap-Check:</h4>
+          <ul class="s01-checklist">
+            <li><input type="checkbox"> Genau 3 Hauptäste vorhanden (Use Cases / Objekte+Attribute / Schnittstellen) – nicht mehr, nicht weniger</li>
+            <li><input type="checkbox"> Jeder Use Case hat eine aussagekräftige Beschreibung/Metadaten</li>
+            <li><input type="checkbox"> Segment-IDs korrekt geschrieben: "S-01: Kundenverwaltung" (nicht "S-1" oder "Segment 01")</li>
+            <li><input type="checkbox"> Alle Äste tragen zum Verständnis bei (keine unwichtigen/redundanten Knoten)</li>
+          </ul>
+
+          <h4>✅ Use-Case-Diagramm-Check:</h4>
+          <ul class="s01-checklist">
+            <li><input type="checkbox"> Systemgrenze ist nur S-01 (kein anderes Segment im Diagramm, außer als externer Actor)</li>
+            <li><input type="checkbox"> Mindestens ein &lt;&lt;include&gt;&gt;-Dependency vorhanden (ein Use Case baut auf anderem auf)</li>
+            <li><input type="checkbox"> Keine zeitliche Abfolge modelliert (z.B. "erst Registrierung, dann Login" – das ist SEQUENZ, nicht USE CASE)</li>
+            <li><input type="checkbox"> Jede Dependency hat einen Stereotyp (&lt;&lt;include&gt;&gt; oder &lt;&lt;extend&gt;&gt;)</li>
+          </ul>
+
+          <h4>✅ Klassen-Diagramm-Check:</h4>
+          <ul class="s01-checklist">
+            <li><input type="checkbox"> Nur fachliche Klassen (z.B. Kunde, Adresse, Zahlungsweg) – keine technischen Klassen wie "Database" oder "Controller"</li>
+            <li><input type="checkbox"> Jede Klasse hat Attribute AND Operationen/Methoden (nicht nur Namen)</li>
+            <li><input type="checkbox"> Mindestens eine Generalisierung/Vererbung (z.B. Standardkunde und Premiumkunde erben von Kunde)</li>
+            <li><input type="checkbox"> Multiplizitäten sind angegeben (z.B. "1" auf Kunde-Seite, "0..*" auf Adresse-Seite)</li>
+            <li><input type="checkbox"> Attribut-Typen sind angegeben (String, int, Date, Enum, etc.)</li>
+          </ul>
+
+          <h4>✅ Sequenzdiagramm-Check:</h4>
+          <ul class="s01-checklist">
+            <li><input type="checkbox"> Lifelines sind korrekt (Kunde, S-01 System, evtl. S-09, evtl. Datenbank)</li>
+            <li><input type="checkbox"> Messages haben Pfeile in richtige Richtung und Beschriftung</li>
+            <li><input type="checkbox"> Alt-Fragmente nutzen Guard-Bedingungen [wenn...dann...sonst...]</li>
+            <li><input type="checkbox"> Return-Messages vorhanden (nicht nur hinweg, auch zurück)</li>
+          </ul>
+
+          <h4>✅ Aktivitätsdiagramm-Check:</h4>
+          <ul class="s01-checklist">
+            <li><input type="checkbox"> Start-Node (Kreis) am Anfang, End-Node (Kreis im Kreis) am Ende</li>
+            <li><input type="checkbox"> Action-Knoten (Rechtecke) für jeden Schritt</li>
+            <li><input type="checkbox"> Decision-Knoten (Rauten) mit Guard-Bedingungen [ja]/[nein]</li>
+            <li><input type="checkbox"> Flows zwischen allen Knoten (Pfeile)</li>
+          </ul>
+
+          <h4>✅ Zustandsautomat-Check:</h4>
+          <ul class="s01-checklist">
+            <li><input type="checkbox"> Alle Zustände sind Substantive (z.B. "Registered", nicht "ist registriert")</li>
+            <li><input type="checkbox"> Übergänge (Transitions) zwischen Zuständen sind benannt (z.B. "register", "upgrade")</li>
+            <li><input type="checkbox"> Keine unmöglichen Übergänge (z.B. von ProfileComplete direkt zu Unregistered – unrealistisch)</li>
+          </ul>
+
+          <h4>✅ Komponenten-Diagramm-Check:</h4>
+          <ul class="s01-checklist">
+            <li><input type="checkbox"> Fachliches Komponentendiagramm (Aufgabe 7): Zeigt nur fachliche Komponenten + Provided/Required Interfaces (keine Technologie wie Java, SQL, etc.)</li>
+            <li><input type="checkbox"> Technisches Komponentendiagramm (Aufgabe 8): Zeigt UI / Service / DB Komponenten mit Abhängigkeiten</li>
+            <li><input type="checkbox"> Datenfluss-Diagramm (Aufgabe 9): Nutzt &lt;&lt;flow&gt;&gt;-Abhängigkeiten (nicht &lt;&lt;use&gt;&gt;), zeigt welche Daten zwischen S-01 und anderen Segmenten fließen</li>
+            <li><input type="checkbox"> Interfaces sind deutlich gekennzeichnet (mit "<<interface>>")</li>
+          </ul>
+
+          <h4>🎯 Allgemeine Checks für alle Diagramme:</h4>
+          <ul class="s01-checklist">
+            <li><input type="checkbox"> Alle Diagramme haben einen aussagekräftigen Titel</li>
+            <li><input type="checkbox"> Legenden sind vorhanden (z.B. was bedeuten die Farben/Formen?)</li>
+            <li><input type="checkbox"> Notationen sind korrekt (UML Standard, nicht Freestyle)</li>
+            <li><input type="checkbox"> Auf Anforderungen (04, 13, 19, 22) referenziert (z.B. in Kommentaren)</li>
+          </ul>
+        </div>
+
+        <!-- Tab 4: VL-Anwendung Detail -->
+        <div id="vldetail" class="s01-tab-content">
+          <h3><span class="wiki-tag tag-method">⬄ Methode</span>4) VL-Anwendung: SE-Konzepte im Projekt (Kurz-Übersicht)</h3>
+          <p><strong>📚 Diese Seite zeigt:</strong> Wie nutzen wir in S-01 die Konzepte aus den Vorlesungen (VL1–11)? Das hilft dir zu verstehen, warum wir diese Konzepte brauchen und wie sie praktisch angewendet werden.</p>
+
+          <h4><span class="wiki-tag tag-concept">⬄ Konzept</span>📖 VL1 – Software Engineering & Projekterfolg</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> Ein Software-Projekt braucht Ziele, Planung und Qualitätsicherung.
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> Ihr definiert am Anfang: "S-01 liefert Kundenverwaltung, mit diesen Use Cases, diesen Klassen, diesen Schnittstellen." Dann arbeitet ihr nach Priorität (Registrierung/Login zuerst, Premium-Features später). Am Ende testet ihr: "Funktioniert alles wie geplant?"
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-method">⬄ Methode</span>📖 VL2 – V-Modell & Testlogik</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> Das V-Modell sagt: Für jede Anforderung brauchst du einen Test. Anforderung 04 (Registrierung) → Testfall: "Registriert sich ein Kunde, ist er im System?".
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> Jeder Use Case führt zu Test-Szenarien. Beispiel: UC "Profil ändern" → Test 1: "Änderung speichern funktioniert", Test 2: "Fehlerhafte E-Mail wird abgelehnt", Test 3: "Nicht-Premium-Kunde kann keine Rechnung auswählen".
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-method">⬄ Methode</span>📖 VL3 – Agil / Scrum</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> Agile Entwicklung arbeitet in kurzen Zyklen (Sprints), mit regelmäßigem Feedback und Anpassung.
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> 
+              <ul style="margin: 8px 0;">
+                <li><strong>Sprint 1 (KW 50–51):</strong> Basis: Kunden registrieren, Login, Passwort speichern</li>
+                <li><strong>Sprint 2 (KW 52–01):</strong> Adressen und Zahlungswege speichern, Premium-Status einführen</li>
+                <li><strong>Sprint 3 (KW 02–03):</strong> Schnittstellen zu S-02/S-03/S-06 testen, Integration</li>
+              </ul>
+              Jeder Sprint hat ein "Ziel" und "Definition of Done" (Akzeptanzkriterien).
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-method">⬄ Methode</span>📖 VL4 – Requirements Engineering (Anforderungsanalyse)</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> Anforderungen sind wie "Verträge" zwischen Kunden und Entwickler. Sie müssen klar, messbar, verfolgbar sein.
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> Ihr macht einen "Traceability-Check": 
+              <ul style="margin: 8px 0;">
+                <li>Anforderung 04 → Use Case "Registrierung" → Klasse "Kunde" mit Attribut "benutzername" → Test "Registrierung erfolgreich"</li>
+                <li>Anforderung 13 → Use Case "Zahlungsweg speichern" → Klassen "Vorkasse", "Kreditkarte", etc. → Test "PayPal-Token gespeichert"</li>
+                <li>Anforderung 19 → Operation "getReservierungsdauer()" in Klasse "Kunde" → Sequenzdiagramm "S-01 → S-02" → Test "Premium: 4h, Standard: 2h"</li>
+              </ul>
+              So zeigt ihr: "Jede Anforderung ist implementiert und testbar!"
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-tools">⬄ Tools</span>📖 VL5 – UML Modellierung: Use Cases</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> Ein Use-Case-Diagramm zeigt "Was können User mit dem System tun?"
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> Ihr zeichnet alle Use Cases (Registrierung, Profil ändern, Premium-Status, Zahlungsweg hinzufügen) und ihre Abhängigkeiten. Beispiel: "Premium-Upgrade" &lt;&lt;includes&gt;&gt; "Premium-Status speichern".
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-tools">⬄ Tools</span>📖 VL6 – UML Modellierung: Klassen</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> Ein Klassen-Diagramm zeigt "Wie sehen die Daten aus und wie hängen sie zusammen?"
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> Ihr zeichnet Klasse "Kunde" mit Attributen (vorname, nachname, email, status). Ihr zeichnet Vererbung: "Premiumkunde" erbt von "Kunde" (hat zusätzlich "upgradeDatum"). Ihr zeichnet Aggregation: "Kunde" hat "0..*" Adressen, "1..*" Zahlungswege.
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-tools">⬄ Tools</span>📖 VL7 – UML Modellierung: Sequenz</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> Ein Sequenzdiagramm zeigt "In welcher Reihenfolge kommunizieren die Systeme miteinander?"
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> Ihr zeichnet: Kunde → S-01 "requestReservation()" → S-01 liest Premium-Status → S-01 → S-02 "reserve(dauer=4h)" → S-02 return "OK" → Kunde bekommt "Reservierung erfolgreich". Das zeigt die Kommunikation!
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-tools">⬄ Tools</span>📖 VL8 – UML Modellierung: Aktivität & Zustand</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> Ein Aktivitätsdiagramm zeigt "Welche Schritte passieren nacheinander mit Entscheidungen?" Ein Zustandsautomat zeigt "In welchen Zuständen ist das System?"
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> 
+              <ul style="margin: 8px 0;">
+                <li><strong>Aktivität:</strong> "IBAN eingeben" → "Luhn-Check" → [gültig?] → JA: "Speichern" / NEIN: "Fehler, nochmal"</li>
+                <li><strong>Zustand:</strong> Kunde durchläuft: "Unregistered" → [registriert] → "Registered" → [profil_komplett] → "ProfileComplete" → [upgrade] → "PremiumActive"</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-method">⬄ Methode</span>📖 VL9 – Design Patterns</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> Design Patterns sind bewährte Lösungen für häufige Probleme.
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> Ihr könnt z.B. das <strong>Factory Pattern</strong> nutzen: "ZahlungswegFactory" erzeugt je nach Typ (Vorkasse, Kreditkarte, PayPal) das richtige Zahlungsweg-Objekt. Oder <strong>Decorator Pattern</strong>: Eine Premium-Upgrades "dekoriert" einen Standard-Kunden mit zusätzlichen Features.
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-practice">⬄ Praxis</span>📖 VL10 – Testen & Qualitätssicherung</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> TDD (Test-Driven Development) = Erst den Test schreiben, dann den Code.
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> Für jede Anforderung schreibt ihr Tests:
+              <ul style="margin: 8px 0;">
+                <li><strong>Unit-Test:</strong> "isValidIBAN('DE89370400440532013000')" soll true zurückgeben</li>
+                <li><strong>Integrationstest:</strong> "Kunde registriert sich" → "Datenbank speichert Daten" → "Login mit neuer Credentials funktioniert"</li>
+                <li><strong>Systemtest:</strong> "Kunde kauft mit Premiumstatus" → "S-06 bekommt 36h Warenkorb-Timeout" → "Korrektur vorhanden"</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4><span class="wiki-tag tag-concept">⬄ Konzept</span>📖 VL11 – Komponenten & Schnittstellen (Architektur)</h4>
+          <div class="s01-section">
+            <strong>🎯 Das Konzept:</strong> Komponenten sind "Bausteine" des Systems. Schnittstellen sind "Kontrakte" zwischen Komponenten.
+            <div class="s01-subsection">
+              <strong>Anwendung für S-01:</strong> Ihr definiert:
+              <ul style="margin: 8px 0;">
+                <li><strong>Komponente S-01:</strong> "Bietet Interface ICustomerProfile an (gib mir Kunde.email, Kunde.address)" und "ICustomerStatus (isPremium?)"</li>
+                <li><strong>Andere Komponenten nutzen das:</strong> S-02 ruft "ICustomerStatus.isPremium(kundeID)" auf. S-04 ruft "ICustomerProfile.getEmail(kundeID)" auf.</li>
+                <li><strong>Vorteil:</strong> Andere Teams können S-01 entwickeln, ohne die ganze Welt zu kennen – sie nutzen nur die Interfaces!</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="s01-section" style="margin-top: 24px; padding: 12px; background: #f0f9ff; border-left: 4px solid #0284c7;">
+            <strong>💡 Merksatz:</strong> VL1–11 sind nicht "theoretisch" – sie sind die Werkzeuge, um S-01 professionell zu bauen. Mindmap (Überblick) → Use Cases (was?) → Klassen (wie speichern?) → Sequenz (abläufe?) → Komponenten (architektur?) → Tests (funktioniert es?). So arbeiten echte Software-Engineers!
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -385,133 +856,124 @@
         week: 'KW 50',
         period: '09.12–15.12',
         class: 'timeline-kw50',
-        description: 'User Stories & UC-Spezifikationen für Registrierung/Login, Profil, Zahlungsarten; Passwort-Policy-Checkliste; erste Aktivitätsdiagramme (Schnittstellen zu S-09, S-03)',
+        description: 'Grundlagen & User Stories: Mindmap aufbauen; Use Cases für Registrierung, Login, Profil, Zahlungswege definieren; User Stories schreiben',
         tasks: [
+          { label: 'Use Cases', role: 'p1' },
           { label: 'UC: Registrierung & Login', role: 'p1' },
           { label: 'User Story: Registrierung', role: 'p1' },
           { label: 'User Story: Login', role: 'p1' },
-          { label: 'UC-Spezifikation: Registrierung', role: 'p1' },
-          { label: 'UC-Spezifikation: Login', role: 'p1' },
-          { label: 'Aktivitätsdiagramm: Passwort-Validierung', role: 'p3' },
-          { label: 'Aktivitätsdiagramm: Sperrlogik', role: 'p3' },
           { label: 'UC: Profil & Kontaktdaten pflegen', role: 'p1' },
           { label: 'User Story: Profil pflegen', role: 'p1' },
-          { label: 'UC-Spezifikation: Profil bearbeiten', role: 'p1' },
           { label: 'UC: Zahlungswege verwalten', role: 'p1' },
-          { label: 'User Story: Zahlungsweg hinzufügen', role: 'p1' },
-          { label: 'UC-Spezifikation: Zahlungsweg anlegen', role: 'p1' },
-          { label: 'Aktivitätsdiagramm: IBAN-Validierung', role: 'p3' },
-          { label: 'Aktivitätsdiagramm: Kreditkarten-Validierung (Luhn)', role: 'p3' }
+          { label: 'User Story: Zahlungsweg hinzufügen', role: 'p1' }
         ]
       },
       {
         week: 'KW 51',
         period: '16.12–22.12',
         class: 'timeline-kw51',
-        description: 'Domänenmodell (Kunde, Profil, Zahlungsarten, Berechtigungen, Ableitungen); Attributtabellen/Enums; Review mit Use-Case-Flows',
+        description: 'UC-Spezifikationen & Aktivitätsdiagramme: Use Cases ausdetaillieren; Passwort-Validierung, IBAN/Kreditkarten-Validierung, PayPal-Validierung als Aktivitätsdiagramme',
         tasks: [
-          { label: 'Objekte und Attribute', role: 'p2' },
-          { label: 'Kunde (zentral)', role: 'p2' },
-          { label: 'Klasse "Kunde" erstellen', role: 'p2' },
-          { label: 'Attribute hinzufügen: Basis-Daten', role: 'p2' },
-          { label: 'Attribute hinzufügen: Login-Daten', role: 'p2' },
-          { label: 'Vererbung: Standardkunde', role: 'p2' },
-          { label: 'Vererbung: Premium-Kunde', role: 'p2' },
-          { label: 'Adresse', role: 'p2' },
-          { label: 'Klasse "Adresse" erstellen', role: 'p2' },
-          { label: 'Aggregation: Kunde zu Adresse', role: 'p2' },
-          { label: 'Zahlungsweg', role: 'p2' },
-          { label: 'Klasse "Zahlungsweg" erstellen (abstrakt)', role: 'p2' },
-          { label: 'Vererbung: Vorkasse', role: 'p2' },
-          { label: 'Vererbung: Kreditkarte', role: 'p2' },
-          { label: 'Vererbung: PayPal', role: 'p2' },
-          { label: 'Vererbung: Bankeinzug', role: 'p2' },
-          { label: 'Vererbung: Rechnung (nur Premium)', role: 'p2' }
+          { label: 'UC-Spezifikation: Registrierung', role: 'p1' },
+          { label: 'UC-Spezifikation: Login', role: 'p1' },
+          { label: 'UC-Spezifikation: Profil bearbeiten', role: 'p1' },
+          { label: 'UC-Spezifikation: Adresse pflegen', role: 'p1' },
+          { label: 'UC-Spezifikation: Zahlungsweg anlegen', role: 'p1' },
+          { label: 'Aktivitätsdiagramm: Passwort-Validierung', role: 'p3' },
+          { label: 'Aktivitätsdiagramm: Sperrlogik', role: 'p3' },
+          { label: 'Aktivitätsdiagramm: IBAN-Validierung', role: 'p3' },
+          { label: 'Aktivitätsdiagramm: Kreditkarten-Validierung (Luhn)', role: 'p3' },
+          { label: 'Aktivitätsdiagramm: PayPal-Validierung', role: 'p3' }
         ]
       },
       {
         week: 'KW 52',
         period: '23.12–29.12',
         class: 'timeline-kw52',
-        description: 'Dynamik/Regeln ausarbeiten: Sperrlogik, Payment-Validierung, Premium-Upgrade-Folgen, Bewertungs-Guards, digitale Bereitstellung; Aktivitäts-/Sequenzdiagramme',
+        description: 'Domänenmodell & Klassen: Klasse Kunde mit Attribute (mit Login-Daten); Vererbung Standardkunde/PremiumKunde; Klasse Adresse; Zahlungsweg mit Subtypen',
         tasks: [
-          { label: 'Aktivitätsdiagramm: Sperrlogik', role: 'p3' },
-          { label: 'Sequenzdiagramm: Schnittstelle S-09', role: 'p3' },
-          { label: 'Aktivitätsdiagramm: PayPal-Validierung', role: 'p3' },
-          { label: 'Sequenzdiagramm: Zahlungsweg an S-03 übergeben', role: 'p3' },
-          { label: 'Sequenzdiagramm: Reservierungsdauer an S-02 übergeben', role: 'p3' },
-          { label: 'Sequenzdiagramm: Warenkorb-Timeout an S-06 übergeben', role: 'p3' },
-          { label: 'Aktivitätsdiagramm: Bewertungsberechtigung prüfen', role: 'p3' },
-          { label: 'Methode in Kunde: getReservierungsdauer()', role: 'p2' },
-          { label: 'Methode in Kunde: getWarenkorbTimeout()', role: 'p2' }
+          { label: 'Objekte und Attribute', role: 'p2' },
+          { label: 'Klasse "Kunde" erstellen', role: 'p2' },
+          { label: 'Attribute hinzufügen: Basis-Daten', role: 'p2' },
+          { label: 'Attribute hinzufügen: Login-Daten', role: 'p2' },
+          { label: 'Vererbung: Standardkunde', role: 'p2' },
+          { label: 'Vererbung: Premium-Kunde', role: 'p2' },
+          { label: 'Klasse "Adresse" erstellen', role: 'p2' },
+          { label: 'Aggregation: Kunde zu Adresse', role: 'p2' },
+          { label: 'Klasse "Zahlungsweg" erstellen (abstrakt)', role: 'p2' },
+          { label: 'Vererbung: Vorkasse', role: 'p2' },
+          { label: 'Vererbung: Kreditkarte', role: 'p2' },
+          { label: 'Vererbung: PayPal', role: 'p2' },
+          { label: 'Vererbung: Bankeinzug', role: 'p2' },
+          { label: 'Vererbung: Rechnung (nur Premium)', role: 'p2' },
+          { label: 'Aggregation: Kunde zu Zahlungsweg', role: 'p2' }
         ]
       },
       {
         week: 'KW 01',
         period: '30.12–05.01',
         class: 'timeline-kw01',
-        description: 'Schnittstellenverträge zu externen Gruppen S-02/S-03/S-04/S-05/S-06/S-09 inkl. Parameter (Premium-Flag, Reservierungsdauer, Timeouts); Kontextskizze',
+        description: 'Premium-Logik & Regeln: Methoden getReservierungsdauer() / getWarenkorbTimeout() implementieren; UC Premium-Upgrade + UC Artikel bewerten definieren',
         tasks: [
-          { label: 'Schnittstellen zu anderen Segmenten und externen Systemen', role: 'p4' },
-          { label: 'S-02 Sitzplatzauswahl', role: 'p4' },
-          { label: 'Sequenzdiagramm: Reservierungsdauer übergeben', role: 'p4' },
-          { label: 'S-03 Bezahlung', role: 'p4' },
-          { label: 'Sequenzdiagramm: Zahlungsweg-Objekt übergeben', role: 'p4' },
-          { label: 'S-04 Ticketbereitstellung', role: 'p4' },
-          { label: 'Sequenzdiagramm: Digitale Zustellung erzwingen', role: 'p4' },
-          { label: 'S-05 Kundenbewertung', role: 'p4' },
-          { label: 'Sequenzdiagramm: Kaufnachweis prüfen', role: 'p4' },
-          { label: 'S-06 Warenkorb', role: 'p4' },
-          { label: 'Sequenzdiagramm: Warenkorb-Timeout übergeben', role: 'p4' },
-          { label: 'S-09 Zentrales Login/Passwort-Management', role: 'p4' },
-          { label: 'Sequenzdiagramm: Passwort-Validierung mit Sperre', role: 'p4' }
-        ]
-      },
-      {
-        week: 'KW 02',
-        period: '06.01–12.01',
-        class: 'timeline-kw02',
-        description: 'Konsolidierung: Trace zwischen UCs, Domänenmodell, Regeln, Schnittstellen; Parametertabellen (Reservierung/Warenkorb zu S-02/S-06) finalisieren; Lücken schließen',
-        tasks: [
+          { label: 'Methode in Kunde: getReservierungsdauer()', role: 'p2' },
+          { label: 'Methode in Kunde: getWarenkorbTimeout()', role: 'p2' },
           { label: 'UC: Premium-Status nutzen', role: 'p1' },
           { label: 'User Story: Premium-Upgrade', role: 'p1' },
           { label: 'UC-Spezifikation: Premium-Upgrade durchführen', role: 'p1' },
           { label: 'UC: Artikel bewerten', role: 'p1' },
           { label: 'User Story: Artikel bewerten', role: 'p1' },
           { label: 'UC-Spezifikation: Bewertung abgeben', role: 'p1' },
-          { label: 'Kaufhistorie', role: 'p2' },
           { label: 'Klasse "Kauf" erstellen', role: 'p2' },
           { label: 'Aggregation: Kunde zu Kauf', role: 'p2' },
-          { label: 'Bewertung', role: 'p2' },
           { label: 'Klasse "Bewertung" erstellen', role: 'p2' },
-          { label: 'Constraint: Bewertungsberechtigung', role: 'p2' },
-          { label: 'Sequenzdiagramm: Bewertung an S-05 übergeben', role: 'p3' }
+          { label: 'Aggregation: Kunde zu Bewertung', role: 'p2' },
+          { label: 'Constraint: Bewertungsberechtigung', role: 'p2' }
+        ]
+      },
+      {
+        week: 'KW 02',
+        period: '06.01–12.01',
+        class: 'timeline-kw02',
+        description: 'Sequenzdiagramme zu Schnittstellen: Kommunikation mit S-02 (Reservierung), S-03 (Bezahlung), S-04 (Tickets), S-05 (Bewertung), S-06 (Warenkorb), S-09 (Login)',
+        tasks: [
+          { label: 'Schnittstellen zu anderen Segmenten und externen Systemen', role: 'p4' },
+          { label: 'Sequenzdiagramm: Schnittstelle S-09', role: 'p3' },
+          { label: 'Sequenzdiagramm: Zahlungsweg an S-03 übergeben', role: 'p3' },
+          { label: 'Sequenzdiagramm: Reservierungsdauer an S-02 übergeben', role: 'p3' },
+          { label: 'Sequenzdiagramm: Warenkorb-Timeout an S-06 übergeben', role: 'p3' },
+          { label: 'Sequenzdiagramm: Digitale Zustellung erzwingen', role: 'p4' },
+          { label: 'Sequenzdiagramm: Kaufnachweis prüfen', role: 'p4' },
+          { label: 'Sequenzdiagramm: Bewertung an S-05 übergeben', role: 'p3' },
+          { label: 'Aktivitätsdiagramm: Bewertungsberechtigung prüfen', role: 'p3' },
+          { label: 'Sequenzdiagramm: Passwort-Validierung mit Sperre', role: 'p3' }
         ]
       },
       {
         week: 'KW 03',
         period: '13.01–19.01',
         class: 'timeline-kw03',
-        description: 'Qualitätssicherung: Peer-Reviews der Diagramme/Verträge; Konsistenz-Check gegen Vorgaben (S-04 digital only, S-05 Kaufnachweis, S-09 Sperre 3x/1h)',
+        description: 'Komponentendiagramme & Detaillierung: Fachliches Komponentendiagramm (Provided/Required Interfaces); Technisches Komponentendiagramm (UI/Service/DB); Fachlicher Datenfluss',
         tasks: [
-          { label: 'UC: Registrierung & Login', role: 'p1' },
-          { label: 'UC-Spezifikation: Adresse pflegen', role: 'p1' },
-          { label: 'Aggregation: Kunde zu Zahlungsweg', role: 'p2' },
-          { label: 'Aggregation: Kunde zu Bewertung', role: 'p2' },
-          { label: 'Sequenzdiagramm: Digitale Zustellung erzwingen', role: 'p4' },
-          { label: 'Sequenzdiagramm: Kaufnachweis prüfen', role: 'p4' },
-          { label: 'Sequenzdiagramm: Passwort-Validierung mit Sperre', role: 'p4' }
+          { label: 'S-02 Sitzplatzauswahl', role: 'p4' },
+          { label: 'S-03 Bezahlung', role: 'p4' },
+          { label: 'S-04 Ticketbereitstellung', role: 'p4' },
+          { label: 'S-05 Kundenbewertung', role: 'p4' },
+          { label: 'S-06 Warenkorb', role: 'p4' },
+          { label: 'S-09 Zentrales Login/Passwort-Management', role: 'p4' }
         ]
       },
       {
         week: 'KW 04',
         period: '20.01–25.01',
         class: 'timeline-kw04',
-        description: 'Finalisierung & Puffer: letzte Anpassungen, Export/Packaging aller Artefakte; Abnahme-Checkliste und Präsentationsfolien erstellen (Ende: 25.01.2026)',
+        description: 'Finalisierung & Validierung: Qualitätssicherung (Checklisten VL2–VL11 anwenden); Abnahme-Tests; Dokumentation (Readme, Export aller Diagramme)',
         tasks: [
-          { label: 'Use Cases', role: 'p1' },
-          { label: 'Objekte und Attribute', role: 'p2' },
-          { label: 'Schnittstellen zu anderen Segmenten und externen Systemen', role: 'p4' }
+          { label: 'Mindmap-Check:', role: 'general' },
+          { label: 'Use-Case-Diagramm-Check:', role: 'general' },
+          { label: 'Klassen-Diagramm-Check:', role: 'general' },
+          { label: 'Sequenzdiagramm-Check:', role: 'general' },
+          { label: 'Komponenten-Diagramm-Check:', role: 'general' },
+          { label: 'Traceability Matrix (Anforderungen → Artefakte)', role: 'general' }
         ]
       }
     ];
@@ -751,6 +1213,24 @@
         item.appendChild(content);
         container.appendChild(item);
       });
+    }
+
+    // S-01 Tab-Switching Funktion
+    function switchS01Tab(event, tabName) {
+      // Alle Tabs verstecken, alle Buttons deaktivieren
+      document.querySelectorAll('.s01-tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelectorAll('.s01-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // Ziel-Tab anzeigen, Button aktivieren
+      const targetTab = document.getElementById(tabName);
+      if (targetTab) {
+        targetTab.classList.add('active');
+      }
+      event.target.classList.add('active');
     }
 
     collectTasks(mindMapData);
